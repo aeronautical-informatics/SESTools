@@ -1,6 +1,22 @@
 # SESTools
+SESEditor for building System Entity Structures and PESEditor for interactive pruning.
 
-System Entity Structure (SES) is a high-level ontology which was introduced for knowledge representation of decomposition, taxonomy and coupling of systems. It has its roots from the systems theory-based approaches to modeling and simulation. SES has
-been applied for various purposes by modeling and simulation community such as creating suites of models for global warming, modeling the elements of a scenario in a research flight simulator or for variant modeling in model-based design.  
+# Configuration
+The files in the following list need to be added as dependencies in locations SESEditor/lib and PESEditor/lib.
 
-SESEditor for building System Entity Structures and PESEditor for interactive pruning
+* cupv10k-runtime.jar
+* guava-22.0.jar
+* icu4j.jar
+* jgraphx.jar
+* org.elcipse.wst.xml.xpath2.processor_1.1.0.jar
+* resolver.jar
+* rsyntaxtextarea-2.0.7.jar
+* serializer.jar
+* xercesImpl.jar
+* xercesSamples.jar
+* xml-apis.jar
+
+# TODO
+* Enhance the documentation
+* Better description for the configuration
+* Release sector withbinaries

@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/rsyntaxtextarea-2.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/serializer.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/cupv10k-runtime.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/xml-apis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/resolver.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/guava-22.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/org.eclipse.wst.xml.xpath2.processor_1.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/xercesImpl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/jgraphx.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/icu4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/SESEditor/lib/xercesSamples.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
