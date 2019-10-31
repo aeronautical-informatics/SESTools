@@ -4833,10 +4833,10 @@ public class JtreeToGraph {
 	public void pruneNodeFromGraphPopup(Object pos) {
 		mxCell selectedCell = (mxCell) pos;
 
-		int a1 = 0;
-		String[] nodeList = new String[10];
-		nodeList[a1] = "Select Node Here:";
-		a1++;
+//		int a1 = 0;
+//		String[] nodeList = new String[10];
+//		nodeList[a1] = "Select Node Here:";
+//		a1++;
 
 		Object[] outgoing = graph.getOutgoingEdges(selectedCell);
 
@@ -4845,6 +4845,11 @@ public class JtreeToGraph {
 		mxCell targetCellIncoming2 = (mxCell) targetCellIncoming;
 		// System.out.println("targetCellIncoming2:
 		// "+targetCellIncoming2.getValue().toString());
+
+		int a1 = 0;
+		String[] nodeList = new String[outgoing.length];
+		nodeList[a1] = "Select Node Here:";
+//		a1++;
 
 		if (outgoing.length > 0) {
 			for (int i = 0; i < outgoing.length; i++) {
