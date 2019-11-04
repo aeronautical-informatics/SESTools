@@ -1,6 +1,9 @@
 # SESTools
 SESEditor for building System Entity Structures and PESEditor for interactive pruning.
 
+# Development
+Suggestion that changes are merged into a branch development and the master branch is for release code.
+
 # Configuration
 The files in the following list need to be added as dependencies in locations SESEditor/lib and PESEditor/lib.
 
