@@ -23,3 +23,8 @@ The files in the following list need to be added as dependencies in locations SE
 * Enhance the documentation
 * Better description for the configuration
 * Release sector withbinaries
+
+# Hamed Roknizadeh
+
++ Fixed to run on MacOS
++ Add Maven for dependencies
