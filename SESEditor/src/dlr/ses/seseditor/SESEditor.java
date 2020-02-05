@@ -1551,7 +1551,7 @@ public class SESEditor extends JPanel {
 		schemaview.textArea.setEditable(false);
 
 		// creating tab window
-		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		//tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.addTab("SES Ontology", ontologyview);
 		tabbedPane.addTab("SES XML", sesview);
 		tabbedPane.addTab("SES Schema", schemaview);
