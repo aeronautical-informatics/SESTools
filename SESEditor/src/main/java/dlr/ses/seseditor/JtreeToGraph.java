@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,10 +28,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.imageio.ImageIO;
-import javax.swing.InputVerifier;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -49,6 +45,7 @@ import javax.xml.transform.OutputKeys;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
+import dlr.ses.utils.PanelSplitor;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -57,7 +54,6 @@ import org.w3c.dom.Element;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
@@ -474,9 +470,9 @@ public class JtreeToGraph {
 					int screenWidth = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
 					if (x > screenWidth) {
-						x = x - SESEditor.dividerLocation - 10 - screenWidth;
+						x = x - PanelSplitor.dividerLocation - 10 - screenWidth;
 					} else {
-						x = x - SESEditor.dividerLocation - 10;
+						x = x - PanelSplitor.dividerLocation - 10;
 					}
 					// end of that
 

@@ -19,7 +19,5 @@ public class EditorUndoableEditListener implements UndoableEditListener {
 	public void undoableEditHappened(UndoableEditEvent e) {
 		// Remember the edit and update the menus
 		SESEditor.undoJtree.addEdit(e.getEdit());
-		// undoAction.updateUndoState();
-		// redoAction.updateRedoState();
 	}
 }

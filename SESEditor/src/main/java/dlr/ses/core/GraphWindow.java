@@ -28,18 +28,5 @@ public class GraphWindow extends JInternalFrame {
 				false // iconifiable
 		);
 
-		// this.add(createTabbedPane());
 	}
-
-	// private JTabbedPane createTabbedPane() {
-	// JTabbedPane jtp = new JTabbedPane();
-	// createTab(jtp, "One");
-	// createTab(jtp, "Two");
-	// return jtp;
-	// }
-	//
-	// private void createTab(JTabbedPane jtp, String s) {
-	// jtp.add(s, new JLabel("TabbedPane " + s, JLabel.CENTER));
-	// }
-
 }

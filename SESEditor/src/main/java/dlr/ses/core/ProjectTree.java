@@ -33,6 +33,7 @@ import com.google.common.io.Files;
 import dlr.ses.seseditor.JtreeToGraph;
 import dlr.ses.seseditor.ProjectTreePopup;
 import dlr.ses.seseditor.SESEditor;
+import dlr.ses.utils.XmlUtils;
 
 /**
  * <h1>ProjectTree</h1>
@@ -235,7 +236,7 @@ public class ProjectTree extends JPanel implements MouseListener {
 			String name = projectTree.getSelectionPath().getLastPathComponent().toString();
 			// System.out.println(name);
 			showXSDtoXMLViewer(name);
-			SESEditor.xmlview.setTitle(name);
+			XmlUtils.xmlview.setTitle(name);
 
 		}
 		// System.out.println("Test tree click");
@@ -297,7 +298,7 @@ public class ProjectTree extends JPanel implements MouseListener {
 
 		}
 
-		SESEditor.xmlview.textArea.setText(xmlcontent.toString());
+		XmlUtils.xmlview.textArea.setText(xmlcontent.toString());
 		// System.out.println(xmlcontent);
 
 		in.close();

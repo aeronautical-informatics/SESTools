@@ -37,25 +37,17 @@ public class CustomIconRendererProject extends DefaultTreeCellRenderer {
 
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf,
 			int row, boolean hasFocus) {
-
 		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-
 		Object nodeObj = ((DefaultMutableTreeNode) value).getUserObject();
 		String nodeName = nodeObj.toString();
-		// System.out.println("s: " + s);
-
 		if ((nodeName != null) && (!nodeName.trim().isEmpty())) {
-
 			if (nodeName.endsWith("Module")) {
 				setIcon(moduleIcon);
-
 			} else if (nodeName.endsWith("xml")) {
 				setIcon(xmlIcon);
-
 			} else {
 				setIcon(moduleIcon);
 			}
-
 		}
 		return this;
 	}

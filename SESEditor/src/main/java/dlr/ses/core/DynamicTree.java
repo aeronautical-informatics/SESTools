@@ -62,9 +62,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 	public static Multimap<TreePath, String> varMap = ArrayListMultimap.create();
 	public static Multimap<TreePath, String> constraintsList = ArrayListMultimap.create();
 	public static
-
 	Variable scenarioVariable = new Variable();
-
 	public static String projectFileName;// ="outputgraphxml";
 
 	public File ssdFile = new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + projectFileName + ".xml");
@@ -93,23 +91,9 @@ public class DynamicTree extends JPanel implements MouseListener {
 				if (SESEditor.openClicked == 1) {
 					File ssdFile = new File(SESEditor.openFileName + ".ssd");
 					ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ssdFile));
-					// treeModel = (DefaultTreeModel) ois.readObject();
 					ois.close();
 
-					// for variable
-					// File ssdFileVar = new File(DynamicTreeDemo.openFileName + ".ssdvar");
-					// ObjectInputStream oisvar = new ObjectInputStream(new
-					// FileInputStream(ssdFileVar));
-					// varMap = (Multimap<String, String>) oisvar.readObject();
-					// oisvar.close();
-
 				} else {
-					/*
-					 * ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ssdFile));
-					 * treeModel = (DefaultTreeModel) ois.readObject();
-					 * 
-					 * ois.close();
-					 */
 					// for variable
 					if (ssdFileVar.exists() && ssdFileCon.exists() && ssdFileFlag.exists()) {
 						ObjectInputStream oisvar = new ObjectInputStream(new FileInputStream(ssdFileVar));
@@ -165,16 +149,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 			tree.expandRow(i);
 		}
 
-		// //for close-open icon
-		// DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer)
-		// tree.getCellRenderer();
-		// Icon closedIcon = new ImageIcon("images/delete.png");
-		// Icon openIcon = new ImageIcon("images/delete.png");
-		// Icon leafIcon = new ImageIcon("images/add.png");
-		// renderer.setClosedIcon(closedIcon);
-		// renderer.setOpenIcon(openIcon);
-		// renderer.setLeafIcon(leafIcon);
-		// default icon
+
 		Path path = Paths.get("").toAbsolutePath();
 		String repFslas = path.toString().replace("\\", "/");
 
@@ -217,17 +192,13 @@ public class DynamicTree extends JPanel implements MouseListener {
 		treeModel.addTreeModelListener(new MyTreeModelListener());
 		treeModel.reload(root);
 
-		// tree.setModel(new DefaultTreeModel(root));//because of this line after
 		// opening only child node is allowing insertion
 		tree.setModel(treeModel);
-
-		// tree.setModel(new DefaultTreeModel(root));
 
 		// for expanding the tree on starting
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			tree.expandRow(i);
 		}
-
 		System.out.println(treeModel.getRoot());
 	}
 
@@ -239,21 +210,14 @@ public class DynamicTree extends JPanel implements MouseListener {
 		treeModel.addTreeModelListener(new MyTreeModelListener());
 		treeModel.reload(root);
 
-		// tree.setModel(new DefaultTreeModel(root));//because of this line after
 		// opening only child node is allowing insertion
 		tree.setModel(treeModel);
-
-		// tree.setModel(new DefaultTreeModel(root));
 
 		// for expanding the tree on starting
 		for (int i = 0; i < tree.getRowCount(); i++) {
 			tree.expandRow(i);
 		}
-
 		System.out.println(treeModel.getRoot());
-
-		// System.out.println("oldProjectTreeProjectName: "+oldProjectTreeProjectName);
-
 		String newProjectName = filename;
 		// this is similar to new-------------------------------------------------
 		SESEditor.projName = newProjectName;
@@ -264,13 +228,6 @@ public class DynamicTree extends JPanel implements MouseListener {
 				SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + "Graph.xml");
 		SESEditor.treePanel.ssdFile = new File(
 				SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".xml");
-		// DynamicTreeDemo.treePanel.ssdFileVar = new
-		// File(DynamicTreeDemo.fileLocation+"/"+DynamicTreeDemo.projName+"/" +
-		// newProjectName + ".ssdvar");
-		// DynamicTreeDemo.treePanel.ssdFileCon = new
-		// File(DynamicTreeDemo.fileLocation+"/"+DynamicTreeDemo.projName+"/" +
-		// newProjectName + ".ssdcon");
-
 		try {
 
 			ObjectInputStream oisvar;
@@ -295,16 +252,11 @@ public class DynamicTree extends JPanel implements MouseListener {
 				oisflag.close();
 			}
 
-			// }
-
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

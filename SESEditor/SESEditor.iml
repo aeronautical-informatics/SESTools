@@ -25,5 +25,16 @@
     <orderEntry type="library" name="Maven: edu.princeton.cup:java-cup:10k" level="project" />
     <orderEntry type="library" name="Maven: com.github.vlsi.mxgraph:jgraphx:4.0.5" level="project" />
     <orderEntry type="library" name="Maven: com.fifesoft:rsyntaxtextarea:3.0.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-core:3.11.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-swing-junit:3.9.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.assertj:assertj-swing:3.9.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.easytesting:fest-util:1.2.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.easytesting:fest-reflect:1.4.1" level="project" />
+    <orderEntry type="library" name="Maven: com.syncthemall:boilerpipe:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.nekohtml:nekohtml:1.9.18" level="project" />
+    <orderEntry type="library" name="Maven: xerces:xercesImpl:2.11.0" level="project" />
+    <orderEntry type="library" name="Maven: xml-apis:xml-apis:1.4.01" level="project" />
   </component>
 </module>

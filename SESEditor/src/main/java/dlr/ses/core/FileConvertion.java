@@ -33,29 +33,21 @@ public class FileConvertion {
 		PrintWriter f0 = null;
 		try {
 			f0 = new PrintWriter(new FileWriter(SESEditor.fileLocation + "/" + SESEditor.projName + "/xsdfromxml.xsd"));
-
 		} catch (IOException e1) {
-
 			e1.printStackTrace();
 		}
 
 		Scanner in = null;
 		try {
 			in = new Scanner(new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml")); // outputgraphxmlforxsd
-
 		} catch (FileNotFoundException e) {
-
 			e.printStackTrace();
 		}
-
 		while (in.hasNext()) {
 
 			String mod = null;
 			String line = in.nextLine();
 			String backConstraints = line;
-			// String result1 = line.replaceAll("\\s+", "");
-
-			// line = result1;
 
 			if (line.startsWith("<?")) { // have to solve space problem for this line
 				f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
