@@ -108,11 +108,11 @@ public class SESEditor extends JPanel {
 
     public static Variable scenarioVariable;
     public static Constraint scenarioConstraint;
-    public static JTabbedPane tabbedPane = new JTabbedPane();
+    public static JTabbedPane tabbedPane = null;
 
     public static JtreeToGraph jtreeTograph;
     public static String projName = "Main";
-    public static JFrame framew = new JFrame();
+    public static JFrame framew = null;
 
     public static Path path = Paths.get("").toAbsolutePath();
     public static String repFslas = path.toString().replace("\\", "/");
@@ -137,7 +137,8 @@ public class SESEditor extends JPanel {
     public SESEditor() {
         super(new BorderLayout());
         DynamicTree.projectFileName = JtreeToGraph.newFileName;
-
+        tabbedPane = new JTabbedPane();
+        framew = new JFrame();
         treePanel = new DynamicTree();
         treePanel.addUndoableEditListener(new EditorUndoableEditListener());
 
@@ -1265,8 +1266,8 @@ public class SESEditor extends JPanel {
             // If Nimbus is not available, then have to set another look and feel.
         }
 
-        SplashScreen splash = new SplashScreen(3000);
-        splash.showSplash();
+        //SplashScreen splash = new SplashScreen(3000);
+        //splash.showSplash();
 
         jtreeTograph = new JtreeToGraph();
 
