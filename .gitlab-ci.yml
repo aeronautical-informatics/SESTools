@@ -1,4 +1,8 @@
-image: maven:latest
+image: jamesdbloom/docker-java8-maven
+
+before_script:
+  - "Xvfb :99 &"
+  - "export DISPLAY=:99"
 
 cache:
   paths:
