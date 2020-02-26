@@ -1,8 +1,9 @@
 image: jamesdbloom/docker-java8-maven
-
+variables:
+MAVEN_OPTS: "-Djava.awt.headless=true"
 before_script:
-  - "Xvfb :99 &"
-  - "export DISPLAY=:99"
+  - "Xvfb :0 &"
+  - "export DISPLAY=:0"
 
 cache:
   paths:
