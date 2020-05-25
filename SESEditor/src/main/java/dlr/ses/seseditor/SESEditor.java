@@ -946,7 +946,7 @@ public class SESEditor extends JPanel {
 
         ImageIcon deselectIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/cursor.png"));
         JButton deselect = new JButton(deselectIcon);
-        deselect.setName("sayHelloBtn");
+        deselect.setName("Selector");
         deselect.setToolTipText("Free Mouse Pointer from Any Selected Element");
 
         toolbar.add(deselect);
@@ -963,6 +963,7 @@ public class SESEditor extends JPanel {
         ImageIcon entityIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/en.png"));
         JButton entity = new JButton(entityIcon);
         entity.setToolTipText("Add Entity");
+        entity.setName("Add Entity");
         toolbar.add(entity);
         entity.addActionListener(new ActionListener() {
 
@@ -978,6 +979,7 @@ public class SESEditor extends JPanel {
         ImageIcon aspectIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/as16.png"));
         JButton aspect = new JButton(aspectIcon);
         aspect.setToolTipText("Add Aspect");
+        aspect.setName("Add Aspect");
         toolbar.add(aspect);
         aspect.addActionListener(new ActionListener() {
 
@@ -992,6 +994,7 @@ public class SESEditor extends JPanel {
         ImageIcon specializationIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/sp.png"));
         JButton specialization = new JButton(specializationIcon);
         specialization.setToolTipText("Add Specialization");
+        specialization.setName("Add Specialization");
         toolbar.add(specialization);
         specialization.addActionListener(new ActionListener() {
 
@@ -1006,6 +1009,7 @@ public class SESEditor extends JPanel {
         ImageIcon multiaspectIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/ma.png"));
         JButton multiaspect = new JButton(multiaspectIcon);
         multiaspect.setToolTipText("Add Multi-Aspect");
+        multiaspect.setName("Add Multi-Aspect");
         toolbar.add(multiaspect);
         multiaspect.addActionListener(new ActionListener() {
 
@@ -1020,6 +1024,7 @@ public class SESEditor extends JPanel {
         ImageIcon deleteIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/delete.png"));
         JButton delete = new JButton(deleteIcon);
         delete.setToolTipText("Delete Node From Graph");
+        delete.setName("Delete Node From Graph");
         toolbar.add(delete);
         delete.addActionListener(new ActionListener() {
 
@@ -1034,6 +1039,7 @@ public class SESEditor extends JPanel {
         ImageIcon savegraphicon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/save.png"));
         JButton savegraph = new JButton(savegraphicon);
         savegraph.setToolTipText("Save Graph");
+        savegraph.setName("Save Graph");
         toolbar.add(savegraph);
         savegraph.addActionListener(new ActionListener() {
 
@@ -1052,11 +1058,13 @@ public class SESEditor extends JPanel {
         ImageIcon undoIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/undo.png"));
         JButton undo = new JButton(undoIcon);
         undo.setToolTipText("Undo");
+        undo.setName("Undo");
         toolbar.add(undo);
 
         ImageIcon redoIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/redo.png"));
         JButton redo = new JButton(redoIcon);
         redo.setToolTipText("Redo");
+        redo.setName("Redo");
         toolbar.add(redo);
 
         undo.addActionListener(new ActionListener() {
@@ -1104,6 +1112,7 @@ public class SESEditor extends JPanel {
         ImageIcon zoominIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/zoom-in.png"));
         JButton zoomin = new JButton(zoominIcon);
         zoomin.setToolTipText("Zoom In");
+        zoomin.setName("Zoom In");
 
         toolbar.add(zoomin);
         zoomin.addActionListener(new ActionListener() {
@@ -1120,6 +1129,7 @@ public class SESEditor extends JPanel {
         ImageIcon zoomoutIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/zoom-out.png"));
         JButton zoomout = new JButton(zoomoutIcon);
         zoomout.setToolTipText("Zoom Out");
+        zoomout.setName("Zoom Out");
 
         toolbar.add(zoomout);
         zoomout.addActionListener(new ActionListener() {
@@ -1136,6 +1146,7 @@ public class SESEditor extends JPanel {
         ImageIcon validateSESIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/validation.png"));
         JButton validateSES = new JButton(validateSESIcon);
         validateSES.setToolTipText("Validation");
+        validateSES.setName("Validation");
         validateSES.setFont(new Font("Serif", Font.BOLD, 14));
         toolbar.add(validateSES);
         validateSES.addActionListener(new ActionListener() {
