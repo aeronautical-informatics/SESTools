@@ -118,7 +118,7 @@ public class PESEditor extends JPanel {
 	public static Constraint scenarioConstraint;
 	public static JTabbedPane tabbedPane = new JTabbedPane();
 
-	public static JtreeToGraph jtreeTograph;
+	public static dlr.ses.peseditor.JtreeToGraph jtreeTograph;
 	public static String projName = "Main";
 	public static JFrame framew = new JFrame();
 
@@ -1564,7 +1564,7 @@ public class PESEditor extends JPanel {
 		schemaview.textArea.setEditable(false);
 
 		// creating tab window
-		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);		
+		//tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.addTab("PES XML", sesview);
 		tabbedPane.addTab("PES Schema", schemaview);
 		// end of tab window

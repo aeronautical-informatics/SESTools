@@ -448,6 +448,7 @@ public class TypeInfoWriter extends DefaultHandler {
 
 			// Create SchemaFactory and configure
 			SchemaFactory factory = SchemaFactory.newInstance(schemaLanguage);
+			//factory.setProperty("http://saxon.sf.net/feature/xsd-version", "1.1");
 			factory.setErrorHandler(writer);
 
 			try {

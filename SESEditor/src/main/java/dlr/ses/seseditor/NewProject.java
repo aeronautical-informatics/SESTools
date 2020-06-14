@@ -45,7 +45,6 @@ public class NewProject extends JPanel {
 
 	public NewProject() {
 		super(new BorderLayout());
-
 	}
 
 	/**
