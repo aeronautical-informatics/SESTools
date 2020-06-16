@@ -197,6 +197,7 @@ public class JtreeToGraph {
 			graph.getModel().beginUpdate();
 			try {
 				// use "org.w3c.dom.Document" not swing Document
+				System.err.println(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + projectFileNameGraph + "Graph.xml");
 				Document xml = mxXmlUtils.parseXml(mxUtils.readFile(
 						SESEditor.fileLocation + "/" + SESEditor.projName + "/" + projectFileNameGraph + "Graph.xml"));
 
@@ -2826,6 +2827,7 @@ public class JtreeToGraph {
 						if (first == 0) {
 							mod = "<entity xmlns:vc=\"http://www.w3.org/2007/XMLSchema-versioning\""
 									+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+									//+ " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema\""
 									+ " xsi:noNamespaceSchemaLocation=\"ses.xsd\" name=\"" + result + "\">";
 							first = 1;
 						} else {

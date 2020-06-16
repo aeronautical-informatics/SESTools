@@ -33,10 +33,11 @@ class CustomIconRenderer extends DefaultTreeCellRenderer {
 	String repFslas = path.toString().replace("\\", "/");
 
 	public CustomIconRenderer() {// throws MalformedURLException
-		entityIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/en.png"));
-		specIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/sp.png"));
-		maspIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/ma.png"));
-		aspIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/as16.png"));// as
+		System.err.println(PESEditor.class.getClassLoader().getResource("images/en.png"));
+		entityIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+		specIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/sp.png"));
+		maspIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/ma.png"));
+		aspIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/as16.png"));// as
 	}
 
 	@Override

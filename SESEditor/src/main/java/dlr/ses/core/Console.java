@@ -123,4 +123,9 @@ public class Console extends JInternalFrame {
 		consoleText.append("\n");
 	}
 
+	public static String getText(){
+		return consoleText.getText();
+	}
+
+
 }

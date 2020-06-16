@@ -186,14 +186,14 @@ public class JtreeToGraph {
 		multiaspect.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
 		multiaspect.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
 		multiaspect.put(mxConstants.STYLE_IMAGE,
-				PESEditor.class.getResource("/dlr/resources/images/maspectToBePruned.png"));
+				PESEditor.class.getClassLoader().getResource("images/maspectToBePruned.png"));
 		stylesheet.putCellStyle("Multiaspect", multiaspect);
 
 		Hashtable<String, Object> aspect = new Hashtable<String, Object>();
 		aspect.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
 		aspect.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
 		aspect.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
-		aspect.put(mxConstants.STYLE_IMAGE, PESEditor.class.getResource("/dlr/resources/images/aspect.png"));
+		aspect.put(mxConstants.STYLE_IMAGE, PESEditor.class.getClassLoader().getResource("images/aspect.png"));
 		stylesheet.putCellStyle("Aspect", aspect);
 
 		Hashtable<String, Object> specialization = new Hashtable<String, Object>();
@@ -201,7 +201,7 @@ public class JtreeToGraph {
 		specialization.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
 		specialization.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
 		specialization.put(mxConstants.STYLE_IMAGE,
-				PESEditor.class.getResource("/dlr/resources/images/specializationToBePruned.png"));
+				PESEditor.class.getClassLoader().getResource("images/specializationToBePruned.png"));
 		specialization.put(mxConstants.STYLE_EDGE, mxUtils.getHexColorString(Color.BLACK));
 		stylesheet.putCellStyle("Specialization", specialization);
 
@@ -223,7 +223,7 @@ public class JtreeToGraph {
 		aspectToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
 		aspectToBePruned.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
 		aspectToBePruned.put(mxConstants.STYLE_IMAGE,
-				PESEditor.class.getResource("/dlr/resources/images/aspectToBePruned.png"));
+				PESEditor.class.getClassLoader().getResource("images/aspectToBePruned.png"));
 		stylesheet.putCellStyle("AspectToBePruned", aspectToBePruned);
 
 		Hashtable<String, Object> multiaspectToBePruned = new Hashtable<String, Object>();
@@ -231,7 +231,7 @@ public class JtreeToGraph {
 		multiaspectToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
 		multiaspectToBePruned.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
 		multiaspectToBePruned.put(mxConstants.STYLE_IMAGE,
-				PESEditor.class.getResource("/dlr/resources/images/multi.png"));
+				PESEditor.class.getClassLoader().getResource("images/multi.png"));
 		stylesheet.putCellStyle("MultiaspectPruned", multiaspectToBePruned);
 
 		Hashtable<String, Object> specializationToBePruned = new Hashtable<String, Object>();
@@ -239,7 +239,7 @@ public class JtreeToGraph {
 		specializationToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
 		specializationToBePruned.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
 		specializationToBePruned.put(mxConstants.STYLE_IMAGE,
-				PESEditor.class.getResource("/dlr/resources/images/spec.png"));
+				PESEditor.class.getClassLoader().getResource("images/spec.png"));
 		specializationToBePruned.put(mxConstants.STYLE_EDGE, mxUtils.getHexColorString(Color.BLACK));
 		stylesheet.putCellStyle("SpecializationPruned", specializationToBePruned);
 
@@ -5693,12 +5693,12 @@ public class JtreeToGraph {
 
 		PESEditor.treePanel.tree.setCellRenderer(new DefaultTreeCellRenderer() {
 
-			Icon pruned = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/en.png"));
-			Icon havetoprune = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/enPrune.png"));
-			Icon entityIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/en.png"));
-			Icon specIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/sp.png"));
-			Icon maspIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/ma.png"));
-			Icon aspIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/as16.png"));// as
+			Icon pruned = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+			Icon havetoprune = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/enPrune.png"));
+			Icon entityIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+			Icon specIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/sp.png"));
+			Icon maspIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/ma.png"));
+			Icon aspIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/as16.png"));// as
 
 			@Override
 			public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,
@@ -5787,12 +5787,12 @@ public class JtreeToGraph {
 
 		PESEditor.treePanel.tree.setCellRenderer(new DefaultTreeCellRenderer() {
 
-			Icon pruned = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/en.png"));
-			Icon havetoprune = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/enPrune.png"));
-			Icon entityIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/en.png"));
-			Icon specIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/sp.png"));
-			Icon maspIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/ma.png"));
-			Icon aspIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/as16.png"));// as
+			Icon pruned = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+			Icon havetoprune = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/enPrune.png"));
+			Icon entityIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+			Icon specIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/sp.png"));
+			Icon maspIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/ma.png"));
+			Icon aspIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/as16.png"));// as
 
 			@Override
 			public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded,

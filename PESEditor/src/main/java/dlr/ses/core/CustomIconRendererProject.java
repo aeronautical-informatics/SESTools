@@ -20,8 +20,8 @@ public class CustomIconRendererProject extends DefaultTreeCellRenderer {
 	String repFslas = path.toString().replace("\\", "/");
 
 	public CustomIconRendererProject() {// throws MalformedURLException
-		moduleIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/folder164.png"));//164 is perfect
-		xmlIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/projtreeleaf.png"));
+		moduleIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/folder164.png"));//164 is perfect
+		xmlIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/projtreeleaf.png"));
 	}
 
 	public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {

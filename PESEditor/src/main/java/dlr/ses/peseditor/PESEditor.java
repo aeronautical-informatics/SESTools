@@ -1098,7 +1098,7 @@ public class PESEditor extends JPanel {
 
 		/*
 		 * ImageIcon deselectIcon = new
-		 * ImageIcon(PESEditor.class.getResource("/dlr/resources/images/cursor.png"));
+		 * ImageIcon(PESEditor.class.getClassLoader().getResource("images/cursor.png"));
 		 * JButton deselect = new JButton(deselectIcon);
 		 * deselect.setToolTipText("Free Mouse Pointer from Any Selected Element");
 		 * 
@@ -1111,7 +1111,7 @@ public class PESEditor extends JPanel {
 		 * } });
 		 * 
 		 * ImageIcon entityIcon = new
-		 * ImageIcon(PESEditor.class.getResource("/dlr/resources/images/en.png"));
+		 * ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
 		 * JButton entity = new JButton(entityIcon);
 		 * entity.setToolTipText("Add Entity"); toolbar.add(entity);
 		 * entity.addActionListener(new ActionListener() {
@@ -1125,7 +1125,7 @@ public class PESEditor extends JPanel {
 		 * });
 		 * 
 		 * ImageIcon aspectIcon = new
-		 * ImageIcon(PESEditor.class.getResource("/dlr/resources/images/as16.png"));
+		 * ImageIcon(PESEditor.class.getClassLoader().getResource("images/as16.png"));
 		 * JButton aspect = new JButton(aspectIcon);
 		 * aspect.setToolTipText("Add Aspect"); toolbar.add(aspect);
 		 * aspect.addActionListener(new ActionListener() {
@@ -1137,7 +1137,7 @@ public class PESEditor extends JPanel {
 		 * } });
 		 * 
 		 * ImageIcon specializationIcon = new
-		 * ImageIcon(PESEditor.class.getResource("/dlr/resources/images/sp.png"));
+		 * ImageIcon(PESEditor.class.getClassLoader().getResource("images/sp.png"));
 		 * JButton specialization = new JButton(specializationIcon);
 		 * specialization.setToolTipText("Add Specialization");
 		 * toolbar.add(specialization); specialization.addActionListener(new
@@ -1150,7 +1150,7 @@ public class PESEditor extends JPanel {
 		 * } });
 		 * 
 		 * ImageIcon multiaspectIcon = new
-		 * ImageIcon(PESEditor.class.getResource("/dlr/resources/images/ma.png"));
+		 * ImageIcon(PESEditor.class.getClassLoader().getResource("images/ma.png"));
 		 * JButton multiaspect = new JButton(multiaspectIcon);
 		 * multiaspect.setToolTipText("Add Multi-Aspect"); toolbar.add(multiaspect);
 		 * multiaspect.addActionListener(new ActionListener() {
@@ -1162,7 +1162,7 @@ public class PESEditor extends JPanel {
 		 * } });
 		 * 
 		 * ImageIcon deleteIcon = new
-		 * ImageIcon(PESEditor.class.getResource("/dlr/resources/images/delete.png"));
+		 * ImageIcon(PESEditor.class.getClassLoader().getResource("images/delete.png"));
 		 * JButton delete = new JButton(deleteIcon);
 		 * delete.setToolTipText("Delete Node From Graph"); toolbar.add(delete);
 		 * delete.addActionListener(new ActionListener() {
@@ -1175,7 +1175,7 @@ public class PESEditor extends JPanel {
 		 * 
 		 */
 
-		ImageIcon savegraphicon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/save.png"));
+		ImageIcon savegraphicon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/save.png"));
 		JButton savegraph = new JButton(savegraphicon);
 		savegraph.setToolTipText("Save Graph");
 		toolbar.add(savegraph);
@@ -1195,12 +1195,12 @@ public class PESEditor extends JPanel {
 			}
 		});
 
-		ImageIcon undoIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/undo.png"));
+		ImageIcon undoIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/undo.png"));
 		JButton undo = new JButton(undoIcon);
 		undo.setToolTipText("Undo");
 		toolbar.add(undo);
 
-		ImageIcon redoIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/redo.png"));
+		ImageIcon redoIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/redo.png"));
 		JButton redo = new JButton(redoIcon);
 		redo.setToolTipText("Redo");
 		toolbar.add(redo);
@@ -1253,7 +1253,7 @@ public class PESEditor extends JPanel {
 			}
 		});
 
-		ImageIcon zoominIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/zoom-in.png"));
+		ImageIcon zoominIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/zoom-in.png"));
 		JButton zoomin = new JButton(zoominIcon);
 		zoomin.setToolTipText("Zoom In");
 
@@ -1269,7 +1269,7 @@ public class PESEditor extends JPanel {
 			}
 		});
 
-		ImageIcon zoomoutIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/zoom-out.png"));
+		ImageIcon zoomoutIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/zoom-out.png"));
 		JButton zoomout = new JButton(zoomoutIcon);
 		zoomout.setToolTipText("Zoom Out");
 
@@ -1285,7 +1285,7 @@ public class PESEditor extends JPanel {
 			}
 		});
 
-		ImageIcon validateSESIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/validation.png"));
+		ImageIcon validateSESIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/validation.png"));
 		JButton validateSES = new JButton(validateSESIcon);
 		validateSES.setToolTipText("Validation");
 		validateSES.setFont(new Font("Serif", Font.BOLD, 14));
@@ -1428,7 +1428,7 @@ public class PESEditor extends JPanel {
 	public static void addToolBarFooter(JFrame frame) {
 		JToolBar toolbarFooter = new JToolBar();
 
-		ImageIcon pinIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/black-pin.png"));
+		ImageIcon pinIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/black-pin.png"));
 		JButton pin = new JButton(pinIcon);
 
 		toolbarFooter.add(Box.createHorizontalGlue());
@@ -1640,7 +1640,7 @@ public class PESEditor extends JPanel {
 		frame.setLocationRelativeTo(null);
 		// This works in a multi-monitor setup and setLocationRelativeTo
 		// must be called after pack() and setSize() if they are called at all.
-		ImageIcon windowIcon = new ImageIcon(PESEditor.class.getResource("/dlr/resources/images/dlrapplication.gif"));
+		ImageIcon windowIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/dlrapplication.gif"));
 		frame.setIconImage(windowIcon.getImage());
 		frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		frame.setVisible(true);

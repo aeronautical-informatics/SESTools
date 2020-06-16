@@ -350,6 +350,15 @@ public class TypeInfoWriter extends DefaultHandler {
 	// MAIN
 	//
 
+	/*public static void main(String[] args) throws UnsupportedEncodingException {
+		TypeInfoWriter writer = new TypeInfoWriter();
+		writer.setOutput(System.out, "UTF8");
+
+		// Create SchemaFactory and configure
+		SchemaFactory factory = SchemaFactory.newInstance(DEFAULT_SCHEMA_LANGUAGE);
+		//factory.setProperty("http://saxon.sf.net/feature/xsd-version", "1.1");
+
+	}*/
 	/** Main program entry point. */
 	// public static void main(String[] argv) {
 	public static void validateXML() {
@@ -447,7 +456,8 @@ public class TypeInfoWriter extends DefaultHandler {
 			writer.setOutput(System.out, "UTF8");
 
 			// Create SchemaFactory and configure
-			SchemaFactory factory = SchemaFactory.newInstance(schemaLanguage);
+			//factory.setProperty("http://saxon.sf.net/feature/xsd-version", "1.1");
+			SchemaFactory factory = SchemaFactory.newInstance(DEFAULT_SCHEMA_LANGUAGE);
 			//factory.setProperty("http://saxon.sf.net/feature/xsd-version", "1.1");
 			factory.setErrorHandler(writer);
 
@@ -574,10 +584,6 @@ public class TypeInfoWriter extends DefaultHandler {
 			Console.addConsoleOutput(errors.toString());
 		}
 	} // main(String[])
-
-	//
-	// Private static methods
-	//
 
 	/** Prints the usage. */
 	private static void printUsage() {
