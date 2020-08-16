@@ -1,0 +1,23 @@
+image: jamesdbloom/docker-java8-maven
+variables:
+  MAVEN_OPTS: "-Djava.awt.headless=true"
+
+before_script:
+  - "Xvfb :0 &"
+  - "export DISPLAY=35.246.243.229:5901"
+
+cache:
+  paths:
+    - SESEditor/target/
+
+build:
+  stage: build
+  script:
+    - cd SESEditor
+    - mvn $MAVEN_CLI_OPTS compile
+
+test:
+  stage: test
+  script:
+    - cd SESEditor
+    - mvn $MAVEN_CLI_OPTS test
