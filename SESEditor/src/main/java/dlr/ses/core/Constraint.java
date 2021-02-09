@@ -1,23 +1,20 @@
 package dlr.ses.core;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import dlr.ses.seseditor.JtreeToGraph;
+import dlr.ses.seseditor.SESEditor;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.tree.TreePath;
-
-import dlr.ses.seseditor.SESEditor;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * <h1>Constraint</h1>
@@ -39,7 +36,7 @@ public class Constraint extends JPanel {
     JScrollPane jp;
 
     public Constraint() {
-        setLayout(new GridLayout(1, 0));// rows,cols
+        setLayout(new GridLayout(1, 0)); // rows,cols
 
         String[] columnNames = {"Constraints"};
         model = new DefaultTableModel(columnNames, 0);
@@ -52,7 +49,7 @@ public class Constraint extends JPanel {
         table.setEnabled(false);
         // row listener
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        table.addMouseListener((MouseListener) new MouseAdapter() {
+        table.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
@@ -71,32 +68,32 @@ public class Constraint extends JPanel {
 
     }
 
-    public void showConstraintsInTable(String[] nodesToSelectedNode) {
-        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        dtm.setRowCount(0);// for deleting previous table content
-        for (String value : nodesToSelectedNode) {
-            if (value == null) {
-                model.addRow(new Object[]{""});
-            } else {
-                model.addRow(new Object[]{value});
-                // System.out.println(value);
-            }
-        }
-        setNullRowsToVariableTable();
-    }
-
     public static void setNullRowsToVariableTable() {
         for (int i = 0; i < 100; i++) {
-            model.addRow(new Object[]{""});
+            model.addRow(new Object[] {""});
         }
     }
 
     public static void setNullToAllRows() {
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        dtm.setRowCount(0);// for deleting previous table content
+        dtm.setRowCount(0); // for deleting previous table content
         for (int i = 0; i < 100; i++) {
-            model.addRow(new Object[]{""});
+            model.addRow(new Object[] {""});
         }
+    }
+
+    public void showConstraintsInTable(String[] nodesToSelectedNode) {
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        dtm.setRowCount(0); // for deleting previous table content
+        for (String value : nodesToSelectedNode) {
+            if (value == null) {
+                model.addRow(new Object[] {""});
+            } else {
+                model.addRow(new Object[] {value});
+                // System.out.println(value);
+            }
+        }
+        setNullRowsToVariableTable();
     }
 
     public void updateTableData(String constraints) {
@@ -107,12 +104,13 @@ public class Constraint extends JPanel {
         constraintsField.setText(constraints);
         String constraintsOld = constraints;
         Object[] message = {"Constraints:", constraintsField};
-        int option = JOptionPane.showConfirmDialog(SESEditor.framew, message, "Please Update",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        int option = JOptionPane
+                .showConfirmDialog(SESEditor.framew, message, "Please Update", JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE);
         if (option == JOptionPane.OK_OPTION) {
             constraints = constraintsField.getText();
             SESEditor.jtreeTograph.deleteConstraintFromScenarioTableForUpdate(
-                    SESEditor.jtreeTograph.selectedNodeCellForVariableUpdate, constraintsOld, constraints);
+                    JtreeToGraph.selectedNodeCellForVariableUpdate, constraintsOld, constraints);
         }
     }
 }

@@ -8,15 +8,14 @@ package dlr.ses.core;
  * result when the saved project will be opened then the count will start from
  * the previously saved number.
  * </p>
- * 
+ *
  * @author Bikash Chandra Karmokar
  * @version 1.0
- *
  */
 
 public class FlagVariables implements java.io.Serializable {
 
-	public int nodeNumber;
-	public int uniformityNodeNumber;
+    public int nodeNumber;
+    public int uniformityNodeNumber;
 
 }

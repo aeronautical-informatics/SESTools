@@ -4,14 +4,19 @@ import edu.cnu.cs.gooey.GooeyDialog;
 import edu.cnu.cs.gooey.GooeyFrame;
 import org.junit.Test;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestPopupActions {
     @Test
@@ -19,7 +24,7 @@ public class TestPopupActions {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{""});
+                SESEditor.main(new String[] {""});
             }
 
             @Override
@@ -53,7 +58,7 @@ public class TestPopupActions {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{});
+                SESEditor.main(new String[] {});
             }
 
             @Override
@@ -88,7 +93,7 @@ public class TestPopupActions {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{});
+                SESEditor.main(new String[] {});
             }
 
             @Override
@@ -100,8 +105,7 @@ public class TestPopupActions {
                 String line = "hot, dog, for, lunch";
 
                 try {
-                    BufferedWriter wrote = new BufferedWriter(
-                            new FileWriter(file.getAbsolutePath()));
+                    BufferedWriter wrote = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
 
                     wrote.write(line);
                     wrote.close();
@@ -117,8 +121,7 @@ public class TestPopupActions {
 
                     @Override
                     public void test(JDialog d) {
-                        JFileChooser choose = Gooey.getComponent(d,
-                                JFileChooser.class);
+                        JFileChooser choose = Gooey.getComponent(d, JFileChooser.class);
                         choose.setSelectedFile(file);
                         choose.approveSelection();
                     }

@@ -5,12 +5,11 @@
  */
 package dlr.ses.seseditor;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * <h1>GraphPopup</h1>
@@ -19,59 +18,58 @@ import javax.swing.JSeparator;
  * panel. It initiates mouse actions related to various elements node addition
  * on the panel.
  * </p>
- * 
+ *
  * @author Bikash Chandra Karmokar
  * @version 1.0
- *
  */
 class GraphPopup extends JPopupMenu {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public GraphPopup(int x, int y) {
-		JMenuItem itemEntity = new JMenuItem("Add Entity");
-		JMenuItem itemSpec = new JMenuItem("Add Specialization");
-		JMenuItem itemAspect = new JMenuItem("Add Aspect");
-		JMenuItem itemMultiAspect = new JMenuItem("Add MultiAspect");
+    public GraphPopup(int x, int y) {
+        JMenuItem itemEntity = new JMenuItem("Add Entity");
+        JMenuItem itemSpec = new JMenuItem("Add Specialization");
+        JMenuItem itemAspect = new JMenuItem("Add Aspect");
+        JMenuItem itemMultiAspect = new JMenuItem("Add MultiAspect");
 
-		itemEntity.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				SESEditor.jtreeTograph.addNodeFromGraphPopup("Entity", x, y);
+        itemEntity.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                SESEditor.jtreeTograph.addNodeFromGraphPopup("Entity", x, y);
 
-			}
-		});
+            }
+        });
 
-		itemSpec.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				SESEditor.jtreeTograph.addNodeFromGraphPopup("Spec", x, y);
+        itemSpec.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                SESEditor.jtreeTograph.addNodeFromGraphPopup("Spec", x, y);
 
-			}
-		});
+            }
+        });
 
-		itemAspect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				SESEditor.jtreeTograph.addNodeFromGraphPopup("Dec", x, y);
+        itemAspect.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                SESEditor.jtreeTograph.addNodeFromGraphPopup("Dec", x, y);
 
-			}
-		});
+            }
+        });
 
-		itemMultiAspect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				SESEditor.jtreeTograph.addNodeFromGraphPopup("MAsp", x, y);
+        itemMultiAspect.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                SESEditor.jtreeTograph.addNodeFromGraphPopup("MAsp", x, y);
 
-			}
-		});
+            }
+        });
 
-		add(itemEntity);
-		add(new JSeparator());
-		add(itemSpec);
-		add(new JSeparator());
-		add(itemAspect);
-		add(new JSeparator());
-		add(itemMultiAspect);
+        add(itemEntity);
+        add(new JSeparator());
+        add(itemSpec);
+        add(new JSeparator());
+        add(itemAspect);
+        add(new JSeparator());
+        add(itemMultiAspect);
 
-	}
+    }
 }

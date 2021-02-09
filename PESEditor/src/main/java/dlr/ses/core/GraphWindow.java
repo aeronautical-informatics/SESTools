@@ -1,24 +1,19 @@
 package dlr.ses.core;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTabbedPane;
 
 
 public class GraphWindow extends JInternalFrame {
 
-	public GraphWindow() {
-		super("Graphical View", false, // resizable
-				false, // closable
-				false, // maximizable
-				false // iconifiable
-		);
+    public GraphWindow() {
+        super("Graphical View", false, // resizable
+                false, // closable
+                false, // maximizable
+                false // iconifiable
+        );
 
-		//this.add(createTabbedPane());
-	}
+        //this.add(createTabbedPane());
+    }
 
 //	private JTabbedPane createTabbedPane() {
 //		JTabbedPane jtp = new JTabbedPane();
@@ -30,7 +25,6 @@ public class GraphWindow extends JInternalFrame {
 //	private void createTab(JTabbedPane jtp, String s) {
 //		jtp.add(s, new JLabel("TabbedPane " + s, JLabel.CENTER));
 //	}	
-	
 
 
 }

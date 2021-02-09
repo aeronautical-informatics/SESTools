@@ -5,7 +5,7 @@ import edu.cnu.cs.gooey.Gooey;
 import edu.cnu.cs.gooey.GooeyFrame;
 import org.junit.Test;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -16,32 +16,33 @@ public class TestValidation {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{""});
+                SESEditor.main(new String[] {""});
             }
 
             @Override
             public void test(JFrame frame) {
                 SESEditor.sesValidationControl = 1;
                 TypeInfoWriter.validateXML();
-                String console=Console.getText();
+                String console = Console.getText();
 
                 assertFalse(console.contains("warning:"), "Incorrect result");
             }
         });
     }
+
     @Test
     public void testErrorValidation() {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{""});
+                SESEditor.main(new String[] {""});
             }
 
             @Override
             public void test(JFrame frame) {
                 SESEditor.sesValidationControl = 1;
                 TypeInfoWriter.validateXML();
-                String console=Console.getText();
+                String console = Console.getText();
 
                 assertFalse(console.contains("error:"), "Incorrect result");
             }

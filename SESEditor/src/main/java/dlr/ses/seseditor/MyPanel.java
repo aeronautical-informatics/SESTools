@@ -1,22 +1,24 @@
 package dlr.ses.seseditor;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MyPanel extends JPanel {
+    private final JTextField guessInput;
+    private final JLabel prompt1;
+    private final JLabel prompt2;
+    private final JLabel message;
+    private final JButton newGame;
     private int number, guessCount;
     private int lastDistance;
-    private JTextField guessInput;
-    private JLabel prompt1, prompt2, message;
-    private JButton newGame;
     private Color background;
 
     // set up GUI and initialize values
@@ -40,23 +42,31 @@ public class MyPanel extends JPanel {
         newGame = new JButton("New Game");
         add(newGame);
         newGame.addActionListener(new ActionListener() {
-                                      public void actionPerformed(ActionEvent e) {
-                                          /*
-                                           * A JButton should be provided to allow the user to play the
-                                           * game again. When the JButton is clicked, a new random number
-                                           * should be generated and the input JTextField changed to be
-                                           * editable.
-                                           */
-                                          message.setText("Guess Result");
-                                          guessInput.setText("");
-                                          guessInput.setEditable(true);
-                                          background = Color.white;
-                                          theGame();
-                                          repaint();
-                                      }
-                                  }
-        );
+            public void actionPerformed(ActionEvent e) {
+                /*
+                 * A JButton should be provided to allow the user to play the
+                 * game again. When the JButton is clicked, a new random number
+                 * should be generated and the input JTextField changed to be
+                 * editable.
+                 */
+                message.setText("Guess Result");
+                guessInput.setText("");
+                guessInput.setEditable(true);
+                background = Color.white;
+                theGame();
+                repaint();
+            }
+        });
         theGame();
+    }
+
+    public static void main(String[] args) {
+        JFrame myFrame = new JFrame("Guess My Number!!");
+        JPanel Guess = new JPanel();
+        myFrame.add(Guess);
+        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myFrame.setSize(400, 400); // set frame size
+        myFrame.setVisible(true); // display frame
     }
 
     // choose a new random number
@@ -78,24 +88,23 @@ public class MyPanel extends JPanel {
         // first guess
         if (guessCount == 1) {
             lastDistance = Math.abs(guess - number);
-            if (guess > number)
+            if (guess > number) {
                 message.setText("Too High. Try a lower number.");
-            else
+            } else {
                 message.setText("Too Low. Try a higher number.");
+            }
         } else {
             currentDistance = Math.abs(guess - number);
             // guess is too high
             if (guess > number) {
                 message.setText("Too High. Try a lower number.");
-                background = (currentDistance <= lastDistance) ? Color.red
-                        : Color.blue;
+                background = (currentDistance <= lastDistance) ? Color.red : Color.blue;
                 lastDistance = currentDistance;
             }
             // guess is too low
             else if (guess < number) {
                 message.setText("Too Low. Try a higher number.");
-                background = (currentDistance <= lastDistance) ? Color.red
-                        : Color.blue;
+                background = (currentDistance <= lastDistance) ? Color.red : Color.blue;
                 lastDistance = currentDistance;
             }
             // guess is correct
@@ -112,15 +121,6 @@ public class MyPanel extends JPanel {
             repaint();
         }
     } // end method react
-
-    public static void main(String args[]) {
-        JFrame myFrame = new JFrame("Guess My Number!!");
-        JPanel Guess = new JPanel();
-        myFrame.add(Guess);
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setSize(400, 400); // set frame size
-        myFrame.setVisible(true); // display frame
-    }
 
     // inner class acts on user input
     class GuessHandler implements ActionListener {

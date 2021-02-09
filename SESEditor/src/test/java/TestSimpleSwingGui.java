@@ -3,11 +3,16 @@ import edu.cnu.cs.gooey.Gooey;
 import edu.cnu.cs.gooey.GooeyFrame;
 import org.junit.Test;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JToolBar;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import javax.swing.*;
-import java.util.List;
 
 public class TestSimpleSwingGui {
 
@@ -16,7 +21,7 @@ public class TestSimpleSwingGui {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{""});
+                SESEditor.main(new String[] {""});
             }
 
             @Override
@@ -61,7 +66,7 @@ public class TestSimpleSwingGui {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{""});
+                SESEditor.main(new String[] {""});
             }
 
             @Override

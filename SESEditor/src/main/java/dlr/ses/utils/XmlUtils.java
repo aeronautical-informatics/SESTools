@@ -3,7 +3,8 @@ package dlr.ses.utils;
 import dlr.ses.core.XMLViewer;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-import java.awt.*;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class XmlUtils {
         // end of removing top left icon
         XmlUtils.xmlview.pack();
         XmlUtils.xmlview.setVisible(true);
-        XmlUtils.xmlview.setTitle("XML");// SES Ontology / Schema Viewer
+        XmlUtils.xmlview.setTitle("XML"); // SES Ontology / Schema Viewer
         XmlUtils.xmlview.textArea.setEditable(true);
     }
 
@@ -42,7 +43,7 @@ public class XmlUtils {
         // end of removing top left icon
         XmlUtils.ontologyview.pack();
         XmlUtils.ontologyview.setVisible(true);
-        XmlUtils.ontologyview.setTitle("SES Ontology");// SES Ontology / Schema Viewer
+        XmlUtils.ontologyview.setTitle("SES Ontology"); // SES Ontology / Schema Viewer
         XmlUtils.ontologyview.textArea.setEditable(false);
     }
 
@@ -51,14 +52,14 @@ public class XmlUtils {
         XmlUtils.schemaview.setPreferredSize(new Dimension(200, 200));
         // this is for removing the top-left icon of the internal frame
         BasicInternalFrameUI uischama = (BasicInternalFrameUI) XmlUtils.schemaview.getUI();
-        Container northschama = (Container) uischama.getNorthPane();
+        Container northschama = uischama.getNorthPane();
         northschama.remove(0);
         northschama.validate();
         northschama.repaint();
         // end of removing top left icon
         XmlUtils.schemaview.pack();
         XmlUtils.schemaview.setVisible(true);
-        XmlUtils.schemaview.setTitle("SES Schema");// SES Ontology / Schema Viewer
+        XmlUtils.schemaview.setTitle("SES Schema"); // SES Ontology / Schema Viewer
         XmlUtils.schemaview.textArea.setEditable(false);
     }
 
@@ -67,14 +68,14 @@ public class XmlUtils {
         sesview.setPreferredSize(new Dimension(200, 200));
         // this is for removing the top-left icon of the internal frame
         BasicInternalFrameUI uises = (BasicInternalFrameUI) sesview.getUI();
-        Container northses = (Container) uises.getNorthPane();
+        Container northses = uises.getNorthPane();
         northses.remove(0);
         northses.validate();
         northses.repaint();
         // end of removing top left icon
         sesview.pack();
         sesview.setVisible(true);
-        sesview.setTitle("SES XML");// SES Ontology / Schema Viewer
+        sesview.setTitle("SES XML"); // SES Ontology / Schema Viewer
         sesview.textArea.setEditable(false);
     }
 

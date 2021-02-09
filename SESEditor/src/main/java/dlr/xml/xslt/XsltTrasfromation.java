@@ -1,8 +1,8 @@
 package dlr.xml.xslt;
 
-import org.w3c.dom.Document;
-
+import dlr.ses.core.DynamicTree;
 import dlr.ses.seseditor.SESEditor;
+import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,77 +24,81 @@ import java.util.Scanner;
  */
 public class XsltTrasfromation {
 
-	private static Document document;
+    private static Document document;
 
-	public static void main(String[] args) throws Exception {
-		XsltTrasfromation.executeXSLT();
-		XsltTrasfromation.convertXMLtoXHTML();
-	}
+    public static void main(String[] args) throws Exception {
+        XsltTrasfromation.executeXSLT();
+        XsltTrasfromation.convertXMLtoXHTML();
+    }
 
-	public static void executeXSLT() throws Exception {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    public static void executeXSLT() throws Exception {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
-		//File xml = new File("src/xslt/Scenario.xml");
-		File xsl = new File("src/dlr/xml/xslt/Scenario.xsl");
-		
-		File xml = new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsd.xml");
+        //File xml = new File("src/xslt/Scenario.xml");
+        File xsl = new File("src/dlr/xml/xslt/Scenario.xsl");
 
-		DocumentBuilder builder = factory.newDocumentBuilder();
-		document = builder.parse(xml);
+        File xml = new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsd.xml");
 
-		// Use a Transformer for output
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		StreamSource style = new StreamSource(xsl);
-		Transformer transformer = transformerFactory.newTransformer(style);
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        document = builder.parse(xml);
 
-		DOMSource source = new DOMSource(document);
-		//StreamResult result = new StreamResult(new File("src/xslt/Scenario.html"));
-		StreamResult result = new StreamResult(new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsdXSTL.html"));
-		transformer.transform(source, result);
-		XsltTrasfromation.convertXMLtoXHTML();
-	}
+        // Use a Transformer for output
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        StreamSource style = new StreamSource(xsl);
+        Transformer transformer = transformerFactory.newTransformer(style);
 
-	public static void convertXMLtoXHTML() {
-		// System.out.println("Modify called");
+        DOMSource source = new DOMSource(document);
+        //StreamResult result = new StreamResult(new File("src/xslt/Scenario.html"));
+        StreamResult result = new StreamResult(
+                new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsdXSTL.html"));
+        transformer.transform(source, result);
+        XsltTrasfromation.convertXMLtoXHTML();
+    }
 
-		PrintWriter f0 = null;
-		try {
-			f0 = new PrintWriter(new FileWriter(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + SESEditor.treePanel.projectFileName + ".obj"));
-			// System.out.println("output file generated");
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+    public static void convertXMLtoXHTML() {
+        // System.out.println("Modify called");
 
-		Scanner in = null;
-		try {
-			in = new Scanner(new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsdXSTL.html"));
-			//in = new Scanner(new File("src/xslt/xmlforxsdXSTL.html"));
-			// System.out.println("my read complete");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        PrintWriter f0 = null;
+        try {
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" + DynamicTree.projectFileName
+                    + ".obj"));
+            // System.out.println("output file generated");
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 
-		while (in.hasNext()) { // Iterates each line in the file
+        Scanner in = null;
+        try {
+            in = new Scanner(
+                    new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsdXSTL.html"));
+            //in = new Scanner(new File("src/xslt/xmlforxsdXSTL.html"));
+            // System.out.println("my read complete");
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-			String line = in.nextLine();
-			String result1 = line.trim();// line.replaceAll("\\s+", "");
-			line = result1;
+        while (in.hasNext()) { // Iterates each line in the file
 
-			if (line.startsWith("<html>") || line.startsWith("<body>") || line.startsWith("<table")
-					|| line.startsWith("<tr>") || line.startsWith("<td>") || line.startsWith("<h2>")
-					|| line.startsWith("</html>") || line.startsWith("</body>") || line.startsWith("</table>")
-					|| line.startsWith("</tr>") || line.startsWith("</td>") || line.startsWith("</h2>")) {
+            String line = in.nextLine();
+            String result1 = line.trim(); // line.replaceAll("\\s+", "");
+            line = result1;
 
-				continue;
-			} else {
+            if (line.startsWith("<html>") || line.startsWith("<body>") || line.startsWith("<table") || line
+                    .startsWith("<tr>") || line.startsWith("<td>") || line.startsWith("<h2>") || line
+                        .startsWith("</html>") || line.startsWith("</body>") || line.startsWith("</table>")
+                || line.startsWith("</tr>") || line.startsWith("</td>") || line.startsWith("</h2>")) {
 
-				f0.println(line);
-			}
-		}
+                continue;
+            } else {
 
-		in.close();
-		f0.close();
-	}
+                f0.println(line);
+            }
+        }
+
+        in.close();
+        f0.close();
+    }
 }
