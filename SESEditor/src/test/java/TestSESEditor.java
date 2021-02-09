@@ -2,11 +2,10 @@ import dlr.ses.seseditor.SESEditor;
 import edu.cnu.cs.gooey.Gooey;
 import edu.cnu.cs.gooey.GooeyFrame;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
+
+import javax.swing.JFrame;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import javax.swing.*;
-import java.util.List;
 
 public class TestSESEditor {
 
@@ -15,7 +14,7 @@ public class TestSESEditor {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{});
+                SESEditor.main(new String[] {});
             }
 
             @Override

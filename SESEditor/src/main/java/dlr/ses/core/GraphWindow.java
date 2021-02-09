@@ -1,11 +1,6 @@
 package dlr.ses.core;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JTabbedPane;
 
 /**
  * <h1>GraphWindow</h1>
@@ -14,19 +9,18 @@ import javax.swing.JTabbedPane;
  * panel. This class inherits JInternalFrame to display drawing panel within
  * another window.
  * </p>
- * 
+ *
  * @author Bikash Chandra Karmokar
  * @version 1.0
- *
  */
 public class GraphWindow extends JInternalFrame {
 
-	public GraphWindow() {
-		super("Graphical View", false, // resizable
-				false, // closable
-				false, // maximizable
-				false // iconifiable
-		);
+    public GraphWindow() {
+        super("Graphical View", false, // resizable
+                false, // closable
+                false, // maximizable
+                false // iconifiable
+        );
 
-	}
+    }
 }

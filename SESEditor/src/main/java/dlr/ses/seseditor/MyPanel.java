@@ -1,15 +1,15 @@
 package dlr.ses.seseditor;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MyPanel extends JPanel {
     private int number, guessCount;
@@ -59,6 +59,15 @@ public class MyPanel extends JPanel {
         theGame();
     }
 
+    public static void main(String args[]) {
+        JFrame myFrame = new JFrame("Guess My Number!!");
+        JPanel Guess = new JPanel();
+        myFrame.add(Guess);
+        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myFrame.setSize(400, 400); // set frame size
+        myFrame.setVisible(true); // display frame
+    }
+
     // choose a new random number
     public void theGame() {
         number = (int) (Math.random() * 1000 + 1);
@@ -78,10 +87,11 @@ public class MyPanel extends JPanel {
         // first guess
         if (guessCount == 1) {
             lastDistance = Math.abs(guess - number);
-            if (guess > number)
+            if (guess > number) {
                 message.setText("Too High. Try a lower number.");
-            else
+            } else {
                 message.setText("Too Low. Try a higher number.");
+            }
         } else {
             currentDistance = Math.abs(guess - number);
             // guess is too high
@@ -112,15 +122,6 @@ public class MyPanel extends JPanel {
             repaint();
         }
     } // end method react
-
-    public static void main(String args[]) {
-        JFrame myFrame = new JFrame("Guess My Number!!");
-        JPanel Guess = new JPanel();
-        myFrame.add(Guess);
-        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setSize(400, 400); // set frame size
-        myFrame.setVisible(true); // display frame
-    }
 
     // inner class acts on user input
     class GuessHandler implements ActionListener {

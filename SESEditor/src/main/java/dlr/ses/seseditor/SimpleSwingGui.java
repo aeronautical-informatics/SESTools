@@ -1,16 +1,20 @@
 package dlr.ses.seseditor;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
-import javax.swing.*;
+
 /**
  * Einfache Klasse zum erzeugen eines {@link JFrame} zum eingeben des Vornamens
  * sowie des Nachnamens. Beim klicken auf den {@link JButton} wird ein
  * {@link JOptionPane} Dialog angezeigt.
  *
  * @author Stefan Draeger
- *
  */
 public class SimpleSwingGui extends JFrame {
     /**
@@ -20,16 +24,22 @@ public class SimpleSwingGui extends JFrame {
      * Prozess der Serialisierung hinzufügen.
      */
     private static final long serialVersionUID = 3153235363948579984L;
-    /** {@link JTextField} für die Eingabe des Vornamens **/
+    /**
+     * {@link JTextField} für die Eingabe des Vornamens
+     **/
     private JTextField vornameTextField;
-    /** {@link JTextField} für die Eingabe des Nachnamens **/
+    /**
+     * {@link JTextField} für die Eingabe des Nachnamens
+     **/
     private JTextField nameTextField;
+
     /**
      * Konstruktor
      */
     public SimpleSwingGui() {
         init();
     }
+
     /**
      * Das {@link JFrame} einrichten.
      */
@@ -41,6 +51,7 @@ public class SimpleSwingGui extends JFrame {
         initComponents();
         this.setVisible(true);
     }
+
     /**
      * Erzeugen der Eingabefelder und des Buttons sowie der {@link ActionListener}
      */
@@ -56,11 +67,18 @@ public class SimpleSwingGui extends JFrame {
         JButton sayHelloBtn = new JButton("say Hello");
         sayHelloBtn.setName("sayHelloBtn");
         sayHelloBtn.addActionListener(event -> {
-            String message = String.format("Hallo %s %s", vornameTextField.getText(), nameTextField.getText());
-            int result = JOptionPane.showConfirmDialog(SimpleSwingGui.this, message, "Hinweis...",
-                    JOptionPane.OK_CANCEL_OPTION);
-            String resultMsg = String.format("Button %s wurde geklickt", result == JOptionPane.OK_OPTION ? "OK"
-                    : result == JOptionPane.CANCEL_OPTION ? "ABBRECHEN" : "-undefined-");
+            String message =
+                    String.format("Hallo %s %s", vornameTextField.getText(),
+                            nameTextField.getText());
+            int result = JOptionPane
+                    .showConfirmDialog(SimpleSwingGui.this, message,
+                            "Hinweis...",
+                            JOptionPane.OK_CANCEL_OPTION);
+            String resultMsg = String.format("Button %s wurde geklickt",
+                    result == JOptionPane.OK_OPTION ? "OK"
+                            :
+                            result == JOptionPane.CANCEL_OPTION ? "ABBRECHEN" :
+                                    "-undefined-");
             System.out.println(resultMsg);
         });
         this.add(sayHelloBtn);

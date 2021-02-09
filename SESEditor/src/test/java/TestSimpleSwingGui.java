@@ -3,11 +3,16 @@ import edu.cnu.cs.gooey.Gooey;
 import edu.cnu.cs.gooey.GooeyFrame;
 import org.junit.Test;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JToolBar;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import javax.swing.*;
-import java.util.List;
 
 public class TestSimpleSwingGui {
 
@@ -16,41 +21,65 @@ public class TestSimpleSwingGui {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{""});
+                SESEditor.main(new String[] {""});
             }
 
             @Override
             public void test(JFrame frame) {
                 JToolBar toolbar = Gooey.getComponent(frame, JToolBar.class);
 
-                JButton selector = Gooey.getComponent(toolbar, JButton.class, "Selector");
-                JButton addEntity = Gooey.getComponent(toolbar, JButton.class, "Add Entity");
-                JButton addAspect = Gooey.getComponent(toolbar, JButton.class, "Add Aspect");
-                JButton addSpecialization = Gooey.getComponent(toolbar, JButton.class, "Add Specialization");
-                JButton addMultiaspect = Gooey.getComponent(toolbar, JButton.class, "Add Multi-Aspect");
-                JButton deleteNode = Gooey.getComponent(toolbar, JButton.class, "Delete Node From Graph");
-                JButton saveGraph = Gooey.getComponent(toolbar, JButton.class, "Save Graph");
-                JButton undo = Gooey.getComponent(toolbar, JButton.class, "Undo");
-                JButton redo = Gooey.getComponent(toolbar, JButton.class, "Redo");
-                JButton zoomIn = Gooey.getComponent(toolbar, JButton.class, "Zoom In");
-                JButton zoomOut = Gooey.getComponent(toolbar, JButton.class, "Zoom Out");
-                JButton validation = Gooey.getComponent(toolbar, JButton.class, "Validation");
+                JButton selector =
+                        Gooey.getComponent(toolbar, JButton.class, "Selector");
+                JButton addEntity = Gooey.getComponent(toolbar, JButton.class,
+                        "Add Entity");
+                JButton addAspect = Gooey.getComponent(toolbar, JButton.class,
+                        "Add Aspect");
+                JButton addSpecialization =
+                        Gooey.getComponent(toolbar, JButton.class,
+                                "Add Specialization");
+                JButton addMultiaspect =
+                        Gooey.getComponent(toolbar, JButton.class,
+                                "Add Multi-Aspect");
+                JButton deleteNode = Gooey.getComponent(toolbar, JButton.class,
+                        "Delete Node From Graph");
+                JButton saveGraph = Gooey.getComponent(toolbar, JButton.class,
+                        "Save Graph");
+                JButton undo =
+                        Gooey.getComponent(toolbar, JButton.class, "Undo");
+                JButton redo =
+                        Gooey.getComponent(toolbar, JButton.class, "Redo");
+                JButton zoomIn =
+                        Gooey.getComponent(toolbar, JButton.class, "Zoom In");
+                JButton zoomOut =
+                        Gooey.getComponent(toolbar, JButton.class, "Zoom Out");
+                JButton validation = Gooey.getComponent(toolbar, JButton.class,
+                        "Validation");
 
-                List<JButton> toolbarButtons = Gooey.getComponents(toolbar, JButton.class);
+                List<JButton> toolbarButtons =
+                        Gooey.getComponents(toolbar, JButton.class);
 
                 assertEquals(12, toolbarButtons.size(), "Incorrect result");
-                assertTrue(toolbarButtons.contains(selector), "Incorrect result");
-                assertTrue(toolbarButtons.contains(addEntity), "Incorrect result");
-                assertTrue(toolbarButtons.contains(addAspect), "Incorrect result");
-                assertTrue(toolbarButtons.contains(addSpecialization), "Incorrect result");
-                assertTrue(toolbarButtons.contains(addMultiaspect), "Incorrect result");
-                assertTrue(toolbarButtons.contains(deleteNode), "Incorrect result");
-                assertTrue(toolbarButtons.contains(saveGraph), "Incorrect result");
+                assertTrue(toolbarButtons.contains(selector),
+                        "Incorrect result");
+                assertTrue(toolbarButtons.contains(addEntity),
+                        "Incorrect result");
+                assertTrue(toolbarButtons.contains(addAspect),
+                        "Incorrect result");
+                assertTrue(toolbarButtons.contains(addSpecialization),
+                        "Incorrect result");
+                assertTrue(toolbarButtons.contains(addMultiaspect),
+                        "Incorrect result");
+                assertTrue(toolbarButtons.contains(deleteNode),
+                        "Incorrect result");
+                assertTrue(toolbarButtons.contains(saveGraph),
+                        "Incorrect result");
                 assertTrue(toolbarButtons.contains(undo), "Incorrect result");
                 assertTrue(toolbarButtons.contains(redo), "Incorrect result");
                 assertTrue(toolbarButtons.contains(zoomIn), "Incorrect result");
-                assertTrue(toolbarButtons.contains(zoomOut), "Incorrect result");
-                assertTrue(toolbarButtons.contains(validation), "Incorrect result");
+                assertTrue(toolbarButtons.contains(zoomOut),
+                        "Incorrect result");
+                assertTrue(toolbarButtons.contains(validation),
+                        "Incorrect result");
 
             }
         });
@@ -61,7 +90,7 @@ public class TestSimpleSwingGui {
         Gooey.capture(new GooeyFrame() {
             @Override
             public void invoke() {
-                SESEditor.main(new String[]{""});
+                SESEditor.main(new String[] {""});
             }
 
             @Override

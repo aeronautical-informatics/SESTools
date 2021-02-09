@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<entity xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ses.xsd" name="Scenario">
+<entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="ses.xsd" name="Scenario">
     <aspect name="scenarioDec">
         <entity name="Environment">
-            <var name="rho" default="5.5" lower="1.1" upper="10.1" ></var>
-            <var name="a" default="5" lower="1" upper="10" ></var>
-            <var name="T" default="8" lower="1" upper="20" ></var>
-            <var name="wind_vel" default="5" lower="1" upper="10" ></var>
-            <var name="wind_dir" default="0" lower="1" upper="360" ></var>
+            <var name="rho" default="5.5" lower="1.1" upper="10.1"></var>
+            <var name="a" default="5" lower="1" upper="10"></var>
+            <var name="T" default="8" lower="1" upper="20"></var>
+            <var name="wind_vel" default="5" lower="1" upper="10"></var>
+            <var name="wind_dir" default="0" lower="1" upper="360"></var>
         </entity>
         <entity name="Entities">
             <multiAspect name="entityMAsp">
@@ -15,52 +16,52 @@
                         <entity name="Aircraft">
                             <aspect name="aircraftDec">
                                 <entity name="InitialState">
-                                    <var name="V_TAS" default="5" lower="1" upper="10" ></var>
-                                    <var name="V_IAS" default="10" lower="1" upper="20" ></var>
-                                    <var name="V_g" default="5" lower="1" upper="15" ></var>
-                                    <var name="Ma" default="4" lower="1" upper="8" ></var>
+                                    <var name="V_TAS" default="5" lower="1" upper="10"></var>
+                                    <var name="V_IAS" default="10" lower="1" upper="20"></var>
+                                    <var name="V_g" default="5" lower="1" upper="15"></var>
+                                    <var name="Ma" default="4" lower="1" upper="8"></var>
                                 </entity>
                                 <entity name="Waypoints">
                                     <multiAspect name="waypointMAsp">
                                         <entity name="Waypoint">
                                             <aspect name="waypointDec">
                                                 <entity name="PlannedState">
-                                                    <var name="Psi_c" default="1.1" lower="1.1" upper="5.5" ></var>
-                                                    <var name="Phi_c" default="1.5" lower="0.5" upper="5.5" ></var>
+                                                    <var name="Psi_c" default="1.1" lower="1.1" upper="5.5"></var>
+                                                    <var name="Phi_c" default="1.5" lower="0.5" upper="5.5"></var>
                                                 </entity>
                                                 <entity name="WaypointParameters">
-                                                    <var name="Alt_mode" default="1" lower="1" upper="10" ></var>
-                                                    <var name="lat" default="1.1" lower="1.1" upper="115.0" ></var>
-                                                    <var name="lon" default="1.1" lower="1.1" upper="115.0" ></var>
+                                                    <var name="Alt_mode" default="1" lower="1" upper="10"></var>
+                                                    <var name="lat" default="1.1" lower="1.1" upper="115.0"></var>
+                                                    <var name="lon" default="1.1" lower="1.1" upper="115.0"></var>
                                                     <var name="taxi" default="true"></var>
-                                                    <var name="rho" default="5.5" lower="1.1" upper="10.1" ></var>
-                                                    <var name="s" default="5" lower="1" upper="10" ></var>
-                                                    <var name="T" default="8" lower="1" upper="10" ></var>
-                                                    <var name="wind_vel" default="5" lower="1" upper="10" ></var>
-                                                    <var name="wind_dir" default="0" lower="1" upper="360" ></var>
+                                                    <var name="rho" default="5.5" lower="1.1" upper="10.1"></var>
+                                                    <var name="s" default="5" lower="1" upper="10"></var>
+                                                    <var name="T" default="8" lower="1" upper="10"></var>
+                                                    <var name="wind_vel" default="5" lower="1" upper="10"></var>
+                                                    <var name="wind_dir" default="0" lower="1" upper="360"></var>
                                                     <var name="Switch_WP" default="true"></var>
-                                                    <var name="t_sw" default="1" lower="1" upper="2" ></var>
+                                                    <var name="t_sw" default="1" lower="1" upper="2"></var>
                                                 </entity>
                                             </aspect>
                                         </entity>
                                     </multiAspect>
                                 </entity>
                                 <entity name="Parameters">
-                                    <var name="Gear_offset" default="1" lower="1" upper="2" ></var>
-                                    <var name="C_A0" default="1" lower="1" upper="2" ></var>
-                                    <var name="C_A_spoiler" default="1" lower="1" upper="2" ></var>
-                                    <var name="C_A_flaps" default="1" lower="1" upper="2" ></var>
-                                    <var name="C_W0" default="1" lower="1" upper="2" ></var>
-                                    <var name="C_W_spoiler" default="1" lower="1" upper="3" ></var>
-                                    <var name="C_W_flasp" default="1" lower="1" upper="2" ></var>
-                                    <var name="m" default="1" lower="1" upper="2" ></var>
-                                    <var name="b" default="1" lower="1" upper="2" ></var>
-                                    <var name="S" default="1" lower="1" upper="2" ></var>
-                                    <var name="Lamda" default="1" lower="1" upper="2" ></var>
-                                    <var name="k" default="1" lower="1" upper="2" ></var>
-                                    <var name="n_rho" default="4.5" lower="1.1" upper="5.5" ></var>
-                                    <var name="T_Phi" default="1" lower="1" upper="2" ></var>
-                                    <var name="T_alpha" default="1" lower="1" upper="2" ></var>
+                                    <var name="Gear_offset" default="1" lower="1" upper="2"></var>
+                                    <var name="C_A0" default="1" lower="1" upper="2"></var>
+                                    <var name="C_A_spoiler" default="1" lower="1" upper="2"></var>
+                                    <var name="C_A_flaps" default="1" lower="1" upper="2"></var>
+                                    <var name="C_W0" default="1" lower="1" upper="2"></var>
+                                    <var name="C_W_spoiler" default="1" lower="1" upper="3"></var>
+                                    <var name="C_W_flasp" default="1" lower="1" upper="2"></var>
+                                    <var name="m" default="1" lower="1" upper="2"></var>
+                                    <var name="b" default="1" lower="1" upper="2"></var>
+                                    <var name="S" default="1" lower="1" upper="2"></var>
+                                    <var name="Lamda" default="1" lower="1" upper="2"></var>
+                                    <var name="k" default="1" lower="1" upper="2"></var>
+                                    <var name="n_rho" default="4.5" lower="1.1" upper="5.5"></var>
+                                    <var name="T_Phi" default="1" lower="1" upper="2"></var>
+                                    <var name="T_alpha" default="1" lower="1" upper="2"></var>
                                 </entity>
                             </aspect>
                         </entity>
@@ -76,7 +77,7 @@
                 </entity>
                 <entity name="VisualSettings">
                     <var name="animate" default="true"></var>
-                    <var name="vis_model" default="0" lower="1" upper="100" ></var>
+                    <var name="vis_model" default="0" lower="1" upper="100"></var>
                 </entity>
                 <entity name="ExecutionSettings">
                 </entity>
