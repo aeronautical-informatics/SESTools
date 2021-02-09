@@ -3,13 +3,11 @@ name: Java CI
 on: [push]
 
 jobs:
-  all:
+  build:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 3
       matrix:
         target: [PESEditor, SESEditor]
-        goal: [ compile, verify, "package -DskipTests" ]
 
     steps:
       - uses: actions/checkout@v2
@@ -25,10 +23,32 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Run Maven
-        run: mvn --file ${{ matrix.target }} --batch-mode --update-snapshots ${{ matrix.goal }}
-        continue-on-error:  ${{ matrix.goal == 'verify' && matrix.target == 'SESEditor' }} # TODO remove this once SESEditor passes the test suite
+        run: mvn --file ${{ matrix.target }} --batch-mode --update-snapshots package -DskipTests
       - uses: actions/upload-artifact@v2
         with:
-          name: ${{ github.event.repository.name }}-${{ matrix.target}}
+          name: ${{ matrix.target}}
           path: "${{ matrix.target }}/target/*.jar"
         if: matrix.goal == 'package -DskipTests'
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [PESEditor, SESEditor]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Run Maven
+        run: xvfb-run mvn --file ${{ matrix.target }} --batch-mode --update-snapshots verify
+        continue-on-error: true # TODO remove this once SESEditor passes the test suite
