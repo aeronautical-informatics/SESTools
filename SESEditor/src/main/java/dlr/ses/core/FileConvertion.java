@@ -30,18 +30,16 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(new FileWriter(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/xsdfromxml.xsd"));
+            f0 = new PrintWriter(
+                    new FileWriter(SESEditor.fileLocation + "/" + SESEditor.projName + "/xsdfromxml.xsd"));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
 
         Scanner in = null;
         try {
-            in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsd.xml")); // outputgraphxmlforxsd
+            in = new Scanner(new File(SESEditor.fileLocation + "/" + SESEditor.projName
+                                      + "/outputgraphxmlforxsd.xml")); // outputgraphxmlforxsd
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -51,17 +49,12 @@ public class FileConvertion {
             String line = in.nextLine();
             String backConstraints = line;
 
-            if (line.startsWith(
-                    "<?")) { // have to solve space problem for this line
-                f0.println(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
-                f0.println(
-                        "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" "
-                                +
-                                "\n xmlns:vc=\"http://www.w3.org/2007/XMLSchema-versioning\" "
-                                +
-                                "\n elementFormDefault=\"qualified\" vc:minVersion=\"1.1\" >");
-                f0.println();// for one line gap
+            if (line.startsWith("<?")) { // have to solve space problem for this line
+                f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+                f0.println("<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" "
+                           + "\n xmlns:vc=\"http://www.w3.org/2007/XMLSchema-versioning\" "
+                           + "\n elementFormDefault=\"qualified\" vc:minVersion=\"1.1\" >");
+                f0.println(); // for one line gap
 
             } else if (line.startsWith("</")) {
                 String result = line.replaceAll("[</>]", "");
@@ -83,8 +76,7 @@ public class FileConvertion {
                     mod = "</xs:sequence>";
                     f0.println(mod);
                 } else {
-                    f0.println(
-                            "<xs:attribute name=\"name\" use=\"optional\"/> ");
+                    f0.println("<xs:attribute name=\"name\" use=\"optional\"/> ");
                     f0.println("</xs:complexType>");
                     mod = "</xs:element>";
                     f0.println(mod);
@@ -99,54 +91,43 @@ public class FileConvertion {
 
                         // variable with proper style
                         String[] properties = novarresult.split(",");
-                        if (properties[1].toString().equals("string") ||
-                                properties[1].toString().equals("boolean")) {
+                        if (properties[1].equals("string") || properties[1].equals("boolean")) {
                             f0.println(
-                                    "<xs:attribute name=\"" + properties[0] +
-                                            "\" default=\"" + properties[2] +
-                                            "\">");
+                                    "<xs:attribute name=\"" + properties[0] + "\" default=\"" + properties[2]
+                                    + "\">");
                             f0.println("</xs:attribute>");
                         } else {
                             f0.println(
-                                    "<xs:attribute name=\"" + properties[0] +
-                                            "\" default=\"" + properties[2] +
-                                            "\">");
+                                    "<xs:attribute name=\"" + properties[0] + "\" default=\"" + properties[2]
+                                    + "\">");
                             f0.println("<xs:simpleType>");
-                            f0.println("<xs:restriction base=\"xs:" +
-                                    properties[1] + "\">");
-                            f0.println("<xs:minInclusive  value=\"" +
-                                    properties[3] + "\"/>");
-                            f0.println("<xs:maxInclusive value=\"" +
-                                    properties[4] + "\"/>");
+                            f0.println("<xs:restriction base=\"xs:" + properties[1] + "\">");
+                            f0.println("<xs:minInclusive  value=\"" + properties[3] + "\"/>");
+                            f0.println("<xs:maxInclusive value=\"" + properties[4] + "\"/>");
                             f0.println("</xs:restriction>");
                             f0.println("</xs:simpleType>");
                             f0.println("</xs:attribute>");
                         }
 
                     } else if (result.endsWith("Con")) {
-                        String resultCon = backConstraints.replaceAll("[<>]",
-                                "");// to keep the space backConstraints
+                        String resultCon =
+                                backConstraints.replaceAll("[<>]", ""); // to keep the space backConstraints
                         // is used here otherwise else and
                         // true() will be elsetrue();
-                        String nonconresult = resultCon.replace("Con/",
-                                "");// with Con also / added here then Con/ for
+                        String nonconresult =
+                                resultCon.replace("Con/", ""); // with Con also / added here then Con/ for
                         // replacement. because xpath query itself
                         // contain /, so can not all / from query
-                        f0.println(
-                                "<xs:assert test=\"" + nonconresult + "\" />");
+                        f0.println("<xs:assert test=\"" + nonconresult + "\" />");
                     } else if (result.endsWith("RefNode")) {
                         String noRefNoderesult = result.replace("RefNode", "");
 
-                        if (noRefNoderesult.endsWith("Dec") ||
-                                noRefNoderesult.endsWith("MAsp")) {
-                            f0.println("<xs:sequence ref=\"" + noRefNoderesult +
-                                    "\"/>");
+                        if (noRefNoderesult.endsWith("Dec") || noRefNoderesult.endsWith("MAsp")) {
+                            f0.println("<xs:sequence ref=\"" + noRefNoderesult + "\"/>");
                         } else if (noRefNoderesult.endsWith("Spec")) {
-                            f0.println("<xs:choice ref=\"" + noRefNoderesult +
-                                    "\"/>");
+                            f0.println("<xs:choice ref=\"" + noRefNoderesult + "\"/>");
                         } else {
-                            f0.println("<xs:element ref=\"" + noRefNoderesult +
-                                    "\"/>");
+                            f0.println("<xs:element ref=\"" + noRefNoderesult + "\"/>");
                         }
 
                     } else {
@@ -171,8 +152,8 @@ public class FileConvertion {
                         f0.println(mod);
                     } else {
                         if (entiyAfterMAsp == 1) {
-                            mod = "<xs:element name=\"" + result +
-                                    "\" minOccurs=\"0\" maxOccurs=\"unbounded\">";
+                            mod = "<xs:element name=\"" + result
+                                  + "\" minOccurs=\"0\" maxOccurs=\"unbounded\">";
                             f0.println(mod);
                             f0.println("<xs:complexType>");
 
@@ -203,10 +184,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsd.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
 
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -214,9 +193,8 @@ public class FileConvertion {
 
         Scanner in = null;
         try {
-            in = new Scanner(
-                    new File(SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsdvar.xml"));
+            in = new Scanner(new File(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
 
         } catch (FileNotFoundException e) {
 
@@ -245,10 +223,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsd.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
 
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -256,9 +232,8 @@ public class FileConvertion {
 
         Scanner in = null;
         try {
-            in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/graphxmluniformity.xml"));// graphxml
+            in = new Scanner(new File(SESEditor.fileLocation + "/" + SESEditor.projName
+                                      + "/graphxmluniformity.xml")); // graphxml
             // //graphxmluniformity
         } catch (FileNotFoundException e) {
 
@@ -290,8 +265,7 @@ public class FileConvertion {
         try {
 
             in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsd.xml"));
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -299,10 +273,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsdvar.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
 
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -315,10 +287,8 @@ public class FileConvertion {
 
             // line = result1;
 
-            if (line.startsWith(
-                    "<?")) { // have to solve space problem for this line
-                f0.println(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+            if (line.startsWith("<?")) { // have to solve space problem for this line
+                f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
             } else if (line.startsWith("<if(")) {
                 f0.println(backLine);
             } else if (line.startsWith("<")) {
@@ -363,14 +333,12 @@ public class FileConvertion {
 
     }
 
-    public void constraintAdditionToNode(String selectedNode,
-                                         String variableName) {
+    public void constraintAdditionToNode(String selectedNode, String variableName) {
 
         Scanner in = null;
         try {
             in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsd.xml"));
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -378,10 +346,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsdvar.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -390,10 +356,8 @@ public class FileConvertion {
             String line = in.nextLine();
             String backLine = line;
 
-            if (line.startsWith(
-                    "<?")) { // have to solve space problem for this line
-                f0.println(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+            if (line.startsWith("<?")) { // have to solve space problem for this line
+                f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
             } else if (line.startsWith("</")) {
                 String result = line.replaceAll("[</>]", "");
 
@@ -425,17 +389,15 @@ public class FileConvertion {
      * @param sesNodesInPath
      * @param constraint
      */
-    public void addConstraintToSESStructure(String[] sesNodesInPath,
-                                            String constraint) {
+    public void addConstraintToSESStructure(String[] sesNodesInPath, String constraint) {
 
         int len = sesNodesInPath.length;
         int count = 0;
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(new FileWriter(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/testcon.xml"));// outputgraphxmlforxsdvar
+            f0 = new PrintWriter(new FileWriter(SESEditor.fileLocation + "/" + SESEditor.projName
+                                                + "/testcon.xml")); // outputgraphxmlforxsdvar
 
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -443,9 +405,7 @@ public class FileConvertion {
 
         Scanner in = null;
         try {
-            in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/xmlforxsd.xml"));
+            in = new Scanner(new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsd.xml"));
 
         } catch (FileNotFoundException e) {
 
@@ -465,14 +425,12 @@ public class FileConvertion {
                 String[] splited = node.split("\\s+");
 
                 if (count < len) {
-                    if (splited[0].equals(sesNodesInPath[count].toString())) {
+                    if (splited[0].equals(sesNodesInPath[count])) {
                         count++;
                     }
                     if (count == len) {
-                        f0.println(
-                                "<" + splited[0] + " " + splited[1] + " " +
-                                        "constraint=\"" + constraint + "\" " +
-                                        ">");
+                        f0.println("<" + splited[0] + " " + splited[1] + " " + "constraint=\"" + constraint
+                                   + "\" " + ">");
                     } else {
                         f0.println(line);
                     }
@@ -493,10 +451,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsdvar.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
 
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -505,9 +461,7 @@ public class FileConvertion {
         Scanner in = null;
         try {
             // if (secondtime < 2) {
-            in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/xsdfromxml.xsd"));
+            in = new Scanner(new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xsdfromxml.xsd"));
             // secondtime++;
             // } else
             // in = new Scanner(new File("outputgraphxmlforxsdvar.xml"));
@@ -528,9 +482,8 @@ public class FileConvertion {
                 f0.println(line);
                 finishChaningLinePosition = true;
 
-            } else if (line.startsWith("<xs:attribute") &&
-                    !deleteExtraAtrributeLineBelowAssert
-                    && finishChaningLinePosition) {
+            } else if (line.startsWith("<xs:attribute") && !deleteExtraAtrributeLineBelowAssert
+                       && finishChaningLinePosition) {
                 deleteExtraAtrributeLineBelowAssert = true;
                 // continue;
             } else {
@@ -541,7 +494,7 @@ public class FileConvertion {
         in.close();
         f0.close();
 
-        copyChangedXSDtoOldOne();// copy this output to existing one
+        copyChangedXSDtoOldOne(); // copy this output to existing one
         ///////////////////////////////////////////////////////
         copyxsdfromxmlToRootNodeNameXSD();
     }
@@ -551,9 +504,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(new FileWriter(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/xsdfromxml.xsd"));
+            f0 = new PrintWriter(
+                    new FileWriter(SESEditor.fileLocation + "/" + SESEditor.projName + "/xsdfromxml.xsd"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -562,9 +514,8 @@ public class FileConvertion {
 
         Scanner in = null;
         try {
-            in = new Scanner(
-                    new File(SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsdvar.xml"));
+            in = new Scanner(new File(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -593,8 +544,7 @@ public class FileConvertion {
         try {
             // if (secondtime < 2) {
             in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsd.xml"));
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
             // secondtime++;
             // } else
             // in = new Scanner(new File("outputgraphxmlforxsdvar.xml"));
@@ -606,10 +556,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsdvar.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -622,10 +570,8 @@ public class FileConvertion {
             // System.out.println("Line: " + result);
             // line = result1;
 
-            if (line.startsWith(
-                    "<?")) { // have to solve space problem for this line
-                f0.println(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+            if (line.startsWith("<?")) { // have to solve space problem for this line
+                f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
             } else if (line.startsWith("<")) {
                 String result = line.replaceAll("[</>]", "");
 
@@ -640,7 +586,7 @@ public class FileConvertion {
                     if (count == len) {
                         if (line.endsWith("/>")) {
                             f0.println(line);
-                            f0.println(variableName + "Con");// +"Con"
+                            f0.println(variableName + "Con"); // +"Con"
                         } else {
                             f0.println(line);
 
@@ -663,7 +609,7 @@ public class FileConvertion {
         in.close();
         f0.close();
 
-        copyFileToExistingOne();// copy this output to existing one
+        copyFileToExistingOne(); // copy this output to existing one
 
     }
 
@@ -672,10 +618,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsd.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -684,9 +628,8 @@ public class FileConvertion {
 
         Scanner in = null;
         try {
-            in = new Scanner(
-                    new File(SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsdvar.xml"));
+            in = new Scanner(new File(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -704,8 +647,7 @@ public class FileConvertion {
         f0.close();
     }
 
-    public void addingUniformityRefNodeToXML(String[] stringArrayRev,
-                                             String cellName) {
+    public void addingUniformityRefNodeToXML(String[] stringArrayRev, String cellName) {
 
         // Object[] stringArrayRev = key.getPath();
 
@@ -716,8 +658,7 @@ public class FileConvertion {
         try {
             // if (secondtime < 2) {
             in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsd.xml"));
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
             // secondtime++;
             // } else
             // in = new Scanner(new File("outputgraphxmlforxsdvar.xml"));
@@ -729,10 +670,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsdvar.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -743,15 +682,13 @@ public class FileConvertion {
 
         while (in.hasNext()) { // Iterates each line in the file
             String line = in.nextLine();
-            String backline = line;// for assert statement
+            String backline = line; // for assert statement
             // String result1 = line.replaceAll("\\s+", "");
             // System.out.println("Line: " + result);
             // line = result1;
 
-            if (line.startsWith(
-                    "<?")) { // have to solve space problem for this line
-                f0.println(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+            if (line.startsWith("<?")) { // have to solve space problem for this line
+                f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
             } else if (line.startsWith("if")) {
                 f0.println(backline);
 
@@ -765,7 +702,7 @@ public class FileConvertion {
                 // System.out.println("String:"+stringArrayRev[count]);
 
                 if (count < len) {
-                    if (result.equals(stringArrayRev[count].toString())) {
+                    if (result.equals(stringArrayRev[count])) {
                         count++;
                         // System.out.println("count: " + count);
                     }
@@ -810,8 +747,7 @@ public class FileConvertion {
         try {
             // if (secondtime < 2) {
             in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsd.xml"));
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
             // secondtime++;
             // } else
             // in = new Scanner(new File("outputgraphxmlforxsdvar.xml"));
@@ -823,10 +759,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsdseq.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdseq.xml"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -842,10 +776,8 @@ public class FileConvertion {
             // System.out.println("Line: " + result);
             // line = result1;
 
-            if (line.startsWith(
-                    "<?")) { // have to solve space problem for this line
-                f0.println(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+            if (line.startsWith("<?")) { // have to solve space problem for this line
+                f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
             } else if (line.startsWith("if")) {
                 f0.println(backline);
 
@@ -867,7 +799,7 @@ public class FileConvertion {
                 // System.out.println("String:"+stringArrayRev[count]);
 
                 if (count < len) {
-                    if (result.equals(stringArrayRev[count].toString())) {
+                    if (result.equals(stringArrayRev[count])) {
                         count++;
                         // System.out.println("count: " + count);
                     }
@@ -900,10 +832,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/outputgraphxmlforxsd.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsd.xml"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -912,9 +842,8 @@ public class FileConvertion {
 
         Scanner in = null;
         try {
-            in = new Scanner(
-                    new File(SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsdseq.xml"));
+            in = new Scanner(new File(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdseq.xml"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -940,10 +869,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/" + rootNodeName + ".xsd"));
+            f0 = new PrintWriter(new FileWriter(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" + rootNodeName + ".xsd"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -952,9 +879,8 @@ public class FileConvertion {
 
         Scanner in = null;
         try {
-            in = new Scanner(
-                    new File(SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/outputgraphxmlforxsdvar.xml"));
+            in = new Scanner(new File(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -977,9 +903,8 @@ public class FileConvertion {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(new FileWriter(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/ses.xsd"));
+            f0 = new PrintWriter(
+                    new FileWriter(SESEditor.fileLocation + "/" + SESEditor.projName + "/ses.xsd"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -989,84 +914,54 @@ public class FileConvertion {
         // writing to the file
 
         String ses = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
-                +
-                "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\"\r\n"
-                +
-                "    xmlns:vc=\"http://www.w3.org/2007/XMLSchema-versioning\" vc:minVersion=\"1.1\">\r\n" +
-                "    \r\n"
-                + "        <xs:complexType name=\"aspectType\">\r\n" +
-                "        <xs:sequence>\r\n"
-                +
-                "            <xs:element minOccurs=\"0\" maxOccurs=\"unbounded\" ref=\"entity\"/>\r\n"
-                + "        </xs:sequence>\r\n" +
-                "        <xs:attribute name=\"name\" use=\"required\"/>\r\n"
-                + "    </xs:complexType>\r\n" + "\r\n" +
-                "    <xs:complexType name=\"multiAspectType\">\r\n"
-                + "        <xs:sequence>\r\n"
-                +
-                "            <xs:element minOccurs=\"0\" maxOccurs=\"unbounded\" ref=\"entity\"/>\r\n"
-                + "        </xs:sequence>\r\n" +
-                "        <xs:attribute name=\"name\" use=\"required\"/>\r\n"
-                +
-                "        <xs:attribute name=\"constraint\" use=\"optional\"/>\r\n" +
-                "    </xs:complexType>\r\n"
-                + "\r\n" +
-                "    <xs:complexType name=\"specializationType\">\r\n" +
-                "        <xs:sequence>\r\n"
-                +
-                "            <xs:element minOccurs=\"0\" maxOccurs=\"unbounded\" ref=\"entity\"/>\r\n"
-                + "        </xs:sequence>\r\n" +
-                "        <xs:attribute name=\"name\" use=\"required\"/>\r\n"
-                + "    </xs:complexType>\r\n" + "\r\n" + "\r\n" +
-                "    <xs:complexType name=\"varType\"> \r\n"
-                + "        <xs:sequence>\r\n"
-                +
-                "            <xs:element minOccurs=\"0\" maxOccurs=\"unbounded\" ref=\"entity\"/>\r\n"
-                + "        </xs:sequence>\r\n" +
-                "        <xs:attribute name=\"name\" use=\"required\"/>\r\n"
-                + "        <xs:attribute name=\"type\" use=\"optional\"/>\r\n"
-                +
-                "        <xs:attribute name=\"default\" use=\"optional\"/>\r\n"
-                + "        <xs:attribute name=\"lower\" use=\"optional\"/>\r\n"
-                +
-                "        <xs:attribute name=\"upper\" use=\"optional\"/>\r\n" +
-                "        \r\n"
-                + "    </xs:complexType>\r\n" + "\r\n" + "\r\n" +
-                "    <xs:element name=\"entity\">\r\n"
-                + "        <xs:complexType>\r\n" +
-                "            <xs:sequence>\r\n"
-                +
-                "                <xs:choice minOccurs=\"0\" maxOccurs=\"unbounded\">\r\n"
-                + "                    <xs:element ref=\"aspect\"/>\r\n"
-                + "                    <xs:element ref=\"specialization\"/>\r\n"
-                + "                    <xs:element ref=\"multiAspect\"/>\r\n"
-                + "                    <xs:element ref=\"var\"/>\r\n" +
-                "                    \r\n"
-                + "                </xs:choice>            \r\n" +
-                "                \r\n"
-                + "            </xs:sequence>\r\n" + "\r\n"
-                +
-                "            <xs:attribute name=\"name\" use=\"required\"/>\r\n"
-                +
-                "            <xs:attribute name=\"ref\" use=\"optional\"/>\r\n" +
-                "          \r\n"
-                +
-                "            <xs:assert test=\"every $x in .//entity satisfies empty($x//*[@name = $x/@name])\"/> \r\n"
-                +
-                "            <xs:assert test=\"every $x in .//entity satisfies count(*[$x/@name = $x/following-sibling::*/@name]) = 0\"/>                \r\n"
-                +
-                "            <xs:assert test=\"every $x in .//var satisfies count(*[@name = following-sibling::*/@name]) = 0\"/>                                     \r\n"
-                + "            \r\n" + "        </xs:complexType>      \r\n" +
-                "        \r\n" + "      \r\n"
-                + "    </xs:element>\r\n" + "\r\n" +
-                "    <xs:element name=\"aspect\" type=\"aspectType\"/>\r\n"
-                +
-                "    <xs:element name=\"multiAspect\" type=\"multiAspectType\"/>\r\n"
-                +
-                "    <xs:element name=\"specialization\" type=\"specializationType\"/>\r\n"
-                + "    <xs:element name=\"var\" type=\"varType\"/>   \r\n" +
-                "\r\n" + "     \r\n" + "</xs:schema>\r\n"
-                + "";
+                     + "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\"\r\n"
+                     + "    xmlns:vc=\"http://www.w3.org/2007/XMLSchema-versioning\" vc:minVersion=\"1.1\">\r\n"
+                     + "    \r\n" + "        <xs:complexType name=\"aspectType\">\r\n"
+                     + "        <xs:sequence>\r\n"
+                     + "            <xs:element minOccurs=\"0\" maxOccurs=\"unbounded\" ref=\"entity\"/>\r\n"
+                     + "        </xs:sequence>\r\n"
+                     + "        <xs:attribute name=\"name\" use=\"required\"/>\r\n"
+                     + "    </xs:complexType>\r\n" + "\r\n"
+                     + "    <xs:complexType name=\"multiAspectType\">\r\n" + "        <xs:sequence>\r\n"
+                     + "            <xs:element minOccurs=\"0\" maxOccurs=\"unbounded\" ref=\"entity\"/>\r\n"
+                     + "        </xs:sequence>\r\n"
+                     + "        <xs:attribute name=\"name\" use=\"required\"/>\r\n"
+                     + "        <xs:attribute name=\"constraint\" use=\"optional\"/>\r\n"
+                     + "    </xs:complexType>\r\n" + "\r\n"
+                     + "    <xs:complexType name=\"specializationType\">\r\n" + "        <xs:sequence>\r\n"
+                     + "            <xs:element minOccurs=\"0\" maxOccurs=\"unbounded\" ref=\"entity\"/>\r\n"
+                     + "        </xs:sequence>\r\n"
+                     + "        <xs:attribute name=\"name\" use=\"required\"/>\r\n"
+                     + "    </xs:complexType>\r\n" + "\r\n" + "\r\n"
+                     + "    <xs:complexType name=\"varType\"> \r\n" + "        <xs:sequence>\r\n"
+                     + "            <xs:element minOccurs=\"0\" maxOccurs=\"unbounded\" ref=\"entity\"/>\r\n"
+                     + "        </xs:sequence>\r\n"
+                     + "        <xs:attribute name=\"name\" use=\"required\"/>\r\n"
+                     + "        <xs:attribute name=\"type\" use=\"optional\"/>\r\n"
+                     + "        <xs:attribute name=\"default\" use=\"optional\"/>\r\n"
+                     + "        <xs:attribute name=\"lower\" use=\"optional\"/>\r\n"
+                     + "        <xs:attribute name=\"upper\" use=\"optional\"/>\r\n" + "        \r\n"
+                     + "    </xs:complexType>\r\n" + "\r\n" + "\r\n" + "    <xs:element name=\"entity\">\r\n"
+                     + "        <xs:complexType>\r\n" + "            <xs:sequence>\r\n"
+                     + "                <xs:choice minOccurs=\"0\" maxOccurs=\"unbounded\">\r\n"
+                     + "                    <xs:element ref=\"aspect\"/>\r\n"
+                     + "                    <xs:element ref=\"specialization\"/>\r\n"
+                     + "                    <xs:element ref=\"multiAspect\"/>\r\n"
+                     + "                    <xs:element ref=\"var\"/>\r\n" + "                    \r\n"
+                     + "                </xs:choice>            \r\n" + "                \r\n"
+                     + "            </xs:sequence>\r\n" + "\r\n"
+                     + "            <xs:attribute name=\"name\" use=\"required\"/>\r\n"
+                     + "            <xs:attribute name=\"ref\" use=\"optional\"/>\r\n" + "          \r\n"
+                     + "            <xs:assert test=\"every $x in .//entity satisfies empty($x//*[@name = $x/@name])\"/> \r\n"
+                     + "            <xs:assert test=\"every $x in .//entity satisfies count(*[$x/@name = $x/following-sibling::*/@name]) = 0\"/>                \r\n"
+                     + "            <xs:assert test=\"every $x in .//var satisfies count(*[@name = following-sibling::*/@name]) = 0\"/>                                     \r\n"
+                     + "            \r\n" + "        </xs:complexType>      \r\n" + "        \r\n"
+                     + "      \r\n" + "    </xs:element>\r\n" + "\r\n"
+                     + "    <xs:element name=\"aspect\" type=\"aspectType\"/>\r\n"
+                     + "    <xs:element name=\"multiAspect\" type=\"multiAspectType\"/>\r\n"
+                     + "    <xs:element name=\"specialization\" type=\"specializationType\"/>\r\n"
+                     + "    <xs:element name=\"var\" type=\"varType\"/>   \r\n" + "\r\n" + "     \r\n"
+                     + "</xs:schema>\r\n" + "";
 
         f0.println(ses);
         f0.close();

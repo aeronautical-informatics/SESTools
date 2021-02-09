@@ -12,11 +12,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MyPanel extends JPanel {
+    private final JTextField guessInput;
+    private final JLabel prompt1;
+    private final JLabel prompt2;
+    private final JLabel message;
+    private final JButton newGame;
     private int number, guessCount;
     private int lastDistance;
-    private JTextField guessInput;
-    private JLabel prompt1, prompt2, message;
-    private JButton newGame;
     private Color background;
 
     // set up GUI and initialize values
@@ -40,26 +42,25 @@ public class MyPanel extends JPanel {
         newGame = new JButton("New Game");
         add(newGame);
         newGame.addActionListener(new ActionListener() {
-                                      public void actionPerformed(ActionEvent e) {
-                                          /*
-                                           * A JButton should be provided to allow the user to play the
-                                           * game again. When the JButton is clicked, a new random number
-                                           * should be generated and the input JTextField changed to be
-                                           * editable.
-                                           */
-                                          message.setText("Guess Result");
-                                          guessInput.setText("");
-                                          guessInput.setEditable(true);
-                                          background = Color.white;
-                                          theGame();
-                                          repaint();
-                                      }
-                                  }
-        );
+            public void actionPerformed(ActionEvent e) {
+                /*
+                 * A JButton should be provided to allow the user to play the
+                 * game again. When the JButton is clicked, a new random number
+                 * should be generated and the input JTextField changed to be
+                 * editable.
+                 */
+                message.setText("Guess Result");
+                guessInput.setText("");
+                guessInput.setEditable(true);
+                background = Color.white;
+                theGame();
+                repaint();
+            }
+        });
         theGame();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         JFrame myFrame = new JFrame("Guess My Number!!");
         JPanel Guess = new JPanel();
         myFrame.add(Guess);
@@ -97,15 +98,13 @@ public class MyPanel extends JPanel {
             // guess is too high
             if (guess > number) {
                 message.setText("Too High. Try a lower number.");
-                background = (currentDistance <= lastDistance) ? Color.red
-                        : Color.blue;
+                background = (currentDistance <= lastDistance) ? Color.red : Color.blue;
                 lastDistance = currentDistance;
             }
             // guess is too low
             else if (guess < number) {
                 message.setText("Too Low. Try a higher number.");
-                background = (currentDistance <= lastDistance) ? Color.red
-                        : Color.blue;
+                background = (currentDistance <= lastDistance) ? Color.red : Color.blue;
                 lastDistance = currentDistance;
             }
             // guess is correct

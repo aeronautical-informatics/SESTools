@@ -129,11 +129,9 @@ public class SESEditor extends JPanel {
     // final File ssdFile = new File("Scenario.ssd");
     public static JMenuBar menuBar;
     public static JMenu menuFile, menuEdit, menuHelp;
-    public static JMenuItem menuItemNew, menuItemSave, menuItemSaveAs,
-            menuItemOpen, menuItemImport, menuItemExport,
-            menuItemExit, menuItemAbout, menuItemGenerateXML,
-            menuItemSaveXMLFile, menuItemOpenXMLFile, validateXMLFile,
-            menuItemUndo, menuItemRedo, helpItemTutorial;
+    public static JMenuItem menuItemNew, menuItemSave, menuItemSaveAs, menuItemOpen, menuItemImport,
+            menuItemExport, menuItemExit, menuItemAbout, menuItemGenerateXML, menuItemSaveXMLFile,
+            menuItemOpenXMLFile, validateXMLFile, menuItemUndo, menuItemRedo, helpItemTutorial;
 
     /**
      * Initialize objects of DynamicTree and ProjectTree classes.
@@ -153,22 +151,19 @@ public class SESEditor extends JPanel {
     }
 
     public static void popUpActionAdd() {
-        SESEditor.nodeName =
-                JOptionPane.showInputDialog(framew, "Node Name:", "New Node",
-                        JOptionPane.INFORMATION_MESSAGE);
+        SESEditor.nodeName = JOptionPane
+                .showInputDialog(framew, "Node Name:", "New Node", JOptionPane.INFORMATION_MESSAGE);
         if (SESEditor.nodeName != null) {
             SESEditor.nodeName = SESEditor.nodeName.replaceAll("\\s+", "");
         }
 
-        if ((SESEditor.nodeName != null) &&
-                (!SESEditor.nodeName.trim().isEmpty())) {
+        if ((SESEditor.nodeName != null) && (!SESEditor.nodeName.trim().isEmpty())) {
             TreePath currentSelection = treePanel.tree.getSelectionPath();
             System.out.println(currentSelection);
 
             if (currentSelection != null) {
                 DefaultMutableTreeNode currentNode =
-                        (DefaultMutableTreeNode) (currentSelection
-                                .getLastPathComponent());
+                        (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
 
                 TreeNode[] nodes = currentNode.getPath();
                 String[] nodesToSelectedNode = new String[nodes.length];
@@ -180,26 +175,22 @@ public class SESEditor extends JPanel {
                 if (currentNode.toString().endsWith("Spec")) {
                     treePanel.addObject(nodeName);
 
-                    jtreeTograph.addNodeWithJtreeAddition(nodeName,
-                            nodesToSelectedNode);
+                    jtreeTograph.addNodeWithJtreeAddition(nodeName, nodesToSelectedNode);
 
                 } else if (currentNode.toString().endsWith("Dec")) {
                     treePanel.addObject(nodeName);
 
-                    jtreeTograph.addNodeWithJtreeAddition(nodeName,
-                            nodesToSelectedNode);
+                    jtreeTograph.addNodeWithJtreeAddition(nodeName, nodesToSelectedNode);
 
                 } else if (currentNode.toString().endsWith("MAsp")) {
                     treePanel.addObject(nodeName);
 
-                    jtreeTograph.addNodeWithJtreeAddition(nodeName,
-                            nodesToSelectedNode);
+                    jtreeTograph.addNodeWithJtreeAddition(nodeName, nodesToSelectedNode);
 
                 } else {
                     treePanel.addObject(nodeName);
 
-                    jtreeTograph.addNodeWithJtreeAddition(nodeName,
-                            nodesToSelectedNode);
+                    jtreeTograph.addNodeWithJtreeAddition(nodeName, nodesToSelectedNode);
 
                 }
             }
@@ -208,8 +199,7 @@ public class SESEditor extends JPanel {
 
     }
 
-    public static void addNodeWIthGraphAddition(String childNode,
-                                                String[] nodePath) {
+    public static void addNodeWIthGraphAddition(String childNode, String[] nodePath) {
         treePanel.addObjectWIthGraphAddition(childNode, nodePath);
     }
 
@@ -228,14 +218,12 @@ public class SESEditor extends JPanel {
         JTextField lowerBoundField = new JTextField();
         JTextField upperBoundField = new JTextField();
 
-        Object[] message = {"Variable Name:", variableField, "Variable Type:",
-                variableTypeField, "Value:", valueField,
-                "Lower Bound:", lowerBoundField, "Upper Bound:",
-                upperBoundField};
+        Object[] message =
+                {"Variable Name:", variableField, "Variable Type:", variableTypeField, "Value:", valueField,
+                        "Lower Bound:", lowerBoundField, "Upper Bound:", upperBoundField};
 
         int option = JOptionPane
-                .showConfirmDialog(SESEditor.framew, message, "Please Enter",
-                        JOptionPane.OK_CANCEL_OPTION,
+                .showConfirmDialog(SESEditor.framew, message, "Please Enter", JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.PLAIN_MESSAGE);
         if (option == JOptionPane.OK_OPTION) {
             variableName = variableField.getText();
@@ -247,26 +235,21 @@ public class SESEditor extends JPanel {
             // added inside IF block so that if variable window closed without adding then
             // nothing will happen.
             variableName =
-                    variableName + "," + variableType + "," + variableValue +
-                            "," + variableLowerBound + ","
-                            + variableUpperBound;
+                    variableName + "," + variableType + "," + variableValue + "," + variableLowerBound + ","
+                    + variableUpperBound;
 
             TreePath currentSelection = treePanel.tree.getSelectionPath();
 
-            boolean validInput = (variableField.getText() != null) &&
-                    (!variableField.getText().trim().isEmpty())
-                    && (variableTypeField.getText() != null) &&
-                    (!variableTypeField.getText().trim().isEmpty())
-                    && (valueField.getText() != null) &&
-                    (!valueField.getText().trim().isEmpty())
-                    && (lowerBoundField.getText() != null) &&
-                    (!lowerBoundField.getText().trim().isEmpty())
-                    && (upperBoundField.getText() != null) &&
-                    (!upperBoundField.getText().trim().isEmpty());
+            boolean validInput =
+                    (variableField.getText() != null) && (!variableField.getText().trim().isEmpty()) && (
+                            variableTypeField.getText() != null) && (!variableTypeField.getText().trim()
+                            .isEmpty()) && (valueField.getText() != null) && (!valueField.getText().trim()
+                            .isEmpty()) && (lowerBoundField.getText() != null) && (!lowerBoundField.getText()
+                            .trim().isEmpty()) && (upperBoundField.getText() != null) && (!upperBoundField
+                            .getText().trim().isEmpty());
 
             if (!validInput) {
-                JOptionPane.showMessageDialog(SESEditor.framew,
-                        "Please input all values correctly.");
+                JOptionPane.showMessageDialog(SESEditor.framew, "Please input all values correctly.");
             }
 
             // end of multiple input for variable----------------------------
@@ -290,13 +273,11 @@ public class SESEditor extends JPanel {
 
     public static void popUpActionDeleteVariable() {
         String variableName = JOptionPane
-                .showInputDialog(framew, "Variable Name:", "New Variable",
-                        JOptionPane.INFORMATION_MESSAGE);
+                .showInputDialog(framew, "Variable Name:", "New Variable", JOptionPane.INFORMATION_MESSAGE);
         TreePath currentSelection = treePanel.tree.getSelectionPath();
 
         DefaultMutableTreeNode currentNode =
-                (DefaultMutableTreeNode) (currentSelection
-                        .getLastPathComponent());
+                (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
         TreeNode[] nodes = currentNode.getPath();
 
         // for handling cancel button and whitespace only words
@@ -306,8 +287,7 @@ public class SESEditor extends JPanel {
             TreePath keyDel = null;
             for (TreePath key : DynamicTree.varMap.keySet()) {
                 int a = 0;
-                DefaultMutableTreeNode currentNode2 =
-                        (DefaultMutableTreeNode) (key.getLastPathComponent());
+                DefaultMutableTreeNode currentNode2 = (DefaultMutableTreeNode) (key.getLastPathComponent());
                 // System.out.println(currentNode2.toString());
                 TreeNode[] nodes2 = currentNode2.getPath();
 
@@ -327,8 +307,7 @@ public class SESEditor extends JPanel {
                     for (String value : DynamicTree.varMap.get(key)) {
                         if (value.equals(variableName)) {
                             yv = 1;
-                            keyDel =
-                                    key; // to avoid java.util.ConcurrentModificationException
+                            keyDel = key; // to avoid java.util.ConcurrentModificationException
                         }
                     }
                 }
@@ -336,8 +315,7 @@ public class SESEditor extends JPanel {
             }
             if (yv == 1) {
                 // DynamicTree.varMap.asMap().remove(keyDel);
-                DynamicTree.varMap.remove(keyDel,
-                        variableName);// for removing only one values
+                DynamicTree.varMap.remove(keyDel, variableName); // for removing only one values
                 // http://tomjefferys.blogspot.de/2011/09/multimaps-google-guava.html
                 // http://www.techiedelight.com/google-guava-multimap-class-java/
                 //yv = 0;
@@ -353,8 +331,7 @@ public class SESEditor extends JPanel {
         TreePath currentSelection = treePanel.tree.getSelectionPath();
 
         DefaultMutableTreeNode currentNode =
-                (DefaultMutableTreeNode) (currentSelection
-                        .getLastPathComponent());
+                (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
         TreeNode[] nodes = currentNode.getPath();
 
         List<TreePath> delKeys = new ArrayList<TreePath>();
@@ -362,8 +339,7 @@ public class SESEditor extends JPanel {
 
         for (TreePath key : DynamicTree.varMap.keySet()) {
             int a = 0;
-            DefaultMutableTreeNode currentNode2 =
-                    (DefaultMutableTreeNode) (key.getLastPathComponent());
+            DefaultMutableTreeNode currentNode2 = (DefaultMutableTreeNode) (key.getLastPathComponent());
             // System.out.println(currentNode2.toString());
             TreeNode[] nodes2 = currentNode2.getPath();
 
@@ -448,8 +424,8 @@ public class SESEditor extends JPanel {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 fileChooser.setAcceptAllFileFilterUsed(false);
-                fileChooser.setCurrentDirectory(new File(
-                        repFslas));// this is ok because normally all the file will be
+                fileChooser.setCurrentDirectory(
+                        new File(repFslas)); // this is ok because normally all the file will be
                 // in
                 // default location. so don't need to add
                 // fileLocation
@@ -459,18 +435,15 @@ public class SESEditor extends JPanel {
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
                     fileName = selectedFile.getName();
-                    System.out.println(
-                            "Selected file: " + selectedFile.getName());
+                    System.out.println("Selected file: " + selectedFile.getName());
 
                     String oldProjectTreeProjectName = projName;
 
                     projName = fileName;
 
-                    fileLocation =
-                            selectedFile.getParentFile().getAbsolutePath();
+                    fileLocation = selectedFile.getParentFile().getAbsolutePath();
 
-                    jtreeTograph.openExistingProject(fileName,
-                            oldProjectTreeProjectName);
+                    jtreeTograph.openExistingProject(fileName, oldProjectTreeProjectName);
 
                     jtreeTograph.undoManager = new mxUndoManager();
 
@@ -497,12 +470,11 @@ public class SESEditor extends JPanel {
                 treePanel.saveTreeModel();
                 jtreeTograph.saveGraph();
 
-                convertTreeToXML();// this function is using for converting project tree into xml file
+                convertTreeToXML(); // this function is using for converting project tree into xml file
                 jtreeTograph.graphToXML();
                 jtreeTograph.graphToXMLWithUniformity();
-                JOptionPane
-                        .showMessageDialog(frame, "Saved Successfully.", "Save",
-                                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Saved Successfully.", "Save",
+                        JOptionPane.INFORMATION_MESSAGE);
 
             }
 
@@ -521,14 +493,12 @@ public class SESEditor extends JPanel {
                 // fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 // fileChooser.setAcceptAllFileFilterUsed(false);
 
-                fileChooser
-                        .setCurrentDirectory(new File(SESEditor.fileLocation));
+                fileChooser.setCurrentDirectory(new File(SESEditor.fileLocation));
                 int result = fileChooser.showSaveDialog(SESEditor.framew);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
 
-                    fileLocation =
-                            selectedFile.getParentFile().getAbsolutePath();
+                    fileLocation = selectedFile.getParentFile().getAbsolutePath();
 
                     String newProjectName = selectedFile.getName();
                     String oldProjectTreeProjectName = SESEditor.projName;
@@ -538,25 +508,19 @@ public class SESEditor extends JPanel {
                     JtreeToGraph.newFileName = newProjectName;
                     JtreeToGraph.projectFileNameGraph = newProjectName;
 
-                    jtreeTograph.ssdFileGraph = new File(
-                            fileLocation + "/" + projName + "/" +
-                                    newProjectName + "Graph.xml");
-                    treePanel.ssdFile = new File(
-                            fileLocation + "/" + projName + "/" +
-                                    newProjectName + ".xml");
-                    treePanel.ssdFileVar = new File(
-                            fileLocation + "/" + projName + "/" +
-                                    newProjectName + ".ssdvar");
-                    treePanel.ssdFileCon = new File(
-                            fileLocation + "/" + projName + "/" +
-                                    newProjectName + ".ssdcon");
-                    treePanel.ssdFileFlag = new File(
-                            fileLocation + "/" + projName + "/" +
-                                    newProjectName + ".ssdflag");
+                    jtreeTograph.ssdFileGraph =
+                            new File(fileLocation + "/" + projName + "/" + newProjectName + "Graph.xml");
+                    treePanel.ssdFile =
+                            new File(fileLocation + "/" + projName + "/" + newProjectName + ".xml");
+                    treePanel.ssdFileVar =
+                            new File(fileLocation + "/" + projName + "/" + newProjectName + ".ssdvar");
+                    treePanel.ssdFileCon =
+                            new File(fileLocation + "/" + projName + "/" + newProjectName + ".ssdcon");
+                    treePanel.ssdFileFlag =
+                            new File(fileLocation + "/" + projName + "/" + newProjectName + ".ssdflag");
 
                     ProjectTree.projectName = newProjectName;
-                    projectPanel.changeCurrentProjectFileName(newProjectName,
-                            oldProjectTreeProjectName);
+                    projectPanel.changeCurrentProjectFileName(newProjectName, oldProjectTreeProjectName);
 
                     SESEditor.newProjectFolderCreation();
 
@@ -566,11 +530,10 @@ public class SESEditor extends JPanel {
 
                     // also it will convert after saving from here
                     // this code is also present in convert to xml button click action.
-                    convertTreeToXML();// this function is using for converting project tree into xml file
+                    convertTreeToXML(); // this function is using for converting project tree into xml file
                     jtreeTograph.graphToXML();
                     jtreeTograph.graphToXMLWithUniformity();
-                    JOptionPane.showMessageDialog(frame, "Saved Successfully.",
-                            "Save",
+                    JOptionPane.showMessageDialog(frame, "Saved Successfully.", "Save",
                             JOptionPane.INFORMATION_MESSAGE);
 
                 }
@@ -600,31 +563,23 @@ public class SESEditor extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // System.out.println("ProjName"+DynamicTreeDemo.projName);
-                String fileName =
-                        projName;// don't know why not fetching the file name here
+                String fileName = projName; // don't know why not fetching the file name here
 
                 JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter xmlfilter =
-                        new FileNameExtensionFilter("xml files (*.xml)", "xml");
+                FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
                 fileChooser.setFileFilter(xmlfilter);
-                fileChooser.setSelectedFile(new File(
-                        fileName));// not working because filename is null
-                fileChooser.setCurrentDirectory(new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName));
+                fileChooser.setSelectedFile(new File(fileName)); // not working because filename is null
+                fileChooser.setCurrentDirectory(new File(SESEditor.fileLocation + "/" + SESEditor.projName));
                 int result = fileChooser.showSaveDialog(SESEditor.framew);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
 
-                    System.out.println("Exported file path: " +
-                            selectedFile.getAbsolutePath());
+                    System.out.println("Exported file path: " + selectedFile.getAbsolutePath());
 
                     PrintWriter f0 = null;
                     try {
-                        f0 = new PrintWriter(
-                                new FileWriter(
-                                        selectedFile.getAbsolutePath() + "/" +
-                                                selectedFile.getName() +
-                                                ".xml"));
+                        f0 = new PrintWriter(new FileWriter(
+                                selectedFile.getAbsolutePath() + "/" + selectedFile.getName() + ".xml"));
                         // System.out.println("output file generated");
                     } catch (IOException e1) {
                         // TODO Auto-generated catch block
@@ -633,9 +588,8 @@ public class SESEditor extends JPanel {
 
                     Scanner in = null;
                     try {
-                        in = new Scanner(
-                                new File(SESEditor.fileLocation + "/" +
-                                        SESEditor.projName + "/xmlforxsd.xml"));
+                        in = new Scanner(new File(
+                                SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsd.xml"));
                         // System.out.println("my read complete");
                     } catch (FileNotFoundException e2) {
                         // TODO Auto-generated catch block
@@ -689,9 +643,8 @@ public class SESEditor extends JPanel {
                 // }
 
                 if (Desktop.isDesktopSupported()) {
-                    InputStream jarPdf = getClass().getClassLoader()
-                            .getResourceAsStream(
-                                    "dlr/resources/docs/manual.pdf");
+                    InputStream jarPdf =
+                            getClass().getClassLoader().getResourceAsStream("dlr/resources/docs/manual.pdf");
 
                     try {
                         File pdfTemp = new File("manual.pdf");
@@ -736,8 +689,7 @@ public class SESEditor extends JPanel {
     public static void importProjectStart() {
         Scanner in = null;
         try {
-            in = new Scanner(new File(importFileLocation + "/" +
-                    importFileName)); // outputgraphxmlforxsd
+            in = new Scanner(new File(importFileLocation + "/" + importFileName)); // outputgraphxmlforxsd
             // DynamicTreeDemo.fileLocation + "/" + DynamicTreeDemo.projName)); //
             // outputgraphxmlforxsd
 
@@ -749,12 +701,10 @@ public class SESEditor extends JPanel {
         PrintWriter f0 = null;
         try {
             f0 = new PrintWriter(new FileWriter(
-                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                            SESEditor.projName + ".xml"));
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" + SESEditor.projName + ".xml"));
             // new FileWriter(selectedFile.getParentFile().getAbsolutePath() +
             // "/TestMain.xml"));
-            f0.println(
-                    "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+            f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
 
         } catch (IOException e1) {
 
@@ -842,8 +792,7 @@ public class SESEditor extends JPanel {
         // Create a java.io.File object, specify the name of the folder
         File f = new File(fileLocation + "/" + projName);
         // Create directory with specified name, true is returned if created.
-        boolean flag =
-                f.mkdirs();// for hierarchy of folder structure use mkdirs, for single folder mkdir()
+        boolean flag = f.mkdirs(); // for hierarchy of folder structure use mkdirs, for single folder mkdir()
         // Print whether true/false
         System.out.println("Project folder created?-" + flag);
         // -------------------------------------------------------------
@@ -853,15 +802,13 @@ public class SESEditor extends JPanel {
     // will use this for.
     // For Retrieving project tree this below function is using
     public static void convertTreeToXML() {
-        TreeNode thisTreeNode =
-                (TreeNode) projectPanel.projectTree.getModel().getRoot();
+        TreeNode thisTreeNode = (TreeNode) projectPanel.projectTree.getModel().getRoot();
         // System.out.println(thisTreeNode);
 
         Document calendarDOMDoc = null;
         try {
             DOMImplementation domImpl =
-                    DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                            .getDOMImplementation();
+                    DocumentBuilderFactory.newInstance().newDocumentBuilder().getDOMImplementation();
 
             calendarDOMDoc = domImpl.createDocument(null, "start", null);
 
@@ -871,33 +818,26 @@ public class SESEditor extends JPanel {
             e2.printStackTrace(System.err);
         }
 
-        calendarDOMDoc.getDocumentElement()
-                .appendChild(saveAllTreeNodes(calendarDOMDoc, thisTreeNode));
+        calendarDOMDoc.getDocumentElement().appendChild(saveAllTreeNodes(calendarDOMDoc, thisTreeNode));
         try {
-            saveToXMLFile(calendarDOMDoc,
-                    fileLocation + "/" + projName + "/projectTree.xml");
+            saveToXMLFile(calendarDOMDoc, fileLocation + "/" + projName + "/projectTree.xml");
 
         } catch (TransformerException ex) {
-            Logger.getLogger(SESEditor.class.getName())
-                    .log(Level.SEVERE, null, ex);
+            Logger.getLogger(SESEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         modifyXmlOutput();
     }
 
-    public static Element saveAllTreeNodes(Document thisDoc,
-                                           TreeNode thisTreeNode) {
+    public static Element saveAllTreeNodes(Document thisDoc, TreeNode thisTreeNode) {
         Element thisElement = null;
 
-        String nodeName =
-                ((DefaultMutableTreeNode) thisTreeNode).getUserObject()
-                        .toString();
+        String nodeName = ((DefaultMutableTreeNode) thisTreeNode).getUserObject().toString();
 
         thisElement = thisDoc.createElement(nodeName);
 
         if (thisTreeNode.getChildCount() >= 0) {
-            for (Enumeration e = thisTreeNode.children();
-                 e.hasMoreElements(); ) {
+            for (Enumeration e = thisTreeNode.children(); e.hasMoreElements(); ) {
                 TreeNode n = (TreeNode) e.nextElement();
                 // System.out.println(n.toString());
                 // visitAllNodes(thisElement, n);
@@ -916,26 +856,21 @@ public class SESEditor extends JPanel {
     }
 
     // method for saving Xml DOM documents: Convert to XML
-    public static boolean saveToXMLFile(Document doc, String filePath)
-            throws TransformerException {
+    public static boolean saveToXMLFile(Document doc, String filePath) throws TransformerException {
         if (doc != null) {
             try {
                 javax.xml.transform.TransformerFactory tFactory =
                         javax.xml.transform.TransformerFactory.newInstance();
                 // javax.xml.transform.stream.StreamSource();
-                javax.xml.transform.Transformer transformer =
-                        tFactory.newTransformer();
-                javax.xml.transform.dom.DOMSource source =
-                        new javax.xml.transform.dom.DOMSource(doc);
+                javax.xml.transform.Transformer transformer = tFactory.newTransformer();
+                javax.xml.transform.dom.DOMSource source = new javax.xml.transform.dom.DOMSource(doc);
                 javax.xml.transform.stream.StreamResult result =
-                        new javax.xml.transform.stream.StreamResult(
-                                new File(filePath));
+                        new javax.xml.transform.stream.StreamResult(new File(filePath));
                 // transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
                 // transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-                transformer.setOutputProperty(
-                        "{http://xml.apache.org/xslt}indent-amount",
-                        "0");// important for xml
+                transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount",
+                        "0"); // important for xml
                 // style maintaining
 
                 transformer.transform(source, result);
@@ -958,9 +893,8 @@ public class SESEditor extends JPanel {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(fileLocation + "/" + projName + "/" +
-                            JtreeToGraph.newFileName + "Project.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    fileLocation + "/" + projName + "/" + JtreeToGraph.newFileName + "Project.xml"));
             // PrintWriter f00 = new PrintWriter(new
             // FileWriter("eclipse/runtimefiles/output.xml"));
             // System.out.println("output file generated");
@@ -971,8 +905,7 @@ public class SESEditor extends JPanel {
 
         Scanner in = null;
         try {
-            in = new Scanner(new File(
-                    fileLocation + "/" + projName + "/projectTree.xml"));
+            in = new Scanner(new File(fileLocation + "/" + projName + "/projectTree.xml"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -1026,8 +959,8 @@ public class SESEditor extends JPanel {
 
         JToolBar toolbar = new JToolBar();
 
-        ImageIcon deselectIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/cursor.png"));
+        ImageIcon deselectIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/cursor.png"));
         JButton deselect = new JButton(deselectIcon);
         deselect.setName("Selector");
         deselect.setToolTipText("Free Mouse Pointer from Any Selected Element");
@@ -1043,8 +976,7 @@ public class SESEditor extends JPanel {
             }
         });
 
-        ImageIcon entityIcon = new ImageIcon(
-                SESEditor.class.getClassLoader().getResource("images/en.png"));
+        ImageIcon entityIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/en.png"));
         JButton entity = new JButton(entityIcon);
         entity.setToolTipText("Add Entity");
         entity.setName("Add Entity");
@@ -1060,8 +992,7 @@ public class SESEditor extends JPanel {
 
         });
 
-        ImageIcon aspectIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/as16.png"));
+        ImageIcon aspectIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/as16.png"));
         JButton aspect = new JButton(aspectIcon);
         aspect.setToolTipText("Add Aspect");
         aspect.setName("Add Aspect");
@@ -1076,8 +1007,8 @@ public class SESEditor extends JPanel {
             }
         });
 
-        ImageIcon specializationIcon = new ImageIcon(
-                SESEditor.class.getClassLoader().getResource("images/sp.png"));
+        ImageIcon specializationIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/sp.png"));
         JButton specialization = new JButton(specializationIcon);
         specialization.setToolTipText("Add Specialization");
         specialization.setName("Add Specialization");
@@ -1092,8 +1023,8 @@ public class SESEditor extends JPanel {
             }
         });
 
-        ImageIcon multiaspectIcon = new ImageIcon(
-                SESEditor.class.getClassLoader().getResource("images/ma.png"));
+        ImageIcon multiaspectIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/ma.png"));
         JButton multiaspect = new JButton(multiaspectIcon);
         multiaspect.setToolTipText("Add Multi-Aspect");
         multiaspect.setName("Add Multi-Aspect");
@@ -1108,8 +1039,8 @@ public class SESEditor extends JPanel {
             }
         });
 
-        ImageIcon deleteIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/delete.png"));
+        ImageIcon deleteIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/delete.png"));
         JButton delete = new JButton(deleteIcon);
         delete.setToolTipText("Delete Node From Graph");
         delete.setName("Delete Node From Graph");
@@ -1124,8 +1055,8 @@ public class SESEditor extends JPanel {
             }
         });
 
-        ImageIcon savegraphicon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/save.png"));
+        ImageIcon savegraphicon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/save.png"));
         JButton savegraph = new JButton(savegraphicon);
         savegraph.setToolTipText("Save Graph");
         savegraph.setName("Save Graph");
@@ -1140,21 +1071,18 @@ public class SESEditor extends JPanel {
                 convertTreeToXML();
                 jtreeTograph.graphToXML();
                 jtreeTograph.graphToXMLWithUniformity();
-                JOptionPane
-                        .showMessageDialog(frame, "Saved Successfully.", "Save",
-                                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "Saved Successfully.", "Save",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
-        ImageIcon undoIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/undo.png"));
+        ImageIcon undoIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/undo.png"));
         JButton undo = new JButton(undoIcon);
         undo.setToolTipText("Undo");
         undo.setName("Undo");
         toolbar.add(undo);
 
-        ImageIcon redoIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/redo.png"));
+        ImageIcon redoIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/redo.png"));
         JButton redo = new JButton(redoIcon);
         redo.setToolTipText("Redo");
         redo.setName("Redo");
@@ -1202,8 +1130,8 @@ public class SESEditor extends JPanel {
             }
         });
 
-        ImageIcon zoominIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/zoom-in.png"));
+        ImageIcon zoominIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/zoom-in.png"));
         JButton zoomin = new JButton(zoominIcon);
         zoomin.setToolTipText("Zoom In");
         zoomin.setName("Zoom In");
@@ -1220,8 +1148,8 @@ public class SESEditor extends JPanel {
             }
         });
 
-        ImageIcon zoomoutIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/zoom-out.png"));
+        ImageIcon zoomoutIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/zoom-out.png"));
         JButton zoomout = new JButton(zoomoutIcon);
         zoomout.setToolTipText("Zoom Out");
         zoomout.setName("Zoom Out");
@@ -1238,9 +1166,8 @@ public class SESEditor extends JPanel {
             }
         });
 
-        ImageIcon validateSESIcon = new ImageIcon(
-                SESEditor.class.getClassLoader()
-                        .getResource("images/validation.png"));
+        ImageIcon validateSESIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/validation.png"));
         JButton validateSES = new JButton(validateSESIcon);
         validateSES.setToolTipText("Validation");
         validateSES.setName("Validation");
@@ -1258,8 +1185,7 @@ public class SESEditor extends JPanel {
                 fileConversion.createSES();
 
                 // have to fix this--------------------------------------
-                fileConversion
-                        .modifyXmlOutputForXSD(); // changed the input file to graphxmluniformity
+                fileConversion.modifyXmlOutputForXSD(); // changed the input file to graphxmluniformity
                 jtreeTograph.rootToEndNodeSequenceSolve();
                 jtreeTograph.rootToEndNodeVariable();
                 // have to fix this end not needed all-----------------------------------
@@ -1274,8 +1200,7 @@ public class SESEditor extends JPanel {
                 SESEditor.sesValidationControl = 1;
                 TypeInfoWriter.validateXML();
                 if (SESEditor.errorPresentInSES == 1) {
-                    sesview.textArea.setText(
-                            "Error presents in the SES. Check console output for details.");
+                    sesview.textArea.setText("Error presents in the SES. Check console output for details.");
                     SESEditor.errorPresentInSES = 0;
                     Console.consoleText.setText(">>");
                     Console.addConsoleOutput(errorMessageInSES);
@@ -1291,15 +1216,13 @@ public class SESEditor extends JPanel {
             public void stateChanged(ChangeEvent arg0) {
                 if (tabbedPane.getSelectedIndex() == 0) {
                     fileConversion.createSES();
-                    XmlUtils.showSESOntologytoOntologViewer(fileLocation,
-                            projName);
+                    XmlUtils.showSESOntologytoOntologViewer(fileLocation, projName);
                 } else if (tabbedPane.getSelectedIndex() == 1) {
                     sesview.setTitle("SES XML");
                     saveChanges();
                     fileConversion.createSES();
                     // have to fix this--------------------------------------
-                    fileConversion
-                            .modifyXmlOutputForXSD(); // changed the input file to graphxmluniformity
+                    fileConversion.modifyXmlOutputForXSD(); // changed the input file to graphxmluniformity
                     jtreeTograph.rootToEndNodeSequenceSolve();
                     jtreeTograph.rootToEndNodeVariable();
                     // have to fix this end not needed all-----------------------------------
@@ -1314,8 +1237,8 @@ public class SESEditor extends JPanel {
                     SESEditor.sesValidationControl = 1;
                     TypeInfoWriter.validateXML();
                     if (SESEditor.errorPresentInSES == 1) {
-                        sesview.textArea.setText(
-                                "Error presents in the SES. Check console output for details.");
+                        sesview.textArea
+                                .setText("Error presents in the SES. Check console output for details.");
                         SESEditor.errorPresentInSES = 0;
                     } else {
                         XmlUtils.showXMLtoXMLViewer(fileLocation, projName);
@@ -1332,8 +1255,7 @@ public class SESEditor extends JPanel {
                     // }
 
                 } else if (tabbedPane.getSelectedIndex() == 2) {
-                    XmlUtils.schemaview.setTitle(
-                            "SES Schema");// SES Ontology / Schema Viewer
+                    XmlUtils.schemaview.setTitle("SES Schema"); // SES Ontology / Schema Viewer
                     saveChanges();
                     fileConversion.modifyXmlOutputForXSD();
                     jtreeTograph.rootToEndNodeSequenceSolve();
@@ -1359,8 +1281,8 @@ public class SESEditor extends JPanel {
      */
     public static void addToolBarFooter(JFrame frame) {
         JToolBar toolbarFooter = new JToolBar();
-        ImageIcon pinIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/black-pin.png"));
+        ImageIcon pinIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/black-pin.png"));
         JButton pin = new JButton(pinIcon);
         toolbarFooter.add(Box.createHorizontalGlue());
         toolbarFooter.add(pin);
@@ -1447,13 +1369,9 @@ public class SESEditor extends JPanel {
 
         // --------------------------------------------------------------------------------------------
 
-        JSplitPane graphVariable = PanelSplitor.addSplitor(projectPanel,
-                treePanel,
-                graphWindow,
-                console,
-                scenarioVariable,
-                scenarioConstraint,
-                tabbedPane);
+        JSplitPane graphVariable = PanelSplitor
+                .addSplitor(projectPanel, treePanel, graphWindow, console, scenarioVariable,
+                        scenarioConstraint, tabbedPane);
 
         frame.add(graphVariable, BorderLayout.CENTER);
 
@@ -1467,8 +1385,8 @@ public class SESEditor extends JPanel {
         frame.setLocationRelativeTo(null);
         // This works in a multi-monitor setup and setLocationRelativeTo
         // must be called after pack() and setSize() if they are called at all.
-        ImageIcon windowIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/dlrapplication.gif"));
+        ImageIcon windowIcon =
+                new ImageIcon(SESEditor.class.getClassLoader().getResource("images/dlrapplication.gif"));
         frame.setIconImage(windowIcon.getImage());
         frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         frame.setVisible(true);
@@ -1477,10 +1395,9 @@ public class SESEditor extends JPanel {
         Variable.setNullRowsToVariableTable();
 
         // Create a java.io.File object, specify the name of the folder
-        File f = new File(
-                "Main"); // Create directory with specified name, true is returned if created.
+        File f = new File("Main"); // Create directory with specified name, true is returned if created.
         boolean flag =
-                f.mkdirs();// for hierarchy of folder structure use mkdirs, for single folder mkdir() //
+                f.mkdirs(); // for hierarchy of folder structure use mkdirs, for single folder mkdir() //
         // Print whether true/false
         System.out.println("Project folder created?-" + flag);
         // -------------------------------------------------------------

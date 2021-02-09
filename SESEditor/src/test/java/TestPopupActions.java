@@ -45,8 +45,7 @@ public class TestPopupActions {
                         Gooey.getLabel(dialog, "Do you want to exit?");
                         JButton yes = Gooey.getButton(dialog, "Yes");
                         yes.doClick();
-                        assertFalse(dialog.isShowing(),
-                                "JDialog should be hidden");
+                        assertFalse(dialog.isShowing(), "JDialog should be hidden");
                     }
                 });
 
@@ -80,10 +79,8 @@ public class TestPopupActions {
                         Gooey.getLabel(dialog, "Do you want to exit?");
                         JButton no = Gooey.getButton(dialog, "No");
                         no.doClick();
-                        assertFalse(dialog.isShowing(),
-                                "JDialog should be hidden");
-                        assertTrue(frame.isShowing(),
-                                "Jframe should be showing");
+                        assertFalse(dialog.isShowing(), "JDialog should be hidden");
+                        assertTrue(frame.isShowing(), "Jframe should be showing");
                     }
                 });
 
@@ -108,8 +105,7 @@ public class TestPopupActions {
                 String line = "hot, dog, for, lunch";
 
                 try {
-                    BufferedWriter wrote = new BufferedWriter(
-                            new FileWriter(file.getAbsolutePath()));
+                    BufferedWriter wrote = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
 
                     wrote.write(line);
                     wrote.close();
@@ -125,8 +121,7 @@ public class TestPopupActions {
 
                     @Override
                     public void test(JDialog d) {
-                        JFileChooser choose = Gooey.getComponent(d,
-                                JFileChooser.class);
+                        JFileChooser choose = Gooey.getComponent(d, JFileChooser.class);
                         choose.setSelectedFile(file);
                         choose.approveSelection();
                     }

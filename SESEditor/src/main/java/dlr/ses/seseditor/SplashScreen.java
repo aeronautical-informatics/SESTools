@@ -28,7 +28,7 @@ public class SplashScreen extends JWindow {
 
     public static Path path = Paths.get("").toAbsolutePath();
     public static String repFslas = path.toString().replace("\\", "/");
-    private int duration;
+    private final int duration;
 
     public SplashScreen(int d) {
         duration = d;
@@ -61,11 +61,9 @@ public class SplashScreen extends JWindow {
         setBounds(x, y, width, height);
 
         // Build the splash screen
-        JLabel label = new JLabel(new ImageIcon(
-                repFslas + "/src/dlr/resources/images/seseditor.png"));
-        JLabel copyrt = new JLabel(
-                "Copyright 2019 by German Aerospace Center. All rights reserved.",
-                JLabel.CENTER);
+        JLabel label = new JLabel(new ImageIcon(repFslas + "/src/dlr/resources/images/seseditor.png"));
+        JLabel copyrt =
+                new JLabel("Copyright 2019 by German Aerospace Center. All rights reserved.", JLabel.CENTER);
         copyrt.setFont(new Font("Sans-Serif", Font.BOLD, 12));
         content.add(label, BorderLayout.CENTER);
         content.add(copyrt, BorderLayout.SOUTH);

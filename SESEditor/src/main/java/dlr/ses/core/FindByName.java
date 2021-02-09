@@ -27,8 +27,7 @@ public class FindByName {
         return find(tree, new TreePath(root), names, 0);
     }
 
-    private static TreePath find(JTree tree, TreePath parent, Object[] nodes,
-                                 int depth) {
+    private static TreePath find(JTree tree, TreePath parent, Object[] nodes, int depth) {
         TreeNode node = (TreeNode) parent.getLastPathComponent();
         String o = node.toString();
 

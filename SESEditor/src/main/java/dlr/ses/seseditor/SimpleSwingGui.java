@@ -68,17 +68,12 @@ public class SimpleSwingGui extends JFrame {
         sayHelloBtn.setName("sayHelloBtn");
         sayHelloBtn.addActionListener(event -> {
             String message =
-                    String.format("Hallo %s %s", vornameTextField.getText(),
-                            nameTextField.getText());
-            int result = JOptionPane
-                    .showConfirmDialog(SimpleSwingGui.this, message,
-                            "Hinweis...",
-                            JOptionPane.OK_CANCEL_OPTION);
+                    String.format("Hallo %s %s", vornameTextField.getText(), nameTextField.getText());
+            int result = JOptionPane.showConfirmDialog(SimpleSwingGui.this, message, "Hinweis...",
+                    JOptionPane.OK_CANCEL_OPTION);
             String resultMsg = String.format("Button %s wurde geklickt",
-                    result == JOptionPane.OK_OPTION ? "OK"
-                            :
-                            result == JOptionPane.CANCEL_OPTION ? "ABBRECHEN" :
-                                    "-undefined-");
+                    result == JOptionPane.OK_OPTION ? "OK" :
+                            result == JOptionPane.CANCEL_OPTION ? "ABBRECHEN" : "-undefined-");
             System.out.println(resultMsg);
         });
         this.add(sayHelloBtn);

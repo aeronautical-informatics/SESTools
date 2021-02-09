@@ -113,8 +113,7 @@ class GraphCellPopUp extends JPopupMenu {
         mxCell cell = (mxCell) pos;
         String cellName = (String) cell.getValue();
         boolean connected = SESEditor.jtreeTograph.isConnectedToRoot(cell);
-        SESEditor.jtreeTograph.connectedToRoot =
-                false;// have to assign false because isConnectedToRoot() function
+        JtreeToGraph.connectedToRoot = false; // have to assign false because isConnectedToRoot() function
         // assign true during calling
 
         if (cell.isVertex()) {

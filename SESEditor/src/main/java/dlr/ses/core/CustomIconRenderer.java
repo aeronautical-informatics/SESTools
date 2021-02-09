@@ -32,25 +32,18 @@ class CustomIconRenderer extends DefaultTreeCellRenderer {
     Path path = Paths.get("").toAbsolutePath();
     String repFslas = path.toString().replace("\\", "/");
 
-    public CustomIconRenderer() {// throws MalformedURLException
+    public CustomIconRenderer() { // throws MalformedURLException
         System.err.println(SESEditor.class.getClassLoader().getResource("."));
-        entityIcon = new ImageIcon(
-                SESEditor.class.getClassLoader().getResource("images/en.png"));
-        specIcon = new ImageIcon(
-                SESEditor.class.getClassLoader().getResource("images/sp.png"));
-        maspIcon = new ImageIcon(
-                SESEditor.class.getClassLoader().getResource("images/ma.png"));
-        aspIcon = new ImageIcon(SESEditor.class.getClassLoader()
-                .getResource("images/as16.png"));// as
+        entityIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/en.png"));
+        specIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/sp.png"));
+        maspIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/ma.png"));
+        aspIcon = new ImageIcon(SESEditor.class.getClassLoader().getResource("images/as16.png")); // as
     }
 
     @Override
-    public Component getTreeCellRendererComponent(JTree tree, Object value,
-                                                  boolean sel, boolean expanded,
-                                                  boolean leaf,
-                                                  int row, boolean hasFocus) {
-        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf,
-                row, hasFocus);
+    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
+                                                  boolean leaf, int row, boolean hasFocus) {
+        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
         Object nodeObj = ((DefaultMutableTreeNode) value).getUserObject();
         String nodeName = nodeObj.toString();
         // System.out.println("s: " + s);

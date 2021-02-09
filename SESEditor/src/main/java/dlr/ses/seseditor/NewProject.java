@@ -64,20 +64,17 @@ public class NewProject extends JPanel {
         defaultRootNameChecker.setSelected(true);
         JTextField newRootNameField = new JTextField();
         newRootNameField.setBounds(150, 70, 410, 30);
-        newRootNameField
-                .setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        newRootNameField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         newRootNameField.setText("Thing");
         newRootNameField.setEnabled(false);
 
-        JCheckBox defaultProjectLocationChecker =
-                new JCheckBox("Use Default Location:");
+        JCheckBox defaultProjectLocationChecker = new JCheckBox("Use Default Location:");
         defaultProjectLocationChecker.setBounds(20, 110, 140, 30);
         defaultProjectLocationChecker.setSelected(true);
 
         JLabel projectLocationLabel = new JLabel("Location:");
         projectLocationLabel.setBounds(20, 250, 120, 30);
-        projectLocationLabel
-                .setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        projectLocationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         projectLocationLabel.setEnabled(false);
         JTextField projectLocationField = new JTextField();
         projectLocationField.setBounds(20, 150, 430, 30);
@@ -110,8 +107,7 @@ public class NewProject extends JPanel {
                 File fileName = new File(name);
                 if (fileName.exists() && fileName.isDirectory()) {
                     errorLabelField.setVisible(true);
-                    errorLabelField.setText(
-                            "There is a file with the same name. It will be overwritten.");
+                    errorLabelField.setText("There is a file with the same name. It will be overwritten.");
                     System.out.println("Yes");
                 } else {
                     errorLabelField.setVisible(false);
@@ -140,7 +136,6 @@ public class NewProject extends JPanel {
                     selectProjectLocation.setEnabled(true);
                     projectLocationField.setText("");
                 }
-                ;
 
             }
         });
@@ -173,11 +168,9 @@ public class NewProject extends JPanel {
             @Override
             public void keyReleased(KeyEvent e) {
 
-                if (newRootNameField.getText().trim()
-                        .equals(newProjectNameField.getText().trim())) {
+                if (newRootNameField.getText().trim().equals(newProjectNameField.getText().trim())) {
                     errorLabelField.setVisible(true);
-                    errorLabelField.setText(
-                            "Root name shold be different from project name.");
+                    errorLabelField.setText("Root name shold be different from project name.");
                 } else {
                     errorLabelField.setText("");
                     errorLabelField.setVisible(false);
@@ -205,7 +198,6 @@ public class NewProject extends JPanel {
 
                     newRootNameField.setText("");
                 }
-                ;
 
             }
         });
@@ -253,38 +245,31 @@ public class NewProject extends JPanel {
                 JtreeToGraph.nodeNumber = 1;
 
                 SESEditor.jtreeTograph.ssdFileGraph = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + "Graph.xml");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName
+                        + "Graph.xml");
                 SESEditor.treePanel.ssdFile = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + ".xml");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".xml");
                 SESEditor.treePanel.ssdFileVar = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + ".ssdvar");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".ssdvar");
                 SESEditor.treePanel.ssdFileCon = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + ".ssdcon");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".ssdcon");
                 SESEditor.treePanel.ssdFileFlag = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + ".ssdflag");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName
+                        + ".ssdflag");
 
                 ProjectTree.projectName = newProjectName;
 
 
-                SESEditor.jtreeTograph
-                        .deleteAllNodesFromGraphWindow(newRootName);
+                SESEditor.jtreeTograph.deleteAllNodesFromGraphWindow(newRootName);
                 SESEditor.jtreeTograph.addPageLengthNodes();
 
-                DefaultMutableTreeNode rootNodeNew =
-                        new DefaultMutableTreeNode(newRootName);
+                DefaultMutableTreeNode rootNodeNew = new DefaultMutableTreeNode(newRootName);
                 SESEditor.treePanel.treeModel.setRoot(rootNodeNew);
                 SESEditor.treePanel.treeModel.reload();
-                SESEditor.treePanel.tree
-                        .setModel(SESEditor.treePanel.treeModel);
+                SESEditor.treePanel.tree.setModel(SESEditor.treePanel.treeModel);
 
                 SESEditor.projectPanel
-                        .changeCurrentProjectFileName(newProjectName,
-                                oldProjectTreeProjectName);
+                        .changeCurrentProjectFileName(newProjectName, oldProjectTreeProjectName);
 
                 Variable.setNullToAllRows();
                 Constraint.setNullToAllRows();

@@ -24,10 +24,10 @@ import javax.swing.undo.UndoableEdit;
 import javax.swing.undo.UndoableEditSupport;
 
 /**
- * <code>DefaultTreeModel</code> implementation that supports undo and redo 
- * the <code>javax.swing.undo</code> package.  In order to take advantage of 
- * the undo/redo support, all changes to the model should be performed using 
- * the <code>insertNodeInto</code>, <code>removeNodeFromParent</code>, and 
+ * <code>DefaultTreeModel</code> implementation that supports undo and redo
+ * the <code>javax.swing.undo</code> package.  In order to take advantage of
+ * the undo/redo support, all changes to the model should be performed using
+ * the <code>insertNodeInto</code>, <code>removeNodeFromParent</code>, and
  * <code>valueForPathChanged</code> methods.
  *
  * @author Eric Lutley
@@ -35,16 +35,16 @@ import javax.swing.undo.UndoableEditSupport;
  */
 public class UndoableTreeModel extends DefaultTreeModel {
 
-    private UndoableEditSupport editListeners = new UndoableEditSupport();
+    private final UndoableEditSupport editListeners = new UndoableEditSupport();
 
     /**
      * Creates a tree specifying whether any node can have children, or
      * whether only certain nodes can have children.
      *
-     * @param root - a TreeNode object that is the root of the tree
+     * @param root               - a TreeNode object that is the root of the tree
      * @param asksAllowsChildren - a boolean, false if any node can have
-     * 								children, true if each node is asked
-     * 								to see if it can have children
+     *                           children, true if each node is asked
+     *                           to see if it can have children
      */
     public UndoableTreeModel(TreeNode root, boolean asksAllowsChildren) {
         super(root, asksAllowsChildren);
@@ -82,8 +82,7 @@ public class UndoableTreeModel extends DefaultTreeModel {
      * @see javax.swing.tree.DefaultTreeModel#insertNodeInto(javax.swing.tree.MutableTreeNode, javax.swing.tree.MutableTreeNode, int)
      */
     @Override
-    public void insertNodeInto(MutableTreeNode newChild,
-                               MutableTreeNode parent, int index) {
+    public void insertNodeInto(MutableTreeNode newChild, MutableTreeNode parent, int index) {
         // Perform the insertion
         super.insertNodeInto(newChild, parent, index);
 
@@ -136,8 +135,7 @@ public class UndoableTreeModel extends DefaultTreeModel {
         private final MutableTreeNode parent;
         private final int index;
 
-        public NodeAddEdit(MutableTreeNode parent, MutableTreeNode child,
-                           int index) {
+        public NodeAddEdit(MutableTreeNode parent, MutableTreeNode child, int index) {
             this.child = child;
             this.parent = parent;
             this.index = index;
@@ -218,8 +216,7 @@ public class UndoableTreeModel extends DefaultTreeModel {
             super.redo();
 
             // Set the node's user object to the its new value
-            MutableTreeNode node =
-                    (MutableTreeNode) path.getLastPathComponent();
+            MutableTreeNode node = (MutableTreeNode) path.getLastPathComponent();
             node.setUserObject(newValue);
 
             // Notify any listeners that the tree has changed
@@ -235,8 +232,7 @@ public class UndoableTreeModel extends DefaultTreeModel {
             super.undo();
 
             // Set the node's user object to its old value
-            MutableTreeNode node =
-                    (MutableTreeNode) path.getLastPathComponent();
+            MutableTreeNode node = (MutableTreeNode) path.getLastPathComponent();
             node.setUserObject(oldValue);
 
             // Notify any listeners that the tree has changed
@@ -254,8 +250,7 @@ public class UndoableTreeModel extends DefaultTreeModel {
         private final MutableTreeNode child;
         private final int index;
 
-        public NodeRemoveEdit(MutableTreeNode parent, MutableTreeNode child,
-                              int index) {
+        public NodeRemoveEdit(MutableTreeNode parent, MutableTreeNode child, int index) {
             this.parent = parent;
             this.child = child;
             this.index = index;

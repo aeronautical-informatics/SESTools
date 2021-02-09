@@ -5,6 +5,7 @@
  */
 package dlr.ses.core;
 
+import dlr.ses.peseditor.JtreeToGraph;
 import dlr.ses.peseditor.PESEditor;
 
 import javax.swing.JOptionPane;
@@ -19,7 +20,6 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * @author BIKASH
@@ -34,7 +34,7 @@ public class Constraint extends JPanel {
 
     public Constraint() {
         // super(new BorderLayout());
-        setLayout(new GridLayout(1, 0));// rows,cols
+        setLayout(new GridLayout(1, 0)); // rows,cols
 
         String[] columnNames = {"Constraints"};
         model = new DefaultTableModel(columnNames, 0);
@@ -48,7 +48,7 @@ public class Constraint extends JPanel {
         // row listener
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        table.addMouseListener((MouseListener) new MouseAdapter() {
+        table.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
@@ -56,8 +56,7 @@ public class Constraint extends JPanel {
                     Point point = e.getPoint();
                     int row = table.rowAtPoint(point);
 
-                    String constraints =
-                            (String) target.getModel().getValueAt(row, 0);
+                    String constraints = (String) target.getModel().getValueAt(row, 0);
 
                     updateTableData(constraints);
                     // updateTableData("constraints");
@@ -92,7 +91,7 @@ public class Constraint extends JPanel {
     // // try {
     //
     // DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-    // dtm.setRowCount(0);// for deleting previous table content
+    // dtm.setRowCount(0); // for deleting previous table content
     //
     // for (String value : DynamicTreeDemo.treePanel.constraintsList) {
     //
@@ -110,7 +109,7 @@ public class Constraint extends JPanel {
 
     public static void setNullToAllRows() {
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        dtm.setRowCount(0);// for deleting previous table content
+        dtm.setRowCount(0); // for deleting previous table content
 
         for (int i = 0; i < 100; i++) {
             model.addRow(new Object[] {""});
@@ -121,7 +120,7 @@ public class Constraint extends JPanel {
     public void showConstraintsInTable(String[] nodesToSelectedNode) {
 
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        dtm.setRowCount(0);// for deleting previous table content
+        dtm.setRowCount(0); // for deleting previous table content
 
         for (String value : nodesToSelectedNode) {
             if (value == null) {
@@ -151,8 +150,7 @@ public class Constraint extends JPanel {
         Object[] message = {"Constraints:", constraintsField};
 
         int option = JOptionPane
-                .showConfirmDialog(PESEditor.framew, message, "Please Update",
-                        JOptionPane.OK_CANCEL_OPTION,
+                .showConfirmDialog(PESEditor.framew, message, "Please Update", JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.PLAIN_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
@@ -170,8 +168,7 @@ public class Constraint extends JPanel {
 
 
             PESEditor.jtreeTograph.deleteConstraintFromScenarioTableForUpdate(
-                    PESEditor.jtreeTograph.selectedNodeCellForVariableUpdate,
-                    constraintsOld, constraints);
+                    JtreeToGraph.selectedNodeCellForVariableUpdate, constraintsOld, constraints);
 
         }
 

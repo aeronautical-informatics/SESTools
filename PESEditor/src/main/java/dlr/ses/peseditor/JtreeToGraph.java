@@ -109,7 +109,7 @@ public class JtreeToGraph {
     public static ArrayList<String> pathForRefNode = new ArrayList<String>();
     // checkRootConnectivity
     public static boolean connectedToRoot = false;
-// for testing of adding multiple node at the same time
+    // for testing of adding multiple node at the same time
     // for variable
     public static ArrayList<String> pathToRoot = new ArrayList<String>();
     // for subtree
@@ -133,8 +133,7 @@ public class JtreeToGraph {
     static String addedCellNameSync = null;
     // for variable addition ----------------------------------end
     public File ssdFileGraph = new File(
-            PESEditor.fileLocation + "/" + PESEditor.projName + "/" +
-                    projectFileNameGraph + "Graph.xml");
+            PESEditor.fileLocation + "/" + PESEditor.projName + "/" + projectFileNameGraph + "Graph.xml");
     // for constraint addition ----------------------------------end
     public mxGraphComponent graphComponent = null;
     // for constraint addition ----------------------------------end
@@ -180,8 +179,7 @@ public class JtreeToGraph {
         Object[] incoming = graph.getIncomingEdges(cell);
         // getTerminal(java.lang.Object edge, boolean isSource)
         if (incoming.length != 0) {
-            Object source = graph.getModel()
-                    .getTerminal(incoming[incoming.length - 1], true);
+            Object source = graph.getModel().getTerminal(incoming[incoming.length - 1], true);
             mxCell sourceCell = (mxCell) source;
             // System.out.println(sourceCell.getValue());
             pathToRoot.add((String) sourceCell.getValue());
@@ -189,30 +187,25 @@ public class JtreeToGraph {
         }
     }
 
-    public static boolean saveToXMLFileWithoutIndent(Document doc,
-                                                     String filePath)
+    public static boolean saveToXMLFileWithoutIndent(Document doc, String filePath)
             throws TransformerException {
         if (doc != null) {
             try {
                 javax.xml.transform.TransformerFactory tFactory =
                         javax.xml.transform.TransformerFactory.newInstance();
                 // javax.xml.transform.stream.StreamSource();
-                javax.xml.transform.Transformer transformer =
-                        tFactory.newTransformer();
-                javax.xml.transform.dom.DOMSource source =
-                        new javax.xml.transform.dom.DOMSource(doc);
+                javax.xml.transform.Transformer transformer = tFactory.newTransformer();
+                javax.xml.transform.dom.DOMSource source = new javax.xml.transform.dom.DOMSource(doc);
                 javax.xml.transform.stream.StreamResult result =
-                        new javax.xml.transform.stream.StreamResult(
-                                new File(filePath));
+                        new javax.xml.transform.stream.StreamResult(new File(filePath));
                 // transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
                 // transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,
                 // "yes");
                 transformer.setOutputProperty(OutputKeys.INDENT,
-                        "yes");// if no then output will be one line. so indent
+                        "yes"); // if no then output will be one line. so indent
                 // With 0 spacing is best option
-                transformer.setOutputProperty(
-                        "{http://xml.apache.org/xslt}indent-amount",
-                        "0");// indent-amount now 0
+                transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount",
+                        "0"); // indent-amount now 0
                 // so it will remain in
                 // one line
 
@@ -228,26 +221,21 @@ public class JtreeToGraph {
         }
     }
 
-    public static boolean saveToXMLFile(Document doc, String filePath)
-            throws TransformerException {
+    public static boolean saveToXMLFile(Document doc, String filePath) throws TransformerException {
         if (doc != null) {
             try {
                 javax.xml.transform.TransformerFactory tFactory =
                         javax.xml.transform.TransformerFactory.newInstance();
                 // javax.xml.transform.stream.StreamSource();
-                javax.xml.transform.Transformer transformer =
-                        tFactory.newTransformer();
-                javax.xml.transform.dom.DOMSource source =
-                        new javax.xml.transform.dom.DOMSource(doc);
+                javax.xml.transform.Transformer transformer = tFactory.newTransformer();
+                javax.xml.transform.dom.DOMSource source = new javax.xml.transform.dom.DOMSource(doc);
                 javax.xml.transform.stream.StreamResult result =
-                        new javax.xml.transform.stream.StreamResult(
-                                new File(filePath));
+                        new javax.xml.transform.stream.StreamResult(new File(filePath));
                 // transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
                 // transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,
                 // "yes");
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-                transformer.setOutputProperty(
-                        "{http://xml.apache.org/xslt}indent-amount", "0");
+                transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "0");
 
                 transformer.transform(source, result);
                 return true;
@@ -273,8 +261,7 @@ public class JtreeToGraph {
         try {
             // f0 = new PrintWriter(new FileWriter("runtimefiles/outputgraphxml.xml"));
             f0 = new PrintWriter(new FileWriter(
-                    PESEditor.fileLocation + "/" + PESEditor.projName + "/" +
-                            projectFileNameGraph + ".xml"));
+                    PESEditor.fileLocation + "/" + PESEditor.projName + "/" + projectFileNameGraph + ".xml"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -283,9 +270,7 @@ public class JtreeToGraph {
 
         Scanner in = null;
         try {
-            in = new Scanner(new File(
-                    PESEditor.fileLocation + "/" + PESEditor.projName +
-                            "/graphxml.xml"));
+            in = new Scanner(new File(PESEditor.fileLocation + "/" + PESEditor.projName + "/graphxml.xml"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -331,11 +316,9 @@ public class JtreeToGraph {
 
         // setting default edge color
         graph.getStylesheet().getDefaultEdgeStyle()
-                .put(mxConstants.STYLE_STROKECOLOR,
-                        mxUtils.getHexColorString(Color.BLACK));
+                .put(mxConstants.STYLE_STROKECOLOR, mxUtils.getHexColorString(Color.BLACK));
         graph.getStylesheet().getDefaultEdgeStyle()
-                .put(mxConstants.STYLE_FONTCOLOR,
-                        mxUtils.getHexColorString(Color.BLACK));
+                .put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
         graph.setCellsEditable(false);
 
         // creating new style
@@ -355,111 +338,77 @@ public class JtreeToGraph {
 
         Hashtable<String, Object> entity = new Hashtable<String, Object>();
         entity.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
-        entity.put(mxConstants.STYLE_FONTCOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
+        entity.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
         entity.put(mxConstants.STYLE_FILLCOLOR, "#FFFFFF");
         entity.put(mxConstants.STYLE_ROUNDED, true);
         entity.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_BOTTOM);
-        entity.put(mxConstants.STYLE_STROKECOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
+        entity.put(mxConstants.STYLE_STROKECOLOR, mxUtils.getHexColorString(Color.BLACK));
         entity.put(mxConstants.STYLE_STROKEWIDTH, 2);
-        entity.put(mxConstants.STYLE_EDGE,
-                mxUtils.getHexColorString(Color.BLACK));
+        entity.put(mxConstants.STYLE_EDGE, mxUtils.getHexColorString(Color.BLACK));
         stylesheet.putCellStyle("Entity", entity);
 
         Hashtable<String, Object> multiaspect = new Hashtable<String, Object>();
         multiaspect.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
-        multiaspect.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION,
-                mxConstants.ALIGN_TOP);
-        multiaspect.put(mxConstants.STYLE_FONTCOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
+        multiaspect.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
+        multiaspect.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
         multiaspect.put(mxConstants.STYLE_IMAGE,
-                PESEditor.class.getClassLoader()
-                        .getResource("images/maspectToBePruned.png"));
+                PESEditor.class.getClassLoader().getResource("images/maspectToBePruned.png"));
         stylesheet.putCellStyle("Multiaspect", multiaspect);
 
         Hashtable<String, Object> aspect = new Hashtable<String, Object>();
         aspect.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
-        aspect.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION,
-                mxConstants.ALIGN_TOP);
-        aspect.put(mxConstants.STYLE_FONTCOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
-        aspect.put(mxConstants.STYLE_IMAGE, PESEditor.class.getClassLoader()
-                .getResource("images/aspect.png"));
+        aspect.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
+        aspect.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
+        aspect.put(mxConstants.STYLE_IMAGE,
+                PESEditor.class.getClassLoader().getResource("images/aspect.png"));
         stylesheet.putCellStyle("Aspect", aspect);
 
-        Hashtable<String, Object> specialization =
-                new Hashtable<String, Object>();
+        Hashtable<String, Object> specialization = new Hashtable<String, Object>();
         specialization.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
-        specialization.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION,
-                mxConstants.ALIGN_TOP);
-        specialization.put(mxConstants.STYLE_FONTCOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
+        specialization.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
+        specialization.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
         specialization.put(mxConstants.STYLE_IMAGE,
-                PESEditor.class.getClassLoader()
-                        .getResource("images/specializationToBePruned.png"));
-        specialization.put(mxConstants.STYLE_EDGE,
-                mxUtils.getHexColorString(Color.BLACK));
+                PESEditor.class.getClassLoader().getResource("images/specializationToBePruned.png"));
+        specialization.put(mxConstants.STYLE_EDGE, mxUtils.getHexColorString(Color.BLACK));
         stylesheet.putCellStyle("Specialization", specialization);
 
         // -----------------------------start of style for
         // pruning--------------------------------
-        Hashtable<String, Object> entityPruned =
-                new Hashtable<String, Object>();
+        Hashtable<String, Object> entityPruned = new Hashtable<String, Object>();
         entityPruned.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
-        entityPruned.put(mxConstants.STYLE_FONTCOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
+        entityPruned.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
         entityPruned.put(mxConstants.STYLE_FILLCOLOR, "#FFFFFF");
         entityPruned.put(mxConstants.STYLE_ROUNDED, true);
-        entityPruned.put(mxConstants.STYLE_LABEL_POSITION,
-                mxConstants.ALIGN_BOTTOM);
-        entityPruned.put(mxConstants.STYLE_STROKECOLOR,
-                mxUtils.getHexColorString(Color.green));
+        entityPruned.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_BOTTOM);
+        entityPruned.put(mxConstants.STYLE_STROKECOLOR, mxUtils.getHexColorString(Color.green));
         entityPruned.put(mxConstants.STYLE_STROKEWIDTH, 2);
-        entityPruned.put(mxConstants.STYLE_EDGE,
-                mxUtils.getHexColorString(Color.green));
+        entityPruned.put(mxConstants.STYLE_EDGE, mxUtils.getHexColorString(Color.green));
         stylesheet.putCellStyle("EntityPruned", entityPruned);
 
-        Hashtable<String, Object> aspectToBePruned =
-                new Hashtable<String, Object>();
+        Hashtable<String, Object> aspectToBePruned = new Hashtable<String, Object>();
         aspectToBePruned.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
-        aspectToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION,
-                mxConstants.ALIGN_TOP);
-        aspectToBePruned.put(mxConstants.STYLE_FONTCOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
+        aspectToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
+        aspectToBePruned.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
         aspectToBePruned.put(mxConstants.STYLE_IMAGE,
-                PESEditor.class.getClassLoader()
-                        .getResource("images/aspectToBePruned.png"));
+                PESEditor.class.getClassLoader().getResource("images/aspectToBePruned.png"));
         stylesheet.putCellStyle("AspectToBePruned", aspectToBePruned);
 
-        Hashtable<String, Object> multiaspectToBePruned =
-                new Hashtable<String, Object>();
-        multiaspectToBePruned
-                .put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
-        multiaspectToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION,
-                mxConstants.ALIGN_TOP);
-        multiaspectToBePruned.put(mxConstants.STYLE_FONTCOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
+        Hashtable<String, Object> multiaspectToBePruned = new Hashtable<String, Object>();
+        multiaspectToBePruned.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
+        multiaspectToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
+        multiaspectToBePruned.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
         multiaspectToBePruned.put(mxConstants.STYLE_IMAGE,
-                PESEditor.class.getClassLoader()
-                        .getResource("images/multi.png"));
+                PESEditor.class.getClassLoader().getResource("images/multi.png"));
         stylesheet.putCellStyle("MultiaspectPruned", multiaspectToBePruned);
 
-        Hashtable<String, Object> specializationToBePruned =
-                new Hashtable<String, Object>();
-        specializationToBePruned
-                .put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
-        specializationToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION,
-                mxConstants.ALIGN_TOP);
-        specializationToBePruned.put(mxConstants.STYLE_FONTCOLOR,
-                mxUtils.getHexColorString(Color.BLACK));
+        Hashtable<String, Object> specializationToBePruned = new Hashtable<String, Object>();
+        specializationToBePruned.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_IMAGE);
+        specializationToBePruned.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_TOP);
+        specializationToBePruned.put(mxConstants.STYLE_FONTCOLOR, mxUtils.getHexColorString(Color.BLACK));
         specializationToBePruned.put(mxConstants.STYLE_IMAGE,
-                PESEditor.class.getClassLoader()
-                        .getResource("images/spec.png"));
-        specializationToBePruned.put(mxConstants.STYLE_EDGE,
-                mxUtils.getHexColorString(Color.BLACK));
-        stylesheet
-                .putCellStyle("SpecializationPruned", specializationToBePruned);
+                PESEditor.class.getClassLoader().getResource("images/spec.png"));
+        specializationToBePruned.put(mxConstants.STYLE_EDGE, mxUtils.getHexColorString(Color.BLACK));
+        stylesheet.putCellStyle("SpecializationPruned", specializationToBePruned);
 
         // -----------------------------end of style for
         // pruning--------------------------------
@@ -471,8 +420,8 @@ public class JtreeToGraph {
             try {
                 // use "org.w3c.dom.Document" not swing Document
                 Document xml = mxXmlUtils.parseXml(mxUtils.readFile(
-                        PESEditor.fileLocation + "/" + PESEditor.projName +
-                                "/" + projectFileNameGraph + "Graph.xml"));
+                        PESEditor.fileLocation + "/" + PESEditor.projName + "/" + projectFileNameGraph
+                        + "Graph.xml"));
 
                 mxCodec codec = new mxCodec(xml);
                 codec.decode(xml.getDocumentElement(), graph.getModel());
@@ -487,19 +436,15 @@ public class JtreeToGraph {
         } else {
             graph.getModel().beginUpdate();
             try {
-                rootNode =
-                        graph.insertVertex(parent, "rootnode", "Thing", 515, 20,
-                                80, 30, "Entity");
+                rootNode = graph.insertVertex(parent, "rootnode", "Thing", 515, 20, 80, 30, "Entity");
 
                 Object hideV =
-                        graph.insertVertex(parent, "hideV", "End of Canvas", 0,
-                                50000, 80, 30, "Entity");
+                        graph.insertVertex(parent, "hideV", "End of Canvas", 0, 50000, 80, 30, "Entity");
                 mxCell hidenodeV = (mxCell) hideV;
                 // hidenode.setVisible(false);
 
                 Object hideH =
-                        graph.insertVertex(parent, "hideH", "End of Canvas",
-                                50000, 0, 80, 30, "Entity");
+                        graph.insertVertex(parent, "hideH", "End of Canvas", 50000, 0, 80, 30, "Entity");
                 mxCell hidenodeH = (mxCell) hideH;
                 // hidenode.setVisible(false);
 
@@ -513,19 +458,17 @@ public class JtreeToGraph {
         graphComponent.getViewport().setBackground(Color.WHITE);
 
         // undo redo settings
-        mxEventSource.mxIEventListener listener =
-                new mxEventSource.mxIEventListener() {
+        mxEventSource.mxIEventListener listener = new mxEventSource.mxIEventListener() {
 
-                    @Override
-                    public void invoke(Object sender, mxEventObject evt) {
-                        // this condition is added to control subtree undo addition
-                        if (!PESEditor.undoControlForSubTree == true) {
-                            undoManager.undoableEditHappened(
-                                    (mxUndoableEdit) evt.getProperty("edit"));
-                        }
+            @Override
+            public void invoke(Object sender, mxEventObject evt) {
+                // this condition is added to control subtree undo addition
+                if (!PESEditor.undoControlForSubTree == true) {
+                    undoManager.undoableEditHappened((mxUndoableEdit) evt.getProperty("edit"));
+                }
 
-                    }
-                };
+            }
+        };
 
         // for undo redo
         graph.getModel().addListener(mxEvent.UNDO, listener);
@@ -544,7 +487,7 @@ public class JtreeToGraph {
                 // System.out.println("Source Node: " + connectionCell.getSource().getValue());
 
                 lastAddedCell = (mxCell) connectionCell
-                        .getSource();// if there is no terminal cell then have to handle
+                        .getSource(); // if there is no terminal cell then have to handle
 
             }
         });
@@ -567,7 +510,7 @@ public class JtreeToGraph {
 
                 Object cell = graphComponent.getCellAt(e.getX(), e.getY());
 
-                currentSelectedCell = (mxCell) cell;// this for console use
+                currentSelectedCell = (mxCell) cell; // this for console use
 
                 if (e.getButton() == MouseEvent.BUTTON1) {
 
@@ -583,33 +526,27 @@ public class JtreeToGraph {
                         graph.getModel().beginUpdate();
                         try {
                             if (PESEditor.nodeAddDetector.equals("entity")) {
-                                Object obj = graph.insertVertex(parent, null,
-                                        nodeName, e.getX() - 40, e.getY(), 80,
-                                        30,
-                                        "Entity");
+                                Object obj =
+                                        graph.insertVertex(parent, null, nodeName, e.getX() - 40, e.getY(),
+                                                80, 30, "Entity");
                                 nodeNumber++;
 
-                            } else if (PESEditor.nodeAddDetector
-                                    .equals("aspect")) {
-                                Object obj = graph.insertVertex(parent, null,
-                                        nodeName + "Dec", e.getX() - 15,
-                                        e.getY(),
-                                        30, 30, "Aspect");
+                            } else if (PESEditor.nodeAddDetector.equals("aspect")) {
+                                Object obj = graph.insertVertex(parent, null, nodeName + "Dec", e.getX() - 15,
+                                        e.getY(), 30, 30, "Aspect");
                                 nodeNumber++;
 
-                            } else if (PESEditor.nodeAddDetector
-                                    .equals("multiaspect")) {
-                                Object obj = graph.insertVertex(parent, null,
-                                        nodeName + "MAsp", e.getX() - 15,
-                                        e.getY(), 30, 30, "Multiaspect");
+                            } else if (PESEditor.nodeAddDetector.equals("multiaspect")) {
+                                Object obj =
+                                        graph.insertVertex(parent, null, nodeName + "MAsp", e.getX() - 15,
+                                                e.getY(), 30, 30, "Multiaspect");
                                 nodeNumber++;
 
-                            } else if (PESEditor.nodeAddDetector
-                                    .equals("specialization")) {
+                            } else if (PESEditor.nodeAddDetector.equals("specialization")) {
 
-                                Object obj = graph.insertVertex(parent, null,
-                                        nodeName + "Spec", e.getX() - 15,
-                                        e.getY(), 30, 30, "Specialization");
+                                Object obj =
+                                        graph.insertVertex(parent, null, nodeName + "Spec", e.getX() - 15,
+                                                e.getY(), 30, 30, "Specialization");
                                 nodeNumber++;
 
                             }
@@ -627,8 +564,7 @@ public class JtreeToGraph {
                         // table
                         if (!PESEditor.nodeAddDetector.equals("delete")) {
 
-                            Object showvar = graphComponent
-                                    .getCellAt(e.getX(), e.getY());
+                            Object showvar = graphComponent.getCellAt(e.getX(), e.getY());
                             mxCell varCell = (mxCell) showvar;
                             selectedNodeCellForVariableUpdate = varCell;
 
@@ -638,66 +574,50 @@ public class JtreeToGraph {
 
                             if (varCell.isVertex()) {
 
-                                String selectedNode =
-                                        (String) varCell.getValue();
+                                String selectedNode = (String) varCell.getValue();
                                 pathToRoot.add((String) varCell.getValue());
                                 nodeToRootPathVar(varCell);
 
-                                String[] stringArray =
-                                        pathToRoot.toArray(new String[0]);
-                                ArrayList<String> pathToRootRev =
-                                        new ArrayList<String>();
+                                String[] stringArray = pathToRoot.toArray(new String[0]);
+                                ArrayList<String> pathToRootRev = new ArrayList<String>();
 
-                                for (int i = stringArray.length - 1; i >= 0;
-                                     i--) {
+                                for (int i = stringArray.length - 1; i >= 0; i--) {
                                     pathToRootRev.add(stringArray[i]);
                                 }
 
-                                String[] stringArrayRev =
-                                        pathToRootRev.toArray(new String[0]);
+                                String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-                                TreePath treePathForVariable = PESEditor
-                                        .getTreeNodePath(stringArrayRev);
+                                TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
                                 if (!(treePathForVariable == null)) {
                                     DefaultMutableTreeNode currentNode =
                                             (DefaultMutableTreeNode) (treePathForVariable
-                                                    .getLastPathComponent()); // if mouse not released then some condition
+                                                                              .getLastPathComponent()); // if mouse not released then some condition
 
                                     // -------------------------------------------------------
                                     TreeNode[] nodes = currentNode.getPath();
 
                                     Collection<String> nodeVariables =
-                                            DynamicTree.varMap
-                                                    .get(treePathForVariable);
+                                            DynamicTree.varMap.get(treePathForVariable);
 
-                                    String[] nodesToSelectedNode =
-                                            new String[100];
+                                    String[] nodesToSelectedNode = new String[100];
                                     int c = 0;
                                     String variables = "";
                                     int b = 0;
 
-                                    for (TreePath key : DynamicTree.varMap
-                                            .keySet()) {
+                                    for (TreePath key : DynamicTree.varMap.keySet()) {
                                         int a = 0;
 
-                                        for (String value : DynamicTree.varMap
-                                                .get(key)) {
+                                        for (String value : DynamicTree.varMap.get(key)) {
 
-                                            DefaultMutableTreeNode
-                                                    currentNode2 =
-                                                    (DefaultMutableTreeNode) (key
-                                                            .getLastPathComponent());
+                                            DefaultMutableTreeNode currentNode2 =
+                                                    (DefaultMutableTreeNode) (key.getLastPathComponent());
 
-                                            TreeNode[] nodes2 =
-                                                    currentNode2.getPath();
+                                            TreeNode[] nodes2 = currentNode2.getPath();
 
                                             if (nodes.length == nodes2.length) {
-                                                for (int i = 0;
-                                                     i < nodes.length; i++) {
+                                                for (int i = 0; i < nodes.length; i++) {
 
-                                                    if (nodes[i].toString()
-                                                            .equals(nodes2[i]
-                                                                    .toString())) {
+                                                    if (nodes[i].toString().equals(nodes2[i].toString())) {
                                                         a = 1;
 
                                                     } else {
@@ -714,15 +634,13 @@ public class JtreeToGraph {
 
                                     }
 
-                                    nodesToSelectedNode =
-                                            Arrays.stream(nodesToSelectedNode)
-                                                    .filter(s -> (s != null &&
-                                                            s.length() > 0))
-                                                    .toArray(String[]::new);
+                                    nodesToSelectedNode = Arrays.stream(nodesToSelectedNode)
+                                            .filter(s -> (s != null && s.length() > 0))
+                                            .toArray(String[]::new);
 
-                                    nodesToSelectedNode = new HashSet<String>(
-                                            Arrays.asList(nodesToSelectedNode))
-                                            .toArray(new String[0]);
+                                    nodesToSelectedNode =
+                                            new HashSet<String>(Arrays.asList(nodesToSelectedNode))
+                                                    .toArray(new String[0]);
 
                                     Arrays.parallelSort(nodesToSelectedNode);
 
@@ -731,16 +649,14 @@ public class JtreeToGraph {
                                     }
 
                                     PESEditor.jtreeTograph.scenarioVariable
-                                            .showNodeValuesInTable(
-                                                    currentNode.toString(),
+                                            .showNodeValuesInTable(currentNode.toString(),
                                                     nodesToSelectedNode);
                                     // -------------------------------------------------------
 
                                     pathToRoot.clear();
 
                                     // for showing constraints in the table when selecting any node from graph;
-                                    PESEditor.treePanel.showConstraintsInTable(
-                                            treePathForVariable);
+                                    PESEditor.treePanel.showConstraintsInTable(treePathForVariable);
 
                                 } else {
                                     pathToRoot.clear();
@@ -765,8 +681,7 @@ public class JtreeToGraph {
                         // only one node that time we can use this and for that we have to add another
                         // button for not synchronizing with jtree
 
-                        Object delcell =
-                                graphComponent.getCellAt(e.getX(), e.getY());
+                        Object delcell = graphComponent.getCellAt(e.getX(), e.getY());
                         final Toolkit toolkit = Toolkit.getDefaultToolkit();
 
                         if (delcell != null) {
@@ -794,8 +709,7 @@ public class JtreeToGraph {
                     Point p = MouseInfo.getPointerInfo().getLocation();
                     int y = p.y;
                     int x = p.x;
-                    int screenWidth = java.awt.Toolkit.getDefaultToolkit()
-                            .getScreenSize().width;
+                    int screenWidth = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
                     if (x > screenWidth) {
                         x = x - PESEditor.dividerLocation - 10 - screenWidth;
@@ -805,14 +719,12 @@ public class JtreeToGraph {
                     // end of that
 
                     // here position will be edge or vertex on that place
-                    Object position =
-                            graphComponent.getCellAt(e.getX(), e.getY());
+                    Object position = graphComponent.getCellAt(e.getX(), e.getY());
 
                     // checking if there is any vertex or edge
                     if (position != null) {
                         GraphCellPopUpPruning graphCellPopup =
-                                new GraphCellPopUpPruning(e.getX(), e.getY(),
-                                        position);
+                                new GraphCellPopUpPruning(e.getX(), e.getY(), position);
                         if (e.isPopupTrigger()) {
                             graphCellPopup.show(graphComponent, x, y - 104);
                         }
@@ -839,8 +751,7 @@ public class JtreeToGraph {
     }
 
     public String rootNodeName() {
-        Object[] cells = graph.getChildVertices(
-                graph.getDefaultParent()); // getSelectionCells();
+        Object[] cells = graph.getChildVertices(graph.getDefaultParent()); // getSelectionCells();
 
         mxCell rootcell = null;
 
@@ -861,8 +772,7 @@ public class JtreeToGraph {
 
     public void rootToEndNodeVariable() {
 
-        Object[] cells = graph.getChildVertices(
-                graph.getDefaultParent()); // getSelectionCells();
+        Object[] cells = graph.getChildVertices(graph.getDefaultParent()); // getSelectionCells();
 
         mxCell rootcell = null;
 
@@ -891,14 +801,13 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
 
                 // for next call
                 mxCell targetCell2 = (mxCell) targetCell;
 
-                if (targetCell2.getId().toString().startsWith("uniformity")) {
-                    if (targetCell2.getId().toString().endsWith("RefNode")) {
+                if (targetCell2.getId().startsWith("uniformity")) {
+                    if (targetCell2.getId().endsWith("RefNode")) {
                         // finding and saving root to this node path
                         nodeToRootPath(targetCell2);
 
@@ -909,8 +818,7 @@ public class JtreeToGraph {
                             pathRev.add(stringArray[j]);
                         }
 
-                        String[] stringArrayRev =
-                                pathRev.toArray(new String[0]);
+                        String[] stringArrayRev = pathRev.toArray(new String[0]);
 
                         for (String x : stringArrayRev) {
                             System.out.println(x);
@@ -920,9 +828,7 @@ public class JtreeToGraph {
 
                         FileConvertion fileConvertion = new FileConvertion();
 
-                        fileConvertion
-                                .addingUniformityRefNodeToXML(stringArrayRev,
-                                        cellName);
+                        fileConvertion.addingUniformityRefNodeToXML(stringArrayRev, cellName);
 
                         path.clear();
 
@@ -931,9 +837,8 @@ public class JtreeToGraph {
                     }
 
                 } else {
-                    rootToEndVariableAddition(targetCell2);// variable addition
-                    rootToEndConstraintAddition(
-                            targetCell2);// constraint addition
+                    rootToEndVariableAddition(targetCell2); // variable addition
+                    rootToEndConstraintAddition(targetCell2); // constraint addition
                     nextChildNodeForVariable(targetCell2);
                 }
 
@@ -958,11 +863,9 @@ public class JtreeToGraph {
 
             String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-            TreePath treePathForVariable =
-                    PESEditor.getTreeNodePath(stringArrayRev);
+            TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (treePathForVariable
-                            .getLastPathComponent());
+                    (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
 
             // -------------------------------------------------------
             TreeNode[] nodes = currentNode.getPath();
@@ -978,16 +881,14 @@ public class JtreeToGraph {
                 for (String value : DynamicTree.varMap.get(key)) {
 
                     DefaultMutableTreeNode currentNode2 =
-                            (DefaultMutableTreeNode) (key
-                                    .getLastPathComponent());
+                            (DefaultMutableTreeNode) (key.getLastPathComponent());
 
                     TreeNode[] nodes2 = currentNode2.getPath();
 
                     if (nodes.length == nodes2.length) {
                         for (int i = 0; i < nodes.length; i++) {
 
-                            if (nodes[i].toString()
-                                    .equals(nodes2[i].toString())) {
+                            if (nodes[i].toString().equals(nodes2[i].toString())) {
                                 a = 1;
 
                             } else {
@@ -1006,14 +907,13 @@ public class JtreeToGraph {
             }
 
             // java 8 way null removal
-            nodesToSelectedNode = Arrays.stream(nodesToSelectedNode)
-                    .filter(s -> (s != null && s.length() > 0))
-                    .toArray(String[]::new);
+            nodesToSelectedNode =
+                    Arrays.stream(nodesToSelectedNode).filter(s -> (s != null && s.length() > 0))
+                            .toArray(String[]::new);
 
             // this line is not present in SESEditor
             nodesToSelectedNode =
-                    new HashSet<String>(Arrays.asList(nodesToSelectedNode))
-                            .toArray(new String[0]);
+                    new HashSet<String>(Arrays.asList(nodesToSelectedNode)).toArray(new String[0]);
 
             Arrays.parallelSort(nodesToSelectedNode);
 
@@ -1023,8 +923,7 @@ public class JtreeToGraph {
 
             // treePathForVariable
             FileConvertion fileConversion = new FileConvertion();
-            fileConversion
-                    .variableAdditionToNode(treePathForVariable, variables);
+            fileConversion.variableAdditionToNode(treePathForVariable, variables);
 
             pathToRoot.clear();
         }
@@ -1049,11 +948,9 @@ public class JtreeToGraph {
 
             String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-            TreePath treePathForVariable =
-                    PESEditor.getTreeNodePath(stringArrayRev);
+            TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (treePathForVariable
-                            .getLastPathComponent());
+                    (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
 
             // -------------------------------------------------------
             TreeNode[] nodes = currentNode.getPath();
@@ -1069,16 +966,14 @@ public class JtreeToGraph {
                 for (String value : DynamicTree.constraintsList.get(key)) {
 
                     DefaultMutableTreeNode currentNode2 =
-                            (DefaultMutableTreeNode) (key
-                                    .getLastPathComponent());
+                            (DefaultMutableTreeNode) (key.getLastPathComponent());
 
                     TreeNode[] nodes2 = currentNode2.getPath();
 
                     if (nodes.length == nodes2.length) {
                         for (int i = 0; i < nodes.length; i++) {
 
-                            if (nodes[i].toString()
-                                    .equals(nodes2[i].toString())) {
+                            if (nodes[i].toString().equals(nodes2[i].toString())) {
                                 a = 1;
 
                             } else {
@@ -1097,9 +992,9 @@ public class JtreeToGraph {
             }
 
             // java 8 way null removal
-            nodesToSelectedNode = Arrays.stream(nodesToSelectedNode)
-                    .filter(s -> (s != null && s.length() > 0))
-                    .toArray(String[]::new);
+            nodesToSelectedNode =
+                    Arrays.stream(nodesToSelectedNode).filter(s -> (s != null && s.length() > 0))
+                            .toArray(String[]::new);
 
             for (String value : nodesToSelectedNode) {
                 variables = variables + "<" + value + "Con/>" + "\n";
@@ -1110,7 +1005,7 @@ public class JtreeToGraph {
                 FileConvertion fileConversion = new FileConvertion();
                 // fileConversion.constraintAdditionToNode(treePathForVariable, variables);
                 fileConversion.constraintAdditionToNode(selectedNode,
-                        variables);// sending treePath is correct way, the
+                        variables); // sending treePath is correct way, the
                 // above one. have to check.
             }
 
@@ -1141,17 +1036,14 @@ public class JtreeToGraph {
             // System.out.println(stringArrayRev[i]);
             // }
 
-            TreePath treePathForVariable =
-                    PESEditor.getTreeNodePath(stringArrayRev);
+            TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (treePathForVariable
-                            .getLastPathComponent());
+                    (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
 
             // -------------------------------------------------------
             TreeNode[] nodes = currentNode.getPath();
 
-            Collection<String> nodeVariables =
-                    DynamicTree.constraintsList.get(treePathForVariable);
+            Collection<String> nodeVariables = DynamicTree.constraintsList.get(treePathForVariable);
 
             String[] nodesToSelectedNode = new String[100];
             int c = 0;
@@ -1164,16 +1056,14 @@ public class JtreeToGraph {
                 for (String value : DynamicTree.constraintsList.get(key)) {
                     // System.out.printf("%s %s\n", key, value);
                     DefaultMutableTreeNode currentNode2 =
-                            (DefaultMutableTreeNode) (key
-                                    .getLastPathComponent());
+                            (DefaultMutableTreeNode) (key.getLastPathComponent());
                     // System.out.println(currentNode2.toString());
                     TreeNode[] nodes2 = currentNode2.getPath();
 
                     if (nodes.length == nodes2.length) {
                         for (int i = 0; i < nodes.length; i++) {
 
-                            if (nodes[i].toString()
-                                    .equals(nodes2[i].toString())) {
+                            if (nodes[i].toString().equals(nodes2[i].toString())) {
                                 a = 1;
 
                             } else {
@@ -1192,9 +1082,9 @@ public class JtreeToGraph {
             }
 
             // java 8 way null removal
-            nodesToSelectedNode = Arrays.stream(nodesToSelectedNode)
-                    .filter(s -> (s != null && s.length() > 0))
-                    .toArray(String[]::new);
+            nodesToSelectedNode =
+                    Arrays.stream(nodesToSelectedNode).filter(s -> (s != null && s.length() > 0))
+                            .toArray(String[]::new);
 
             for (String value : nodesToSelectedNode) {
                 variables = variables + "<" + value + "Con/>" + "\n";
@@ -1205,8 +1095,7 @@ public class JtreeToGraph {
             // treePathForVariable
             if (variables.length() > 8) {
                 FileConvertion fileConversion = new FileConvertion();
-                fileConversion.constraintAdditionToNode(treePathForVariable,
-                        variables);
+                fileConversion.constraintAdditionToNode(treePathForVariable, variables);
 
             }
 
@@ -1217,12 +1106,10 @@ public class JtreeToGraph {
     public void callAfterEdgeConnectionComplete() {
         mxCell addedCell = null;
 
-        if (lastAddedCell != null &&
-                graph.getOutgoingEdges(lastAddedCell).length > 0) {
+        if (lastAddedCell != null && graph.getOutgoingEdges(lastAddedCell).length > 0) {
 
             Object[] outgoing = graph.getOutgoingEdges(lastAddedCell);
-            Object targetCell = graph.getModel()
-                    .getTerminal(outgoing[outgoing.length - 1], false);
+            Object targetCell = graph.getModel().getTerminal(outgoing[outgoing.length - 1], false);
             addedCell = (mxCell) targetCell;
             Object[] incoming = graph.getIncomingEdges(addedCell);
 
@@ -1232,8 +1119,7 @@ public class JtreeToGraph {
                 try {
                     lastEdge.getTarget().getValue();
                 } catch (Exception e) {
-                    graph.removeCells(
-                            new Object[] {outgoing[outgoing.length - 1]});
+                    graph.removeCells(new Object[] {outgoing[outgoing.length - 1]});
                 }
             }
 
@@ -1244,8 +1130,7 @@ public class JtreeToGraph {
                 JOptionPane.showMessageDialog(PESEditor.framew,
                         "You can not add here. Add to the reference node.");
 
-                String nameOfReferenceNode =
-                        lastAddedCell.getValue().toString();
+                String nameOfReferenceNode = lastAddedCell.getValue().toString();
 
                 addedCell = null;
                 lastAddedCell = null;
@@ -1292,15 +1177,13 @@ public class JtreeToGraph {
                                 saveModuleFromCurrentModel(cellParentCheck);
                                 PESEditor.undoControlForSubTree = true;
                                 addModuleFromSubgraph(cellParentCheck);
-                                deleteNodeFromGraphPopupForSubTree(
-                                        firstAddedCellForSubTreeDeletion);
+                                deleteNodeFromGraphPopupForSubTree(firstAddedCellForSubTreeDeletion);
                                 PESEditor.undoControlForSubTree = false;
                                 firstAddedCellForSubTreeDeletion = null;
                                 firstAddedCellForSubTree = 0;
 
                             } else {
-                                PESEditor.addNodeWIthGraphAddition(
-                                        addedCell.getValue().toString(),
+                                PESEditor.addNodeWIthGraphAddition(addedCell.getValue().toString(),
                                         stringArrayRev);
 
                                 // have to check subtree here
@@ -1310,37 +1193,29 @@ public class JtreeToGraph {
                             checkRootConnectivity(cellParentCheck);
 
                             if (connectedToRoot) {
-                                Object[] forParentCheck =
-                                        graph.getIncomingEdges(cellParentCheck);
+                                Object[] forParentCheck = graph.getIncomingEdges(cellParentCheck);
                                 if (forParentCheck.length == 1) {
 
-                                    if (graph.getOutgoingEdges(
-                                            addedCell).length > 0) {
+                                    if (graph.getOutgoingEdges(addedCell).length > 0) {
                                         // for cell who has child elements and added to some other parent as a child
                                         // node. subtree creation
-                                        saveModuleFromCurrentModel(
-                                                cellParentCheck);
+                                        saveModuleFromCurrentModel(cellParentCheck);
                                         PESEditor.undoControlForSubTree = true;
                                         addModuleFromSubgraph(cellParentCheck);
-                                        deleteNodeFromGraphPopupForSubTree(
-                                                firstAddedCellForSubTreeDeletion);
+                                        deleteNodeFromGraphPopupForSubTree(firstAddedCellForSubTreeDeletion);
                                         PESEditor.undoControlForSubTree = false;
                                         firstAddedCellForSubTreeDeletion = null;
                                         firstAddedCellForSubTree = 0;
 
                                     } else {
-                                        PESEditor.addNodeWIthGraphAddition(
-                                                addedCell.getValue().toString(),
+                                        PESEditor.addNodeWIthGraphAddition(addedCell.getValue().toString(),
                                                 stringArrayRev);
 
                                         System.out.println("Tested syn now");
-                                        System.out.println("cellParentCheck:" +
-                                                cellParentCheck.getValue());
-                                        System.out.println("addedCell:" +
-                                                addedCell.getValue());
+                                        System.out.println("cellParentCheck:" + cellParentCheck.getValue());
+                                        System.out.println("addedCell:" + addedCell.getValue());
                                         // Synchronization with its child node while adding into main reference node
-                                        checkSubtreeNodeForSync(cellParentCheck,
-                                                addedCell);
+                                        checkSubtreeNodeForSync(cellParentCheck, addedCell);
                                         // have to check subtree here for adding node with same node
                                         checkSubtreeNode(addedCell);
                                     }
@@ -1369,8 +1244,7 @@ public class JtreeToGraph {
         // System.out.println("test called");
         if (lastAddedCell != null) {
             Object[] outgoing = graph.getOutgoingEdges(lastAddedCell);
-            Object targetCell = graph.getModel()
-                    .getTerminal(outgoing[outgoing.length - 1], false);
+            Object targetCell = graph.getModel().getTerminal(outgoing[outgoing.length - 1], false);
             addedCell = (mxCell) targetCell;
 
             if (addedCell != null) {
@@ -1389,8 +1263,7 @@ public class JtreeToGraph {
 
                 String[] stringArrayRev = pathRev.toArray(new String[0]);
 
-                PESEditor.addNodeWIthGraphAddition(
-                        addedCell.getValue().toString(), stringArrayRev);
+                PESEditor.addNodeWIthGraphAddition(addedCell.getValue().toString(), stringArrayRev);
 
                 path.clear();
             }
@@ -1405,8 +1278,7 @@ public class JtreeToGraph {
         // System.out.println("test called");
         if (lastAddedCell != null) {
             Object[] outgoing = graph.getOutgoingEdges(lastAddedCell);
-            Object targetCell = graph.getModel()
-                    .getTerminal(outgoing[outgoing.length - 1], false);
+            Object targetCell = graph.getModel().getTerminal(outgoing[outgoing.length - 1], false);
             addedCell = (mxCell) targetCell;
 
             if (addedCell != null) {
@@ -1425,8 +1297,7 @@ public class JtreeToGraph {
 
                 String[] stringArrayRev = pathRev.toArray(new String[0]);
 
-                PESEditor.addNodeWIthGraphAddition(
-                        addedCell.getValue().toString(), stringArrayRev);
+                PESEditor.addNodeWIthGraphAddition(addedCell.getValue().toString(), stringArrayRev);
 
                 path.clear();
             }
@@ -1440,8 +1311,7 @@ public class JtreeToGraph {
         Object[] incoming = graph.getIncomingEdges(cell);
         // getTerminal(java.lang.Object edge, boolean isSource)
         if (incoming.length != 0) {
-            Object source = graph.getModel()
-                    .getTerminal(incoming[incoming.length - 1], true);
+            Object source = graph.getModel().getTerminal(incoming[incoming.length - 1], true);
             mxCell sourceCell = (mxCell) source;
             // System.out.println(sourceCell.getValue());
             if (sourceCell.getId()
@@ -1456,19 +1326,14 @@ public class JtreeToGraph {
 
         checkRootConnectivity(cell);
 
-        if (connectedToRoot) {
-            return true;
-        } else {
-            return false;
-        }
+        return connectedToRoot;
     }
 
     public void nodeToRootPath(mxCell cell) {
         Object[] incoming = graph.getIncomingEdges(cell);
         // getTerminal(java.lang.Object edge, boolean isSource)
         if (incoming.length != 0) {
-            Object source = graph.getModel()
-                    .getTerminal(incoming[incoming.length - 1], true);
+            Object source = graph.getModel().getTerminal(incoming[incoming.length - 1], true);
             mxCell sourceCell = (mxCell) source;
             // System.out.println(sourceCell.getValue());
             path.add((String) sourceCell.getValue());
@@ -1480,8 +1345,7 @@ public class JtreeToGraph {
         Object[] incoming = graph.getIncomingEdges(cell);
         // getTerminal(java.lang.Object edge, boolean isSource)
         if (incoming.length != 0) {
-            Object source = graph.getModel()
-                    .getTerminal(incoming[incoming.length - 1], true);
+            Object source = graph.getModel().getTerminal(incoming[incoming.length - 1], true);
             mxCell sourceCell = (mxCell) source;
             // System.out.println(sourceCell.getValue());
             pathToRootSubTree.add((String) sourceCell.getValue());
@@ -1518,21 +1382,17 @@ public class JtreeToGraph {
         lowerBoundField.setEnabled(false);
         upperBoundField.setEnabled(false);
 
-        String[] typeList =
-                {"Select Type:", "boolean", "int", "float", "double", "string"};
+        String[] typeList = {"Select Type:", "boolean", "int", "float", "double", "string"};
 
-        String variableFieldRegEx =
-                "[a-zA-Z_][a-zA-Z0-9_]*"; // alphanumeric but not start with number
+        String variableFieldRegEx = "[a-zA-Z_][a-zA-Z0-9_]*"; // alphanumeric but not start with number
 
         JComboBox variableTypeField = new JComboBox(typeList);
         variableTypeField.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent event) {
                 if (event.getStateChange() == ItemEvent.SELECTED) {
-                    selectedType =
-                            variableTypeField.getSelectedItem().toString();
+                    selectedType = variableTypeField.getSelectedItem().toString();
 
-                    if (selectedType.equals("string") ||
-                            selectedType.equals("boolean")) {
+                    if (selectedType.equals("string") || selectedType.equals("boolean")) {
                         lowerBoundField.setEnabled(false);
                         upperBoundField.setEnabled(false);
                         // System.out.println(selectedType);
@@ -1543,59 +1403,44 @@ public class JtreeToGraph {
 
                     // --------------
                     if (selectedType.equals("boolean")) {
-                        if (variableField.getText().trim()
-                                .matches(variableFieldRegEx)
-                                && (valueField.getText().trim().equals("true")
-                                || variableField.getText().trim()
-                                .equals("false"))) {
+                        if (variableField.getText().trim().matches(variableFieldRegEx) && (
+                                valueField.getText().trim().equals("true") || variableField.getText().trim()
+                                        .equals("false"))) {
                             errorLabelField.setVisible(false);
                         } else {
                             errorLabelField.setVisible(true);
-                            errorLabelField.setText(
-                                    "Invalid Input. Check All Values.");
+                            errorLabelField.setText("Invalid Input. Check All Values.");
 
                         }
                     } else if (selectedType.equals("string")) {
-                        if (variableField.getText().trim()
-                                .matches(variableFieldRegEx)
-                                && valueField.getText().trim()
-                                .matches(variableFieldRegEx)) {
+                        if (variableField.getText().trim().matches(variableFieldRegEx) && valueField.getText()
+                                .trim().matches(variableFieldRegEx)) {
                             errorLabelField.setVisible(false);
                         } else {
                             errorLabelField.setVisible(true);
-                            errorLabelField.setText(
-                                    "Invalid Input. Check All Values.");
+                            errorLabelField.setText("Invalid Input. Check All Values.");
 
                         }
                     } else if (selectedType.equals("double")) {
-                        if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                                && variableField.getText().trim()
-                                .matches(variableFieldRegEx)
-                                && lowerBoundField.getText().trim()
-                                .matches("^\\d*\\.\\d+")
-                                && upperBoundField.getText().trim()
-                                .matches("^\\d*\\.\\d+")) {
+                        if (valueField.getText().trim().matches("^\\d*\\.\\d+") && variableField.getText()
+                                .trim().matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+") && upperBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+")) {
                             errorLabelField.setVisible(false);
                         } else {
                             errorLabelField.setVisible(true);
-                            errorLabelField.setText(
-                                    "Invalid Input. Check All Values.");
+                            errorLabelField.setText("Invalid Input. Check All Values.");
 
                         }
                     } else {
-                        if (variableField.getText().trim()
-                                .matches(variableFieldRegEx)
-                                &&
-                                valueField.getText().trim().matches("^[0-9]+")
-                                && lowerBoundField.getText().trim()
-                                .matches("^[0-9]+")
-                                && upperBoundField.getText().trim()
-                                .matches("^[0-9]+")) {
+                        if (variableField.getText().trim().matches(variableFieldRegEx) && valueField.getText()
+                                .trim().matches("^[0-9]+") && lowerBoundField.getText().trim()
+                                    .matches("^[0-9]+") && upperBoundField.getText().trim()
+                                    .matches("^[0-9]+")) {
                             errorLabelField.setVisible(false);
                         } else {
                             errorLabelField.setVisible(true);
-                            errorLabelField.setText(
-                                    "Invalid Input. Check All Values.");
+                            errorLabelField.setText("Invalid Input. Check All Values.");
 
                         }
                     }
@@ -1617,59 +1462,44 @@ public class JtreeToGraph {
             public void keyReleased(KeyEvent e) {
 
                 if (selectedType.equals("string")) {
-                    if (variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && valueField.getText().trim()
-                            .matches(variableFieldRegEx)) {
+                    if (variableField.getText().trim().matches(variableFieldRegEx) && valueField.getText()
+                            .trim().matches(variableFieldRegEx)) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
                 } else if (selectedType.equals("boolean")) {
 
-                    if ((valueField.getText().trim().equals("false") ||
-                            valueField.getText().trim().equals("true"))
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)) {
+                    if ((valueField.getText().trim().equals("false") || valueField.getText().trim()
+                            .equals("true")) && variableField.getText().trim().matches(variableFieldRegEx)) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("double")) {
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
+                    if (valueField.getText().trim().matches("^\\d*\\.\\d+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^\\d*\\.\\d+") && upperBoundField.getText().trim()
+                                .matches("^\\d*\\.\\d+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
                 } else {
-                    if (variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && valueField.getText().trim().matches("^[0-9]+")
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
+                    if (variableField.getText().trim().matches(variableFieldRegEx) && valueField.getText()
+                            .trim().matches("^[0-9]+") && lowerBoundField.getText().trim().matches("^[0-9]+")
+                        && upperBoundField.getText().trim().matches("^[0-9]+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
                 }
@@ -1693,79 +1523,61 @@ public class JtreeToGraph {
 
                 if (selectedType.equals("boolean")) {
 
-                    if ((valueField.getText().trim().equals("false") ||
-                            valueField.getText().trim().equals("true"))
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)) {
+                    if ((valueField.getText().trim().equals("false") || valueField.getText().trim()
+                            .equals("true")) && variableField.getText().trim().matches(variableFieldRegEx)) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("int")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
+                    if (valueField.getText().trim().matches("^[0-9]+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^[0-9]+") && upperBoundField.getText().trim().matches("^[0-9]+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("float")) {
 
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
+                    if (valueField.getText().trim().matches("^\\d*\\.\\d+") && variableField.getText().trim()
                             .matches(variableFieldRegEx) // "^[a-z,A-Z]+"
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
+                        && lowerBoundField.getText().trim().matches("^\\d*\\.\\d+") && upperBoundField
+                                .getText().trim().matches("^\\d*\\.\\d+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("double")) {
 
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
+                    if (valueField.getText().trim().matches("^\\d*\\.\\d+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^\\d*\\.\\d+") && upperBoundField.getText().trim()
+                                .matches("^\\d*\\.\\d+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("string")) {
 
-                    if (valueField.getText().trim().matches(variableFieldRegEx)
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)) {
+                    if (valueField.getText().trim().matches(variableFieldRegEx) && variableField.getText()
+                            .trim().matches(variableFieldRegEx)) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
                 }
@@ -1792,52 +1604,38 @@ public class JtreeToGraph {
 
                 if (selectedType.equals("float")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
+                    if (valueField.getText().trim().matches("^[0-9]+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^[0-9]+") && upperBoundField.getText().trim().matches("^[0-9]+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("int")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
+                    if (valueField.getText().trim().matches("^[0-9]+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^[0-9]+") && upperBoundField.getText().trim().matches("^[0-9]+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("double")) {
 
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
+                    if (valueField.getText().trim().matches("^\\d*\\.\\d+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^\\d*\\.\\d+") && upperBoundField.getText().trim()
+                                .matches("^\\d*\\.\\d+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
@@ -1875,52 +1673,38 @@ public class JtreeToGraph {
 
                 if (selectedType.equals("float")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
+                    if (valueField.getText().trim().matches("^[0-9]+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^[0-9]+") && upperBoundField.getText().trim().matches("^[0-9]+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("int")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
+                    if (valueField.getText().trim().matches("^[0-9]+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^[0-9]+") && upperBoundField.getText().trim().matches("^[0-9]+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
                 } else if (selectedType.equals("double")) {
 
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
+                    if (valueField.getText().trim().matches("^\\d*\\.\\d+") && variableField.getText().trim()
+                            .matches(variableFieldRegEx) && lowerBoundField.getText().trim()
+                                .matches("^\\d*\\.\\d+") && upperBoundField.getText().trim()
+                                .matches("^\\d*\\.\\d+")) {
                         errorLabelField.setVisible(false);
                     } else {
                         errorLabelField.setVisible(true);
-                        errorLabelField
-                                .setText("Invalid Input. Check All Values.");
+                        errorLabelField.setText("Invalid Input. Check All Values.");
 
                     }
 
@@ -1945,14 +1729,13 @@ public class JtreeToGraph {
             }
         });
 
-        Object[] message = {"Variable Name:", variableField, "Variable Type:",
-                variableTypeField, "Default Value:",
-                valueField, "Lower Bound:", lowerBoundField, "Upper Bound:",
-                upperBoundField, " ", errorLabelField};
+        Object[] message =
+                {"Variable Name:", variableField, "Variable Type:", variableTypeField, "Default Value:",
+                        valueField, "Lower Bound:", lowerBoundField, "Upper Bound:", upperBoundField, " ",
+                        errorLabelField};
 
         int option = JOptionPane
-                .showConfirmDialog(PESEditor.framew, message, "Please Enter",
-                        JOptionPane.OK_CANCEL_OPTION,
+                .showConfirmDialog(PESEditor.framew, message, "Please Enter", JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.PLAIN_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
@@ -1981,23 +1764,19 @@ public class JtreeToGraph {
 
             // added inside IF block so that if variable window closed without adding then
             // nothing will happen.
-            if (variableTypeField.getSelectedItem().toString().trim()
-                    .equals("string")
-                    || variableTypeField.getSelectedItem().toString().trim()
-                    .equals("boolean")) {
-                variableName =
-                        variableName + "," + variableType + "," + variableValue;
+            if (variableTypeField.getSelectedItem().toString().trim().equals("string") || variableTypeField
+                    .getSelectedItem().toString().trim().equals("boolean")) {
+                variableName = variableName + "," + variableType + "," + variableValue;
             } else {
-                variableName = variableName + "," + variableType + "," +
-                        variableValue + "," + variableLowerBound + ","
-                        + variableUpperBound;
+                variableName =
+                        variableName + "," + variableType + "," + variableValue + "," + variableLowerBound
+                        + "," + variableUpperBound;
             }
 
-            boolean validInput = (variableField.getText() != null) &&
-                    (!variableField.getText().trim().isEmpty())
-                    && (variableTypeField.getSelectedItem() != null)
-                    && (!variableTypeField.getSelectedItem().toString().trim()
-                    .isEmpty());
+            boolean validInput =
+                    (variableField.getText() != null) && (!variableField.getText().trim().isEmpty()) && (
+                            variableTypeField.getSelectedItem() != null) && (!variableTypeField
+                            .getSelectedItem().toString().trim().isEmpty());
             //&& (valueField.getText() != null) && (!valueField.getText().trim().isEmpty());
             // && (lowerBoundField.getText() != null) &&
             // (!lowerBoundField.getText().trim().isEmpty())
@@ -2005,8 +1784,7 @@ public class JtreeToGraph {
             // (!upperBoundField.getText().trim().isEmpty());
 
             if (!validInput) {
-                JOptionPane.showMessageDialog(PESEditor.framew,
-                        "Please input all values correctly.");
+                JOptionPane.showMessageDialog(PESEditor.framew, "Please input all values correctly.");
             }
 
             // end of multiple input for variable----------------------------
@@ -2024,8 +1802,7 @@ public class JtreeToGraph {
 
                 String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-                TreePath treePathForVariable =
-                        PESEditor.getTreeNodePath(stringArrayRev);
+                TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
                 DynamicTree.varMap.put(treePathForVariable, variableName);
 
@@ -2040,8 +1817,7 @@ public class JtreeToGraph {
 
     // recursive function for finding child nodes
 
-    public void addVariableFromScenarioTableForUpdate(
-            mxCell cellForAddingVariable, String variableName) {
+    public void addVariableFromScenarioTableForUpdate(mxCell cellForAddingVariable, String variableName) {
 
         // end of multiple input for variable----------------------------
 
@@ -2061,8 +1837,7 @@ public class JtreeToGraph {
         // System.out.println(stringArrayRev[i]);
         // }
 
-        TreePath treePathForVariable =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
         DynamicTree.varMap.put(treePathForVariable, variableName);
         /*
@@ -2092,16 +1867,15 @@ public class JtreeToGraph {
         Object[] message = {"Constraint:", constraintsField};
 
         int option = JOptionPane
-                .showConfirmDialog(PESEditor.framew, message, "Please Enter",
-                        JOptionPane.OK_CANCEL_OPTION,
+                .showConfirmDialog(PESEditor.framew, message, "Please Enter", JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.PLAIN_MESSAGE);
         if (option == JOptionPane.OK_OPTION) {
             // DynamicTreeDemo.treePanel.constraintsList.add(constraintsField.getText());
             // DynamicTreeDemo.scenarioConstraint.showConstraintsInTable();
             String constraints = constraintsField.getText();
 
-            boolean validInput = (constraintsField.getText() != null) &&
-                    (!constraintsField.getText().trim().isEmpty());
+            boolean validInput =
+                    (constraintsField.getText() != null) && (!constraintsField.getText().trim().isEmpty());
 
             if (validInput) {
                 mxCell cellForAddingVariable = (mxCell) pos;
@@ -2117,11 +1891,9 @@ public class JtreeToGraph {
 
                 String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-                TreePath treePathForVariable =
-                        PESEditor.getTreeNodePath(stringArrayRev);
+                TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
-                DynamicTree.constraintsList
-                        .put(treePathForVariable, constraints);
+                DynamicTree.constraintsList.put(treePathForVariable, constraints);
 
                 pathToRoot.clear();
 
@@ -2132,9 +1904,8 @@ public class JtreeToGraph {
         }
     }
 
-    public void deleteConstraintFromScenarioTableForUpdate(
-            mxCell cellForAddingVariable, String variableName,
-            String variableNameNew) {
+    public void deleteConstraintFromScenarioTableForUpdate(mxCell cellForAddingVariable, String variableName,
+                                                           String variableNameNew) {
         // String variableName = JOptionPane.showInputDialog(DynamicTreeDemo.framew,
         // "Variable Name:", "New Variable",JOptionPane.INFORMATION_MESSAGE);
 
@@ -2158,12 +1929,10 @@ public class JtreeToGraph {
             // System.out.println(stringArrayRev[i]);
             // }
 
-            TreePath treePathForVariable =
-                    PESEditor.getTreeNodePath(stringArrayRev);
+            TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (treePathForVariable
-                            .getLastPathComponent());
+                    (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
             TreeNode[] nodes = currentNode.getPath();
 
             // DynamicTree.varMap.put(treePathForVariable, variableName);
@@ -2173,8 +1942,7 @@ public class JtreeToGraph {
             TreePath keyDel = null;
             for (TreePath key : DynamicTree.constraintsList.keySet()) {
                 int a = 0;
-                DefaultMutableTreeNode currentNode2 =
-                        (DefaultMutableTreeNode) (key.getLastPathComponent());
+                DefaultMutableTreeNode currentNode2 = (DefaultMutableTreeNode) (key.getLastPathComponent());
                 // System.out.println(currentNode2.toString());
                 TreeNode[] nodes2 = currentNode2.getPath();
 
@@ -2194,8 +1962,7 @@ public class JtreeToGraph {
                     for (String value : DynamicTree.constraintsList.get(key)) {
                         if (value.equals(variableName)) {
                             yv = 1;
-                            keyDel =
-                                    key; // to avoid java.util.ConcurrentModificationException
+                            keyDel = key; // to avoid java.util.ConcurrentModificationException
                         }
                     }
                 }
@@ -2203,14 +1970,12 @@ public class JtreeToGraph {
             }
             if (yv == 1) {
                 // DynamicTree.varMap.asMap().remove(keyDel);
-                DynamicTree.constraintsList.remove(keyDel,
-                        variableName);// for removing only one values
+                DynamicTree.constraintsList.remove(keyDel, variableName); // for removing only one values
                 yv = 0;
             }
 
             // have to call a function to refresh the table view
-            DynamicTree.constraintsList
-                    .put(treePathForVariable, variableNameNew);
+            DynamicTree.constraintsList.put(treePathForVariable, variableNameNew);
             // ---------------------------------------------------end
 
             pathToRoot.clear();
@@ -2220,9 +1985,8 @@ public class JtreeToGraph {
         }
     }
 
-    public void deleteVariableFromScenarioTableForUpdate(
-            mxCell cellForAddingVariable, String variableName,
-            String variableNameNew) {
+    public void deleteVariableFromScenarioTableForUpdate(mxCell cellForAddingVariable, String variableName,
+                                                         String variableNameNew) {
         // String variableName = JOptionPane.showInputDialog(DynamicTreeDemo.framew,
         // "Variable Name:", "New Variable",JOptionPane.INFORMATION_MESSAGE);
 
@@ -2246,12 +2010,10 @@ public class JtreeToGraph {
             // System.out.println(stringArrayRev[i]);
             // }
 
-            TreePath treePathForVariable =
-                    PESEditor.getTreeNodePath(stringArrayRev);
+            TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (treePathForVariable
-                            .getLastPathComponent());
+                    (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
             TreeNode[] nodes = currentNode.getPath();
 
             // DynamicTree.varMap.put(treePathForVariable, variableName);
@@ -2261,8 +2023,7 @@ public class JtreeToGraph {
             TreePath keyDel = null;
             for (TreePath key : DynamicTree.varMap.keySet()) {
                 int a = 0;
-                DefaultMutableTreeNode currentNode2 =
-                        (DefaultMutableTreeNode) (key.getLastPathComponent());
+                DefaultMutableTreeNode currentNode2 = (DefaultMutableTreeNode) (key.getLastPathComponent());
                 // System.out.println(currentNode2.toString());
                 TreeNode[] nodes2 = currentNode2.getPath();
 
@@ -2282,8 +2043,7 @@ public class JtreeToGraph {
                     for (String value : DynamicTree.varMap.get(key)) {
                         if (value.equals(variableName)) {
                             yv = 1;
-                            keyDel =
-                                    key; // to avoid java.util.ConcurrentModificationException
+                            keyDel = key; // to avoid java.util.ConcurrentModificationException
                         }
                     }
                 }
@@ -2291,8 +2051,7 @@ public class JtreeToGraph {
             }
             if (yv == 1) {
                 // DynamicTree.varMap.asMap().remove(keyDel);
-                DynamicTree.varMap.remove(keyDel,
-                        variableName);// for removing only one values
+                DynamicTree.varMap.remove(keyDel, variableName); // for removing only one values
                 yv = 0;
             }
 
@@ -2302,8 +2061,7 @@ public class JtreeToGraph {
 
             pathToRoot.clear();
 
-            addVariableFromScenarioTableForUpdate(cellForAddingVariable,
-                    variableNameNew);
+            addVariableFromScenarioTableForUpdate(cellForAddingVariable, variableNameNew);
 
         }
     }
@@ -2327,8 +2085,7 @@ public class JtreeToGraph {
 
         String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-        TreePath treePathForVariable =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
         int b = 0;
         String[] nodesToSelectedNode = new String[100];
@@ -2337,8 +2094,7 @@ public class JtreeToGraph {
 
         if (!(treePathForVariable == null)) {
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (treePathForVariable
-                            .getLastPathComponent());
+                    (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
 
             TreeNode[] nodes = currentNode.getPath();
 
@@ -2348,16 +2104,14 @@ public class JtreeToGraph {
                 for (String value : DynamicTree.varMap.get(key)) {
 
                     DefaultMutableTreeNode currentNode2 =
-                            (DefaultMutableTreeNode) (key
-                                    .getLastPathComponent());
+                            (DefaultMutableTreeNode) (key.getLastPathComponent());
 
                     TreeNode[] nodes2 = currentNode2.getPath();
 
                     if (nodes.length == nodes2.length) {
                         for (int i = 0; i < nodes.length; i++) {
 
-                            if (nodes[i].toString()
-                                    .equals(nodes2[i].toString())) {
+                            if (nodes[i].toString().equals(nodes2[i].toString())) {
                                 a = 1;
 
                             } else {
@@ -2377,8 +2131,7 @@ public class JtreeToGraph {
         }
 
         // java 8 way null removal
-        nodesToSelectedNode = Arrays.stream(nodesToSelectedNode)
-                .filter(s -> (s != null && s.length() > 0))
+        nodesToSelectedNode = Arrays.stream(nodesToSelectedNode).filter(s -> (s != null && s.length() > 0))
                 .toArray(String[]::new);
 
         JComboBox variableList = new JComboBox(nodesToSelectedNode);
@@ -2386,8 +2139,7 @@ public class JtreeToGraph {
 
             @Override
             public void itemStateChanged(ItemEvent e) {
-                selectedVariable =
-                        variableList.getSelectedItem().toString().trim();
+                selectedVariable = variableList.getSelectedItem().toString().trim();
 
             }
         });
@@ -2395,8 +2147,7 @@ public class JtreeToGraph {
         Object[] message = {"Variable:", variableList};
 
         int option = JOptionPane
-                .showConfirmDialog(PESEditor.framew, message, "Please Select",
-                        JOptionPane.OK_CANCEL_OPTION,
+                .showConfirmDialog(PESEditor.framew, message, "Please Select", JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.PLAIN_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
@@ -2408,8 +2159,7 @@ public class JtreeToGraph {
             if ((variableName != null) && (!variableName.trim().isEmpty())) {
 
                 DefaultMutableTreeNode currentNode =
-                        (DefaultMutableTreeNode) (treePathForVariable
-                                .getLastPathComponent());
+                        (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
                 TreeNode[] nodes = currentNode.getPath();
 
                 int yv = 0;
@@ -2417,16 +2167,14 @@ public class JtreeToGraph {
                 for (TreePath key : DynamicTree.varMap.keySet()) {
                     int a = 0;
                     DefaultMutableTreeNode currentNode2 =
-                            (DefaultMutableTreeNode) (key
-                                    .getLastPathComponent());
+                            (DefaultMutableTreeNode) (key.getLastPathComponent());
 
                     TreeNode[] nodes2 = currentNode2.getPath();
 
                     if (nodes.length == nodes2.length) {
                         for (int i = 0; i < nodes.length; i++) {
 
-                            if (nodes[i].toString()
-                                    .equals(nodes2[i].toString())) {
+                            if (nodes[i].toString().equals(nodes2[i].toString())) {
                                 a = 1;
 
                             } else {
@@ -2439,8 +2187,7 @@ public class JtreeToGraph {
                         for (String value : DynamicTree.varMap.get(key)) {
                             if (value.equals(variableName)) {
                                 yv = 1;
-                                keyDel =
-                                        key; // to avoid java.util.ConcurrentModificationException
+                                keyDel = key; // to avoid java.util.ConcurrentModificationException
                             }
                         }
                     }
@@ -2448,8 +2195,7 @@ public class JtreeToGraph {
                 }
                 if (yv == 1) {
                     // DynamicTree.varMap.asMap().remove(keyDel);
-                    DynamicTree.varMap.remove(keyDel,
-                            variableName);// for removing only one values
+                    DynamicTree.varMap.remove(keyDel, variableName); // for removing only one values
                     yv = 0;
                 }
 
@@ -2487,12 +2233,10 @@ public class JtreeToGraph {
         // System.out.println(stringArrayRev[i]);
         // }
 
-        TreePath treePathForVariable =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
         DefaultMutableTreeNode currentNode =
-                (DefaultMutableTreeNode) (treePathForVariable
-                        .getLastPathComponent());
+                (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
         TreeNode[] nodes = currentNode.getPath();
 
         // DynamicTree.varMap.put(treePathForVariable, variableName);
@@ -2505,8 +2249,7 @@ public class JtreeToGraph {
         for (TreePath key : DynamicTree.varMap.keySet()) {
 
             int a = 0;
-            DefaultMutableTreeNode currentNode2 =
-                    (DefaultMutableTreeNode) (key.getLastPathComponent());
+            DefaultMutableTreeNode currentNode2 = (DefaultMutableTreeNode) (key.getLastPathComponent());
             // System.out.println(currentNode2.toString());
             TreeNode[] nodes2 = currentNode2.getPath();
 
@@ -2561,12 +2304,10 @@ public class JtreeToGraph {
         // System.out.println(stringArrayRev[i]);
         // }
 
-        TreePath treePathForVariable =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
         DefaultMutableTreeNode currentNode =
-                (DefaultMutableTreeNode) (treePathForVariable
-                        .getLastPathComponent());
+                (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
         TreeNode[] nodes = currentNode.getPath();
 
         // DynamicTree.varMap.put(treePathForVariable, variableName);
@@ -2579,8 +2320,7 @@ public class JtreeToGraph {
         for (TreePath key : DynamicTree.constraintsList.keySet()) {
 
             int a = 0;
-            DefaultMutableTreeNode currentNode2 =
-                    (DefaultMutableTreeNode) (key.getLastPathComponent());
+            DefaultMutableTreeNode currentNode2 = (DefaultMutableTreeNode) (key.getLastPathComponent());
             // System.out.println(currentNode2.toString());
             TreeNode[] nodes2 = currentNode2.getPath();
 
@@ -2618,8 +2358,7 @@ public class JtreeToGraph {
     // for solving sequence problem--------------------------------------
     public void rootToEndNodeSequenceSolve() {
 
-        Object[] cells = graph.getChildVertices(
-                graph.getDefaultParent()); // getSelectionCells();
+        Object[] cells = graph.getChildVertices(graph.getDefaultParent()); // getSelectionCells();
 
         mxCell rootcell = null;
 
@@ -2646,12 +2385,11 @@ public class JtreeToGraph {
         Object[] outgoing = graph.getOutgoingEdges(cell);
 
         for (int j = 0; j < outgoing.length; j++) {
-            Object targetCellTT =
-                    graph.getModel().getTerminal(outgoing[j], false);
+            Object targetCellTT = graph.getModel().getTerminal(outgoing[j], false);
             mxCell targetCell2TT = (mxCell) targetCellTT;
             // System.out.println(targetCell2TT.getValue());
-            if (targetCell2TT.getValue().toString().endsWith("Spec")
-                    || targetCell2TT.getValue().toString().endsWith("Dec")) {
+            if (targetCell2TT.getValue().toString().endsWith("Spec") || targetCell2TT.getValue().toString()
+                    .endsWith("Dec")) {
                 specDecCount++;
             }
         }
@@ -2685,8 +2423,7 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 mxCell targetCell2 = (mxCell) targetCell;
                 nextChild(targetCell2);
 
@@ -2711,8 +2448,7 @@ public class JtreeToGraph {
         // for sub tree generation i can use that
         // graph.getChildVertices(graph.getDefaultParent()) later
 
-        Object[] cells = graph.getChildVertices(
-                graph.getDefaultParent()); // getSelectionCells();
+        Object[] cells = graph.getChildVertices(graph.getDefaultParent()); // getSelectionCells();
 
         mxCell rootcell = null;
 
@@ -2748,17 +2484,14 @@ public class JtreeToGraph {
         Object[] outgoing = graph.getOutgoingEdges(cell);
 
         if (outgoing.length > 0) {
-            for (int i = 0; i < outgoing.length && nodeReached != totalNodes;
-                 i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+            for (int i = 0; i < outgoing.length && nodeReached != totalNodes; i++) {
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
 
                 // for next call
                 mxCell targetCell2 = (mxCell) targetCell;
                 // System.out.println(targetCell2.getValue());
                 // System.out.println(nodesToSelectedNode[nodeReached]);
-                if (targetCell2.getValue()
-                        .equals(nodesToSelectedNode[nodeReached])) {
+                if (targetCell2.getValue().equals(nodesToSelectedNode[nodeReached])) {
                     // call to find next match child node on the path
                     nodeReached++;
                     // System.out.println("lastNodeInPath:" + targetCell2.getValue());
@@ -2830,8 +2563,7 @@ public class JtreeToGraph {
         // for sub tree generation i can use that
         // graph.getChildVertices(graph.getDefaultParent()) later
 
-        Object[] cells = graph.getChildVertices(
-                graph.getDefaultParent()); // getSelectionCells();
+        Object[] cells = graph.getChildVertices(graph.getDefaultParent()); // getSelectionCells();
 
         mxCell rootcell = null;
 
@@ -2850,8 +2582,7 @@ public class JtreeToGraph {
         Document calendarDOMDoc = null;
         try {
             DOMImplementation domImpl =
-                    DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                            .getDOMImplementation();
+                    DocumentBuilderFactory.newInstance().newDocumentBuilder().getDOMImplementation();
 
             calendarDOMDoc = domImpl.createDocument(null, "start", null);
 
@@ -2861,14 +2592,12 @@ public class JtreeToGraph {
             e2.printStackTrace(System.err);
         }
 
-        calendarDOMDoc.getDocumentElement()
-                .appendChild(childNodes(calendarDOMDoc, rootcell));
+        calendarDOMDoc.getDocumentElement().appendChild(childNodes(calendarDOMDoc, rootcell));
 
         try {
             saveToXMLFile(calendarDOMDoc,
-                    PESEditor.fileLocation + "/" + PESEditor.projName +
-                            "/graphxml.xml");
-            // modifyXmlOutput();// to make it perfect so that it can transer to
+                    PESEditor.fileLocation + "/" + PESEditor.projName + "/graphxml.xml");
+            // modifyXmlOutput(); // to make it perfect so that it can transer to
             // JTree again
             // JOptionPane.showMessageDialog(DynamicTreeDemo.framew, "Scenario Converted
             // Successfully.", "Jtree to XML",
@@ -2876,8 +2605,7 @@ public class JtreeToGraph {
             // JOptionPane.showMessageDialog(frame, "Problem Occured",
             // "Error",JOptionPane.INFORMATION_MESSAGE);
         } catch (TransformerException ex) {
-            Logger.getLogger(PESEditor.class.getName())
-                    .log(Level.SEVERE, null, ex);
+            Logger.getLogger(PESEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         modifyXmlOutput();
@@ -2896,8 +2624,7 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 // values[i] = graph.getModel().getValue(targetCell);
                 // System.out.println("Parent:"+cell.getValue()+"<--->Child:"+graph.getModel().getValue(targetCell));
                 // System.out.println("</" +
@@ -2919,8 +2646,7 @@ public class JtreeToGraph {
         // for sub tree generation i can use that
         // graph.getChildVertices(graph.getDefaultParent()) later
 
-        Object[] cells = graph.getChildVertices(
-                graph.getDefaultParent()); // getSelectionCells();
+        Object[] cells = graph.getChildVertices(graph.getDefaultParent()); // getSelectionCells();
 
         mxCell rootcell = null;
 
@@ -2939,8 +2665,7 @@ public class JtreeToGraph {
         Document calendarDOMDoc = null;
         try {
             DOMImplementation domImpl =
-                    DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                            .getDOMImplementation();
+                    DocumentBuilderFactory.newInstance().newDocumentBuilder().getDOMImplementation();
 
             calendarDOMDoc = domImpl.createDocument(null, "start", null);
 
@@ -2950,14 +2675,12 @@ public class JtreeToGraph {
             e2.printStackTrace(System.err);
         }
 
-        calendarDOMDoc.getDocumentElement().appendChild(
-                childNodesWithUniformity(calendarDOMDoc, rootcell));
+        calendarDOMDoc.getDocumentElement().appendChild(childNodesWithUniformity(calendarDOMDoc, rootcell));
 
         try {
             saveToXMLFile(calendarDOMDoc,
-                    PESEditor.fileLocation + "/" + PESEditor.projName +
-                            "/graphxmluniformity.xml");
-            // modifyXmlOutput();// to make it perfect so that it can transer to
+                    PESEditor.fileLocation + "/" + PESEditor.projName + "/graphxmluniformity.xml");
+            // modifyXmlOutput(); // to make it perfect so that it can transer to
             // JTree again
             // JOptionPane.showMessageDialog(DynamicTreeDemo.framew, "Scenario Converted
             // Successfully.", "Jtree to XML",
@@ -2965,8 +2688,7 @@ public class JtreeToGraph {
             // JOptionPane.showMessageDialog(frame, "Problem Occured",
             // "Error",JOptionPane.INFORMATION_MESSAGE);
         } catch (TransformerException ex) {
-            Logger.getLogger(PESEditor.class.getName())
-                    .log(Level.SEVERE, null, ex);
+            Logger.getLogger(PESEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         modifyXmlOutput();
@@ -2985,21 +2707,19 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
 
                 mxCell targetCell2 = (mxCell) targetCell;
 
-                if (targetCell2.getId().toString().startsWith("uniformity")) {
-                    if (targetCell2.getId().toString().endsWith("RefNode")) {
+                if (targetCell2.getId().startsWith("uniformity")) {
+                    if (targetCell2.getId().endsWith("RefNode")) {
 
                     } else {
                         continue;
                     }
 
                 } else {
-                    thisElement.appendChild(
-                            childNodesWithUniformity(thisDoc, targetCell2));
+                    thisElement.appendChild(childNodesWithUniformity(thisDoc, targetCell2));
                 }
             }
         }
@@ -3018,10 +2738,8 @@ public class JtreeToGraph {
         PrintWriter f0 = null;
         try {
             // f0 = new PrintWriter(new FileWriter("runtimefiles/outputgraphxml.xml"));
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            PESEditor.fileLocation + "/" + PESEditor.projName +
-                                    "/outputgraphxmlforxsdvar.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    PESEditor.fileLocation + "/" + PESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -3031,8 +2749,7 @@ public class JtreeToGraph {
         Scanner in = null;
         try {
             in = new Scanner(new File(
-                    PESEditor.fileLocation + "/" + PESEditor.projName +
-                            "/outputgraphxmlforxsd.xml"));
+                    PESEditor.fileLocation + "/" + PESEditor.projName + "/outputgraphxmlforxsd.xml"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -3081,10 +2798,8 @@ public class JtreeToGraph {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(
-                    new FileWriter(
-                            PESEditor.fileLocation + "/" + PESEditor.projName +
-                                    "/outputgraphxmlforxsd.xml"));
+            f0 = new PrintWriter(new FileWriter(
+                    PESEditor.fileLocation + "/" + PESEditor.projName + "/outputgraphxmlforxsd.xml"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -3093,9 +2808,8 @@ public class JtreeToGraph {
 
         Scanner in = null;
         try {
-            in = new Scanner(
-                    new File(PESEditor.fileLocation + "/" + PESEditor.projName +
-                            "/outputgraphxmlforxsdvar.xml"));
+            in = new Scanner(new File(
+                    PESEditor.fileLocation + "/" + PESEditor.projName + "/outputgraphxmlforxsdvar.xml"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -3118,9 +2832,8 @@ public class JtreeToGraph {
 
         PrintWriter f0 = null;
         try {
-            f0 = new PrintWriter(new FileWriter(
-                    PESEditor.fileLocation + "/" + PESEditor.projName +
-                            "/xmlforxsd.xml"));
+            f0 = new PrintWriter(
+                    new FileWriter(PESEditor.fileLocation + "/" + PESEditor.projName + "/xmlforxsd.xml"));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -3128,8 +2841,7 @@ public class JtreeToGraph {
         Scanner in = null;
         try {
             in = new Scanner(new File(
-                    PESEditor.fileLocation + "/" + PESEditor.projName +
-                            "/outputgraphxmlforxsd.xml"));
+                    PESEditor.fileLocation + "/" + PESEditor.projName + "/outputgraphxmlforxsd.xml"));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -3141,16 +2853,14 @@ public class JtreeToGraph {
 
             String mod = null;
             String line = in.nextLine();
-            // String result1 = line.replaceAll("\\s+", "");// for deleting space before
+            // String result1 = line.replaceAll("\\s+", ""); // for deleting space before
             // each entity because of xml
             // indentation
 
             // line = result1;
 
-            if (line.startsWith(
-                    "<?")) { // have to solve space problem for this line
-                f0.println(
-                        "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
+            if (line.startsWith("<?")) { // have to solve space problem for this line
+                f0.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>");
 
             } else if (line.startsWith("</")) {
                 String result = line.replaceAll("[</>]", "");
@@ -3182,19 +2892,15 @@ public class JtreeToGraph {
                         // System.out.println(novarresult);
 
                         String[] properties = novarresult.split(",");
-                        if (properties[1].toString().equals("string") ||
-                                properties[1].toString().equals("boolean")) {
+                        if (properties[1].equals("string") || properties[1].equals("boolean")) {
 
-                            f0.println("<var name=\"" + properties[0] + "\" " +
-                                    "default=\"" + properties[2]
-                                    + "\"></var>");
+                            f0.println("<var name=\"" + properties[0] + "\" " + "default=\"" + properties[2]
+                                       + "\"></var>");
                         } else {
 
-                            f0.println("<var name=\"" + properties[0] + "\" " +
-                                    "default=\"" + properties[2] + "\" "
-                                    + "lower=\"" + properties[3] + "\" " +
-                                    "upper=\"" + properties[4] + "\" "
-                                    + "></var>");
+                            f0.println("<var name=\"" + properties[0] + "\" " + "default=\"" + properties[2]
+                                       + "\" " + "lower=\"" + properties[3] + "\" " + "upper=\""
+                                       + properties[4] + "\" " + "></var>");
 
                         }
 
@@ -3202,21 +2908,18 @@ public class JtreeToGraph {
                         String noRefNoderesult = result.replace("RefNode", "");
 
                         if (noRefNoderesult.endsWith("Dec")) {
-                            f0.println("<aspect name=\"" + noRefNoderesult +
-                                    "\" ref=\"" + noRefNoderesult + "\"/>");
+                            f0.println("<aspect name=\"" + noRefNoderesult + "\" ref=\"" + noRefNoderesult
+                                       + "\"/>");
                         } else if (noRefNoderesult.endsWith("MAsp")) {
                             f0.println(
-                                    "<multiAspect name=\"" + noRefNoderesult +
-                                            "\" ref=\"" + noRefNoderesult +
-                                            "\"/>");
-                        } else if (noRefNoderesult.endsWith("Spec")) {
-                            f0.println("<specialization name=\"" +
-                                    noRefNoderesult + "\" ref=\"" +
-                                    noRefNoderesult
+                                    "<multiAspect name=\"" + noRefNoderesult + "\" ref=\"" + noRefNoderesult
                                     + "\"/>");
+                        } else if (noRefNoderesult.endsWith("Spec")) {
+                            f0.println("<specialization name=\"" + noRefNoderesult + "\" ref=\""
+                                       + noRefNoderesult + "\"/>");
                         } else {
-                            f0.println("<entity name=\"" + noRefNoderesult +
-                                    "\" ref=\"" + noRefNoderesult + "\"/>");
+                            f0.println("<entity name=\"" + noRefNoderesult + "\" ref=\"" + noRefNoderesult
+                                       + "\"/>");
                         }
 
                     } else {
@@ -3235,13 +2938,9 @@ public class JtreeToGraph {
                         mod = "<specialization name=\"" + result + "\">";
                     } else {
                         if (first == 0) {
-                            mod =
-                                    "<entity xmlns:vc=\"http://www.w3.org/2007/XMLSchema-versioning\""
-                                            +
-                                            " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
-                                            +
-                                            " xsi:noNamespaceSchemaLocation=\"ses.xsd\" name=\"" +
-                                            result + "\">";
+                            mod = "<entity xmlns:vc=\"http://www.w3.org/2007/XMLSchema-versioning\""
+                                  + " xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
+                                  + " xsi:noNamespaceSchemaLocation=\"ses.xsd\" name=\"" + result + "\">";
                             first = 1;
                         } else {
                             if (result.endsWith("Seq")) {
@@ -3265,8 +2964,7 @@ public class JtreeToGraph {
         f0.close();
     }
 
-    public void addNodeWithJtreeAddition(String nodeName,
-                                         String[] nodesToSelectedNode) {
+    public void addNodeWithJtreeAddition(String nodeName, String[] nodesToSelectedNode) {
 
         mxCell selectedCell = rootToSelectedNode(nodesToSelectedNode);
 
@@ -3280,8 +2978,7 @@ public class JtreeToGraph {
 
         if (len > 0) {
 
-            Object targetCell =
-                    graph.getModel().getTerminal(outgoing[len - 1], false);
+            Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
             selectedCellNew = (mxCell) targetCell;
             x = selectedCellNew.getGeometry().getX();
             y = selectedCellNew.getGeometry().getY();
@@ -3303,39 +3000,28 @@ public class JtreeToGraph {
         graph.getModel().beginUpdate();
         try {
             if (nodeName.endsWith("Dec")) {
-                Object obj =
-                        graph.insertVertex(parent, null, nodeName, x + 25, y,
-                                30, 30, "Aspect");
+                Object obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Aspect");
                 graph.insertEdge(parent, null, "", selectedCell, obj);
-                lastAddedCell =
-                        null;// so that it will not cause duplicate addition in tree
+                lastAddedCell = null; // so that it will not cause duplicate addition in tree
                 nodeNumber++;
 
             } else if (nodeName.endsWith("MAsp")) {
-                Object obj =
-                        graph.insertVertex(parent, null, nodeName, x + 25, y,
-                                30, 30, "Multiaspect");
+                Object obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Multiaspect");
                 graph.insertEdge(parent, null, "", selectedCell, obj);
-                lastAddedCell =
-                        null;// so that it will not cause duplicate addition in tree
+                lastAddedCell = null; // so that it will not cause duplicate addition in tree
                 nodeNumber++;
 
             } else if (nodeName.endsWith("Spec")) {
-                Object obj =
-                        graph.insertVertex(parent, null, nodeName, x + 25, y,
-                                30, 30, "Specialization");
+                Object obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Specialization");
                 graph.insertEdge(parent, null, "", selectedCell, obj);
-                lastAddedCell =
-                        null;// so that it will not cause duplicate addition in tree
+                lastAddedCell = null; // so that it will not cause duplicate addition in tree
                 nodeNumber++;
 
             } else /* if (DynamicTreeDemo.nodeAddDetector.equals("entity")) */ {
-                Object obj =
-                        graph.insertVertex(parent, null, nodeName, x, y, 80, 30,
-                                "Entity");// "Aspect;fillColor=#0759cf;strokeColor=white;");
+                Object obj = graph.insertVertex(parent, null, nodeName, x, y, 80, 30,
+                        "Entity"); // "Aspect;fillColor=#0759cf;strokeColor=white;");
                 graph.insertEdge(parent, null, "", selectedCell, obj);
-                lastAddedCell =
-                        null;// so that it will not cause duplicate addition in tree
+                lastAddedCell = null; // so that it will not cause duplicate addition in tree
                 nodeNumber++;
 
             }
@@ -3363,8 +3049,7 @@ public class JtreeToGraph {
 
             if (len > 0) {
 
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[len - 1], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
                 selectedCellNew = (mxCell) targetCell;
                 x = selectedCellNew.getGeometry().getX();
                 y = selectedCellNew.getGeometry().getY();
@@ -3386,40 +3071,29 @@ public class JtreeToGraph {
             graph.getModel().beginUpdate();
             try {
                 if (nodeName.endsWith("Dec")) {
-                    Object obj =
-                            graph.insertVertex(parent, null, nodeName, x + 25,
-                                    y, 30, 30, "Aspect");
+                    Object obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Aspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null;// so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
 
                 } else if (nodeName.endsWith("MAsp")) {
-                    Object obj =
-                            graph.insertVertex(parent, null, nodeName, x + 25,
-                                    y, 30, 30, "Multiaspect");
+                    Object obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Multiaspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null;// so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
 
                 } else if (nodeName.endsWith("Spec")) {
                     Object obj =
-                            graph.insertVertex(parent, null, nodeName, x + 25,
-                                    y, 30, 30, "Specialization");
+                            graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Specialization");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null;// so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
 
                 } else /* if (DynamicTreeDemo.nodeAddDetector.equals("entity")) */ {
-                    Object obj =
-                            graph.insertVertex(parent, null, nodeName, x, y, 80,
-                                    30,
-                                    "Entity");// "Aspect;fillColor=#0759cf;strokeColor=white;");
+                    Object obj = graph.insertVertex(parent, null, nodeName, x, y, 80, 30,
+                            "Entity"); // "Aspect;fillColor=#0759cf;strokeColor=white;");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null;// so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
 
                 }
@@ -3441,12 +3115,10 @@ public class JtreeToGraph {
 
         JFileChooser fileChooser = new JFileChooser();
 
-        FileNameExtensionFilter xmlfilter =
-                new FileNameExtensionFilter("xml files (*.xml)", "xml");
+        FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
         fileChooser.setFileFilter(xmlfilter);
 
-        fileChooser.setCurrentDirectory(
-                new File(PESEditor.fileLocation + "/" + PESEditor.projName));
+        fileChooser.setCurrentDirectory(new File(PESEditor.fileLocation + "/" + PESEditor.projName));
         int result = fileChooser.showOpenDialog(PESEditor.framew);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
@@ -3463,8 +3135,7 @@ public class JtreeToGraph {
             String[] nodeNames = new String[100];
 
             try {
-                FileReader reader =
-                        new FileReader(selectedFile.getAbsolutePath());
+                FileReader reader = new FileReader(selectedFile.getAbsolutePath());
                 BufferedReader bufferedReader = new BufferedReader(reader);
 
                 String line;
@@ -3473,25 +3144,20 @@ public class JtreeToGraph {
 
                     if (line.startsWith("<?")) {
                         continue;
-                    } else if (line.startsWith("<start") ||
-                            line.startsWith("</start")) {
+                    } else if (line.startsWith("<start") || line.startsWith("</start")) {
                         continue;
                     } else if (line.startsWith("</")) {
                         parentCount--;
                     } else if (line.startsWith("<")) {
                         if (line.endsWith("/>")) {
                             String ln = line.replaceAll("[</>]", "");
-                            nodeNames[nodeCount] =
-                                    ln + "-" + parentNames[parentCount - 1] +
-                                            "-hasparent";
+                            nodeNames[nodeCount] = ln + "-" + parentNames[parentCount - 1] + "-hasparent";
                             nodeCount++;
                         } else {
                             String ln = line.replaceAll("[</>]", "");
 
                             if (parentCount > 0) {
-                                nodeNames[nodeCount] = ln + "-" +
-                                        parentNames[parentCount - 1] +
-                                        "-hasparent";
+                                nodeNames[nodeCount] = ln + "-" + parentNames[parentCount - 1] + "-hasparent";
                                 nodeCount++;
                             } else {
                                 nodeNames[nodeCount] = ln;
@@ -3543,8 +3209,7 @@ public class JtreeToGraph {
 
                 if (len > 0) {
 
-                    Object targetCell = graph.getModel()
-                            .getTerminal(outgoing[len - 1], false);
+                    Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
                     selectedCellNew = (mxCell) targetCell;
                     x = selectedCellNew.getGeometry().getX();
                     y = selectedCellNew.getGeometry().getY();
@@ -3566,44 +3231,36 @@ public class JtreeToGraph {
                 graph.getModel().beginUpdate();
                 try {
                     if (nodeName.endsWith("Dec")) {
-                        obj = graph.insertVertex(parent, null, nodeName, x + 25,
-                                y, 30, 30, "Aspect");
+                        obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Aspect");
                         graph.insertEdge(parent, null, "", selectedCell, obj);
-                        lastAddedCell =
-                                null;// so that it will not cause duplicate addition in tree
+                        lastAddedCell = null; // so that it will not cause duplicate addition in tree
                         nodeNumber++;
 
                         addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                     } else if (nodeName.endsWith("MAsp")) {
 
-                        obj = graph.insertVertex(parent, null, nodeName, x + 25,
-                                y, 30, 30, "Multiaspect");
+                        obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Multiaspect");
                         graph.insertEdge(parent, null, "", selectedCell, obj);
-                        lastAddedCell =
-                                null;// so that it will not cause duplicate addition in tree
+                        lastAddedCell = null; // so that it will not cause duplicate addition in tree
                         nodeNumber++;
 
                         addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                     } else if (nodeName.endsWith("Spec")) {
 
-                        obj = graph.insertVertex(parent, null, nodeName, x + 25,
-                                y, 30, 30, "Specialization");
+                        obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Specialization");
                         graph.insertEdge(parent, null, "", selectedCell, obj);
-                        lastAddedCell =
-                                null;// so that it will not cause duplicate addition in tree
+                        lastAddedCell = null; // so that it will not cause duplicate addition in tree
                         nodeNumber++;
 
                         addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                     } else /* if (DynamicTreeDemo.nodeAddDetector.equals("entity")) */ {
-                        obj = graph.insertVertex(parent, null, nodeName, x, y,
-                                80, 30,
-                                "Entity");// "Aspect;fillColor=#0759cf;strokeColor=white;");
+                        obj = graph.insertVertex(parent, null, nodeName, x, y, 80, 30,
+                                "Entity"); // "Aspect;fillColor=#0759cf;strokeColor=white;");
                         graph.insertEdge(parent, null, "", selectedCell, obj);
-                        lastAddedCell =
-                                null;// so that it will not cause duplicate addition in tree
+                        lastAddedCell = null; // so that it will not cause duplicate addition in tree
                         nodeNumber++;
 
                         addNodeIntoJtreeWithNewModuleAddition(selectedCell);
@@ -3649,8 +3306,7 @@ public class JtreeToGraph {
 
         try {
             FileReader reader = new FileReader(
-                    (PESEditor.fileLocation + "/" + PESEditor.projName + "/" +
-                            PESEditor.projName + ".xml"));
+                    (PESEditor.fileLocation + "/" + PESEditor.projName + "/" + PESEditor.projName + ".xml"));
             BufferedReader bufferedReader = new BufferedReader(reader);
 
             String line;
@@ -3659,25 +3315,20 @@ public class JtreeToGraph {
 
                 if (line.startsWith("<?")) {
                     continue;
-                } else if (line.startsWith("<start") ||
-                        line.startsWith("</start")) {
+                } else if (line.startsWith("<start") || line.startsWith("</start")) {
                     continue;
                 } else if (line.startsWith("</")) {
                     parentCount--;
                 } else if (line.startsWith("<")) {
                     if (line.endsWith("/>")) {
                         String ln = line.replaceAll("[</>]", "");
-                        nodeNames[nodeCount] =
-                                ln + "-" + parentNames[parentCount - 1] +
-                                        "-hasparent";
+                        nodeNames[nodeCount] = ln + "-" + parentNames[parentCount - 1] + "-hasparent";
                         nodeCount++;
                     } else {
                         String ln = line.replaceAll("[</>]", "");
 
                         if (parentCount > 0) {
-                            nodeNames[nodeCount] =
-                                    ln + "-" + parentNames[parentCount - 1] +
-                                            "-hasparent";
+                            nodeNames[nodeCount] = ln + "-" + parentNames[parentCount - 1] + "-hasparent";
                             nodeCount++;
                         } else {
                             nodeNames[nodeCount] = ln;
@@ -3745,8 +3396,7 @@ public class JtreeToGraph {
 
             if (len > 0) {
 
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[len - 1], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
                 selectedCellNew = (mxCell) targetCell;
                 x = selectedCellNew.getGeometry().getX();
                 y = selectedCellNew.getGeometry().getY();
@@ -3768,44 +3418,36 @@ public class JtreeToGraph {
             graph.getModel().beginUpdate();
             try {
                 if (nodeName.endsWith("Dec")) {
-                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y,
-                            30, 30, "Aspect");
+                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Aspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null;// so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
 
                     addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                 } else if (nodeName.endsWith("MAsp")) {
 
-                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y,
-                            30, 30, "Multiaspect");
+                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Multiaspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null;// so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
 
                     addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                 } else if (nodeName.endsWith("Spec")) {
 
-                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y,
-                            30, 30, "Specialization");
+                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Specialization");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null;// so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
 
                     addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                 } else /* if (DynamicTreeDemo.nodeAddDetector.equals("entity")) */ {
-                    obj = graph.insertVertex(parent, null, nodeName, x, y, 80,
-                            30,
-                            "Entity");// "Aspect;fillColor=#0759cf;strokeColor=white;");
+                    obj = graph.insertVertex(parent, null, nodeName, x, y, 80, 30,
+                            "Entity"); // "Aspect;fillColor=#0759cf;strokeColor=white;");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null;// so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
 
                     addNodeIntoJtreeWithNewModuleAddition(selectedCell);
@@ -3838,12 +3480,10 @@ public class JtreeToGraph {
 
         JFileChooser fileChooser = new JFileChooser();
 
-        FileNameExtensionFilter filter =
-                new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         fileChooser.setFileFilter(filter);
 
-        fileChooser.setCurrentDirectory(
-                new File(PESEditor.fileLocation + "/" + PESEditor.projName));
+        fileChooser.setCurrentDirectory(new File(PESEditor.fileLocation + "/" + PESEditor.projName));
         int result = fileChooser.showOpenDialog(PESEditor.framew);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
@@ -3857,8 +3497,7 @@ public class JtreeToGraph {
             String[] nodeNames = new String[100];
 
             try {
-                FileReader reader =
-                        new FileReader(selectedFile.getAbsolutePath());
+                FileReader reader = new FileReader(selectedFile.getAbsolutePath());
                 BufferedReader bufferedReader = new BufferedReader(reader);
 
                 String line;
@@ -3903,8 +3542,7 @@ public class JtreeToGraph {
 
                 if (len > 0) {
 
-                    Object targetCell = graph.getModel()
-                            .getTerminal(outgoing[len - 1], false);
+                    Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
                     selectedCellNew = (mxCell) targetCell;
                     x = selectedCellNew.getGeometry().getX();
                     y = selectedCellNew.getGeometry().getY();
@@ -3926,43 +3564,35 @@ public class JtreeToGraph {
                 graph.getModel().beginUpdate();
                 try {
                     if (nodeName.endsWith("Dec")) {
-                        obj = graph.insertVertex(parent, null, nodeName, x + 25,
-                                y, 30, 30, "Aspect");
+                        obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Aspect");
                         graph.insertEdge(parent, null, "", selectedCell, obj);
-                        lastAddedCell =
-                                null;// so that it will not cause duplicate addition in tree
+                        lastAddedCell = null; // so that it will not cause duplicate addition in tree
                         nodeNumber++;
 
                         addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                     } else if (nodeName.endsWith("MAsp")) {
 
-                        obj = graph.insertVertex(parent, null, nodeName, x + 25,
-                                y, 30, 30, "Multiaspect");
+                        obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Multiaspect");
                         graph.insertEdge(parent, null, "", selectedCell, obj);
-                        lastAddedCell =
-                                null;// so that it will not cause duplicate addition in tree
+                        lastAddedCell = null; // so that it will not cause duplicate addition in tree
                         nodeNumber++;
 
                         addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                     } else if (nodeName.endsWith("Spec")) {
-                        obj = graph.insertVertex(parent, null, nodeName, x + 25,
-                                y, 30, 30, "Specialization");
+                        obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Specialization");
                         graph.insertEdge(parent, null, "", selectedCell, obj);
-                        lastAddedCell =
-                                null;// so that it will not cause duplicate addition in tree
+                        lastAddedCell = null; // so that it will not cause duplicate addition in tree
                         nodeNumber++;
 
                         addNodeIntoJtreeWithNewModuleAddition(selectedCell);
 
                     } else /* if (DynamicTreeDemo.nodeAddDetector.equals("entity")) */ {
-                        obj = graph.insertVertex(parent, null, nodeName, x, y,
-                                80, 30,
-                                "Entity");// "Aspect;fillColor=#0759cf;strokeColor=white;");
+                        obj = graph.insertVertex(parent, null, nodeName, x, y, 80, 30,
+                                "Entity"); // "Aspect;fillColor=#0759cf;strokeColor=white;");
                         graph.insertEdge(parent, null, "", selectedCell, obj);
-                        lastAddedCell =
-                                null;// so that it will not cause duplicate addition in tree
+                        lastAddedCell = null; // so that it will not cause duplicate addition in tree
                         nodeNumber++;
 
                         addNodeIntoJtreeWithNewModuleAddition(selectedCell);
@@ -3995,16 +3625,13 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
 
-            Object targetCell = graph.getModel()
-                    .getTerminal(outgoing[outgoing.length - 1], false);
+            Object targetCell = graph.getModel().getTerminal(outgoing[outgoing.length - 1], false);
             mxCell targetCell2 = (mxCell) targetCell;
 
-            Object sourceCell = graph.getModel()
-                    .getTerminal(outgoing[outgoing.length - 1], true);
+            Object sourceCell = graph.getModel().getTerminal(outgoing[outgoing.length - 1], true);
             mxCell sourceCell2 = (mxCell) sourceCell;
 
-            nodeNamesForGraphSync[treeSyncNodeCount] =
-                    (String) targetCell2.getValue();
+            nodeNamesForGraphSync[treeSyncNodeCount] = (String) targetCell2.getValue();
             treeSyncNodeCount++;
 
             saveModuleFromCurrentModelSecondStep(targetCell);
@@ -4023,18 +3650,14 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 mxCell targetCell2 = (mxCell) targetCell;
 
-                Object sourceCell =
-                        graph.getModel().getTerminal(outgoing[i], true);
+                Object sourceCell = graph.getModel().getTerminal(outgoing[i], true);
                 mxCell sourceCell2 = (mxCell) sourceCell;
 
                 nodeNamesForGraphSync[treeSyncNodeCount] =
-                        targetCell2.getValue() + "-" + sourceCell2.getValue() +
-                                "-"
-                                + "hasparent";
+                        targetCell2.getValue() + "-" + sourceCell2.getValue() + "-" + "hasparent";
                 treeSyncNodeCount++;
 
                 saveModuleFromCurrentModelSecondStep(targetCell);
@@ -4087,8 +3710,7 @@ public class JtreeToGraph {
 
             if (len > 0) {
 
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[len - 1], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
                 selectedCellNew = (mxCell) targetCell;
 
                 x = selectedCellNew.getGeometry().getX();
@@ -4111,12 +3733,10 @@ public class JtreeToGraph {
             graph.getModel().beginUpdate();
             try {
                 if (nodeName.endsWith("Dec")) {
-                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y,
-                            30, 30, "Aspect");
+                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Aspect");
 
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null; // so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
 
                     // mxCell cell = (mxCell) obj; cell.setVisible(false);
 
@@ -4132,8 +3752,7 @@ public class JtreeToGraph {
                     }
 
                 } else if (nodeName.endsWith("MAsp")) {
-                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y,
-                            30, 30, "Multiaspect");
+                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Multiaspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
                     lastAddedCell = null;
 
@@ -4145,8 +3764,7 @@ public class JtreeToGraph {
                     }
 
                 } else if (nodeName.endsWith("Spec")) {
-                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y,
-                            30, 30, "Specialization");
+                    obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Specialization");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
                     lastAddedCell = null;
 
@@ -4158,8 +3776,7 @@ public class JtreeToGraph {
                     }
 
                 } else {
-                    obj = graph.insertVertex(parent, null, nodeName, x, y, 80,
-                            30, "Entity");
+                    obj = graph.insertVertex(parent, null, nodeName, x, y, 80, 30, "Entity");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
 
                     lastAddedCell = null;
@@ -4185,10 +3802,8 @@ public class JtreeToGraph {
         }
 
         // have to make used array null and count 0 here
-        nodeNamesForGraphSync =
-                new String[100];// or have to delete the added nodes in other way
-        undoForSubTreeCount =
-                treeSyncNodeCount;// not using have to check carefully then delete
+        nodeNamesForGraphSync = new String[100]; // or have to delete the added nodes in other way
+        undoForSubTreeCount = treeSyncNodeCount; // not using have to check carefully then delete
         treeSyncNodeCount = 0;
 
     }
@@ -4207,9 +3822,8 @@ public class JtreeToGraph {
         nodeNames = nodeNamesForGraphSync;
 
         // deleting null nodes;
-        nodeNames = Arrays.stream(nodeNames)
-                .filter(s -> (s != null && s.length() > 0))
-                .toArray(String[]::new);
+        nodeNames =
+                Arrays.stream(nodeNames).filter(s -> (s != null && s.length() > 0)).toArray(String[]::new);
 
         // adding uniformity node to the array
         addedNodes[addedNodeCount] = obj;
@@ -4245,8 +3859,7 @@ public class JtreeToGraph {
 
             if (len > 0) {
 
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[len - 1], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
                 selectedCellNew = (mxCell) targetCell;
 
                 x = selectedCellNew.getGeometry().getX();
@@ -4271,20 +3884,17 @@ public class JtreeToGraph {
             graph.getModel().beginUpdate();
             try {
                 if (nodeName.endsWith("Dec")) {
-                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25,
-                            y, 30, 30, "Aspect");
+                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25, y, 30, 30, "Aspect");
 
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null; // so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
 
                     uniformityNodeNumber++;
 
                     addNodeIntoJtreeForSubTree(selectedCell);
 
                 } else if (nodeName.endsWith("MAsp")) {
-                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25,
-                            y, 30, 30, "Multiaspect");
+                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25, y, 30, 30, "Multiaspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
                     lastAddedCell = null;
 
@@ -4293,8 +3903,7 @@ public class JtreeToGraph {
                     addNodeIntoJtreeForSubTree(selectedCell);
 
                 } else if (nodeName.endsWith("Spec")) {
-                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25,
-                            y, 30, 30, "Specialization");
+                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25, y, 30, 30, "Specialization");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
                     lastAddedCell = null;
 
@@ -4303,8 +3912,7 @@ public class JtreeToGraph {
                     addNodeIntoJtreeForSubTree(selectedCell);
 
                 } else {
-                    obj = graph.insertVertex(parent, nodeId, nodeName, x, y, 80,
-                            30, "Entity");
+                    obj = graph.insertVertex(parent, nodeId, nodeName, x, y, 80, 30, "Entity");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
 
                     lastAddedCell = null;
@@ -4327,10 +3935,8 @@ public class JtreeToGraph {
         }
 
         // have to make used array null and count 0 here
-        nodeNamesForGraphSync =
-                new String[100];// or have to delete the added nodes in other way
-        undoForSubTreeCount =
-                treeSyncNodeCount;// not using have to check carefully then delete
+        nodeNamesForGraphSync = new String[100]; // or have to delete the added nodes in other way
+        undoForSubTreeCount = treeSyncNodeCount; // not using have to check carefully then delete
         treeSyncNodeCount = 0;
 
     }
@@ -4341,8 +3947,7 @@ public class JtreeToGraph {
         Document calendarDOMDoc = null;
         try {
             DOMImplementation domImpl =
-                    DocumentBuilderFactory.newInstance().newDocumentBuilder()
-                            .getDOMImplementation();
+                    DocumentBuilderFactory.newInstance().newDocumentBuilder().getDOMImplementation();
 
             calendarDOMDoc = domImpl.createDocument(null, "start", null);
 
@@ -4352,15 +3957,13 @@ public class JtreeToGraph {
             e2.printStackTrace(System.err);
         }
 
-        calendarDOMDoc.getDocumentElement()
-                .appendChild(childNodes(calendarDOMDoc, cell));
+        calendarDOMDoc.getDocumentElement().appendChild(childNodes(calendarDOMDoc, cell));
 
         try {
             saveToXMLFileWithoutIndent(calendarDOMDoc, fileName + ".xml");
 
         } catch (TransformerException ex) {
-            Logger.getLogger(PESEditor.class.getName())
-                    .log(Level.SEVERE, null, ex);
+            Logger.getLogger(PESEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -4374,18 +3977,15 @@ public class JtreeToGraph {
         String repFslas = currentDirectory.toString().replace("\\", "/");
 
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter xmlfilter =
-                new FileNameExtensionFilter("xml files (*.xml)", "xml");
+        FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
         fileChooser.setFileFilter(xmlfilter);
         fileChooser.setSelectedFile(new File(fileName));
-        fileChooser.setCurrentDirectory(
-                new File(PESEditor.fileLocation + "/" + PESEditor.projName));
+        fileChooser.setCurrentDirectory(new File(PESEditor.fileLocation + "/" + PESEditor.projName));
         int result = fileChooser.showSaveDialog(PESEditor.framew);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
 
-            saveModuleFromCurrentModelAsXML(obj,
-                    selectedFile.getAbsolutePath());
+            saveModuleFromCurrentModelAsXML(obj, selectedFile.getAbsolutePath());
 
         }
 
@@ -4394,8 +3994,7 @@ public class JtreeToGraph {
     public void addNodeFromGraphPopup(String node, int x, int y) {
 
         String variableName = JOptionPane
-                .showInputDialog(PESEditor.framew, "Node Name:", "New Node",
-                        JOptionPane.INFORMATION_MESSAGE);
+                .showInputDialog(PESEditor.framew, "Node Name:", "New Node", JOptionPane.INFORMATION_MESSAGE);
 
         if (variableName != null) {
             variableName = variableName.replaceAll("\\s+", "");
@@ -4410,30 +4009,26 @@ public class JtreeToGraph {
                     if (!variableName.endsWith("Dec")) {
                         variableName = variableName + "Dec";
                     }
-                    obj = graph.insertVertex(parent, null, variableName, x - 15,
-                            y, 30, 30, "Aspect");
+                    obj = graph.insertVertex(parent, null, variableName, x - 15, y, 30, 30, "Aspect");
                     nodeNumber++;
 
                 } else if (node.endsWith("MAsp")) {
                     if (!variableName.endsWith("MAsp")) {
                         variableName = variableName + "MAsp";
                     }
-                    obj = graph.insertVertex(parent, null, variableName, x - 15,
-                            y, 30, 30, "Multiaspect");
+                    obj = graph.insertVertex(parent, null, variableName, x - 15, y, 30, 30, "Multiaspect");
                     nodeNumber++;
 
                 } else if (node.endsWith("Spec")) {
                     if (!variableName.endsWith("Spec")) {
                         variableName = variableName + "Spec";
                     }
-                    obj = graph.insertVertex(parent, null, variableName, x - 15,
-                            y, 30, 30, "Specialization");
+                    obj = graph.insertVertex(parent, null, variableName, x - 15, y, 30, 30, "Specialization");
                     nodeNumber++;
 
                 } else /* if (DynamicTreeDemo.nodeAddDetector.equals("entity")) */ {
-                    obj = graph.insertVertex(parent, null, variableName, x - 40,
-                            y, 80, 30,
-                            "Entity");// "Aspect;fillColor=#0759cf;strokeColor=white;");
+                    obj = graph.insertVertex(parent, null, variableName, x - 40, y, 80, 30,
+                            "Entity"); // "Aspect;fillColor=#0759cf;strokeColor=white;");
                     nodeNumber++;
 
                 }
@@ -4446,8 +4041,7 @@ public class JtreeToGraph {
     }
 
     public mxCell getRootNode() {
-        Object[] cells = graph.getChildVertices(
-                graph.getDefaultParent()); // getSelectionCells();
+        Object[] cells = graph.getChildVertices(graph.getDefaultParent()); // getSelectionCells();
 
         mxCell rootcell = null;
 
@@ -4482,8 +4076,7 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
 
                 // for next call
                 mxCell targetCell2 = (mxCell) targetCell;
@@ -4491,8 +4084,8 @@ public class JtreeToGraph {
                 // subtreeCheckLabel:" + subtreeCheckLabel );
 
                 if (targetCell2.getValue().toString().equals(subtreeCheckLabel)
-                        && targetCell2.getId() != subtreeCheckCell.getId()
-                        && !(targetCell2.getId().startsWith("uniformity"))) {
+                    && targetCell2.getId() != subtreeCheckCell.getId() && !(targetCell2.getId().startsWith(
+                        "uniformity"))) {
                     // targetCell2.getId()!=subtreeCheckCell.getId()
                     // added the above check because search is depth first and to ignore the current
                     // added cell
@@ -4500,9 +4093,7 @@ public class JtreeToGraph {
 
                     if (graph.getOutgoingEdges(targetCell2).length > 1) {
 
-                        subtreeCheckCell
-                                .setId("uniformity" + uniformityNodeNumber +
-                                        "RefNode");
+                        subtreeCheckCell.setId("uniformity" + uniformityNodeNumber + "RefNode");
                         uniformityNodeNumber++;
 
                         saveModuleFromCurrentModelSecondStep(targetCell2);
@@ -4510,9 +4101,7 @@ public class JtreeToGraph {
 
                     } else {
 
-                        subtreeCheckCell
-                                .setId("uniformity" + uniformityNodeNumber +
-                                        "RefNode");
+                        subtreeCheckCell.setId("uniformity" + uniformityNodeNumber + "RefNode");
                         uniformityNodeNumber++;
 
                         saveModuleFromCurrentModel(targetCell2);
@@ -4529,8 +4118,7 @@ public class JtreeToGraph {
 
     }
 
-    public void checkSubtreeNodeForSync(mxCell addedCellParent,
-                                        mxCell addedCell) {
+    public void checkSubtreeNodeForSync(mxCell addedCellParent, mxCell addedCell) {
 
         subtreeSyncCell = addedCellParent;
         addedCellNameSync = addedCell.getValue().toString();
@@ -4543,18 +4131,16 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
 
                 // for next call
                 mxCell targetCell2 = (mxCell) targetCell;
                 // System.out.println("targetCell2:"+targetCell2.getValue()+" and
                 // subtreeSyncCell:" + subtreeSyncCell.getValue() );
 
-                if (targetCell2.getValue().toString()
-                        .equals(subtreeSyncCell.getValue())
-                        && targetCell2.getId() != subtreeSyncCell.getId()
-                        && targetCell2.getId().startsWith("uniformity")) {
+                if (targetCell2.getValue().toString().equals(subtreeSyncCell.getValue())
+                    && targetCell2.getId() != subtreeSyncCell.getId() && targetCell2.getId()
+                            .startsWith("uniformity")) {
                     // targetCell2.getId()!=subtreeCheckCell.getId()
                     // added the above check because search is depth first and to ignore the current
                     // added cell
@@ -4603,18 +4189,16 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
 
                 // for next call
                 mxCell targetCell2 = (mxCell) targetCell;
 
                 System.out.println(targetCell2.getValue());
 
-                if (targetCell2.getValue().toString()
-                        .equals(subtreeSyncCell.getValue())
-                        && targetCell2.getId() != subtreeSyncCell.getId()
-                        && targetCell2.getId().startsWith("uniformity")) {
+                if (targetCell2.getValue().toString().equals(subtreeSyncCell.getValue())
+                    && targetCell2.getId() != subtreeSyncCell.getId() && targetCell2.getId()
+                            .startsWith("uniformity")) {
                     // targetCell2.getId()!=subtreeCheckCell.getId()
                     // added the above check because search is depth first and to ignore the current
                     // added cell
@@ -4640,8 +4224,7 @@ public class JtreeToGraph {
      * @param renameCell
      * @param newName
      */
-    public void checkSubtreeNodeForSyncRename(mxCell renameCell,
-                                              String newName) {
+    public void checkSubtreeNodeForSyncRename(mxCell renameCell, String newName) {
 
         subtreeSyncCell = renameCell;
         nextChildNodeForcheckSubtreeNodeSyncRename(getRootNode(), newName);
@@ -4654,24 +4237,21 @@ public class JtreeToGraph {
      * @param renameCell
      * @param newName
      */
-    public void nextChildNodeForcheckSubtreeNodeSyncRename(mxCell renameCell,
-                                                           String newName) {
+    public void nextChildNodeForcheckSubtreeNodeSyncRename(mxCell renameCell, String newName) {
         Object[] outgoing = graph.getOutgoingEdges(renameCell);
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
 
                 // for next call
                 mxCell targetCell2 = (mxCell) targetCell;
 
                 System.out.println(targetCell2.getValue());
 
-                if (targetCell2.getValue().toString()
-                        .equals(subtreeSyncCell.getValue())
-                        && targetCell2.getId() != subtreeSyncCell.getId()
-                        && targetCell2.getId().startsWith("uniformity")) {
+                if (targetCell2.getValue().toString().equals(subtreeSyncCell.getValue())
+                    && targetCell2.getId() != subtreeSyncCell.getId() && targetCell2.getId()
+                            .startsWith("uniformity")) {
                     // targetCell2.getId()!=subtreeCheckCell.getId()
                     // added the above check because search is depth first and to ignore the current
                     // added cell
@@ -4700,12 +4280,11 @@ public class JtreeToGraph {
         // for deleting from tree at the same time
         mxCell cellForAddingVariable = (mxCell) pos;
 
-        if (cellForAddingVariable.getId().startsWith("uniformity")
-                && !cellForAddingVariable.getId().endsWith("RefNode")) {
+        if (cellForAddingVariable.getId().startsWith("uniformity") && !cellForAddingVariable.getId()
+                .endsWith("RefNode")) {
 
-            boolean connected = PESEditor.jtreeTograph
-                    .isConnectedToRoot(cellForAddingVariable);
-            PESEditor.jtreeTograph.connectedToRoot = false;
+            boolean connected = PESEditor.jtreeTograph.isConnectedToRoot(cellForAddingVariable);
+            connectedToRoot = false;
             if (!connected) {
 
                 graph.getModel().beginUpdate();
@@ -4717,8 +4296,7 @@ public class JtreeToGraph {
             } else {
                 JOptionPane.showMessageDialog(PESEditor.framew,
                         "You can not delete from here. Delete from the reference node.");
-                String nameOfReferenceNode =
-                        cellForAddingVariable.getValue().toString();
+                String nameOfReferenceNode = cellForAddingVariable.getValue().toString();
             }
 
         } else {
@@ -4735,13 +4313,11 @@ public class JtreeToGraph {
 
             String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-            TreePath treePathForVariable =
-                    PESEditor.getTreeNodePath(stringArrayRev);
+            TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
             // calling function for deleting the node
             // System.out.println(treePathForVariable);
-            PESEditor.treePanel
-                    .removeCurrentNodeWithGraphDelete(treePathForVariable);
+            PESEditor.treePanel.removeCurrentNodeWithGraphDelete(treePathForVariable);
 
             pathToRoot.clear();
 
@@ -4760,15 +4336,13 @@ public class JtreeToGraph {
 
                 graph.getModel().beginUpdate();
                 try {
-                    if ("rootnode"
-                            .equals(cellForAddingVariable.getId().toString())) {
+                    if ("rootnode".equals(cellForAddingVariable.getId())) {
                         toolkit.beep();
 
                     } else {
                         deletableChildNodes.add(cellForAddingVariable);
                         deleteAllChildNode(cellForAddingVariable);
-                        mxCell[] allnodes =
-                                deletableChildNodes.toArray(new mxCell[0]);
+                        mxCell[] allnodes = deletableChildNodes.toArray(new mxCell[0]);
                         for (int i = 0; i < allnodes.length; i++) {
                             mxCell a = allnodes[i];
                             graph.removeCells(new Object[] {a});
@@ -4805,13 +4379,11 @@ public class JtreeToGraph {
 
         String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-        TreePath treePathForVariable =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
         // calling function for deleting the node
         // System.out.println(treePathForVariable);
-        PESEditor.treePanel
-                .removeCurrentNodeWithGraphDelete(treePathForVariable);
+        PESEditor.treePanel.removeCurrentNodeWithGraphDelete(treePathForVariable);
 
         pathToRoot.clear();
 
@@ -4825,15 +4397,13 @@ public class JtreeToGraph {
 
             graph.getModel().beginUpdate();
             try {
-                if ("rootnode"
-                        .equals(cellForAddingVariable.getId().toString())) {
+                if ("rootnode".equals(cellForAddingVariable.getId())) {
                     toolkit.beep();
 
                 } else {
                     deletableChildNodes.add(cellForAddingVariable);
                     deleteAllChildNode(cellForAddingVariable);
-                    mxCell[] allnodes =
-                            deletableChildNodes.toArray(new mxCell[0]);
+                    mxCell[] allnodes = deletableChildNodes.toArray(new mxCell[0]);
                     for (int i = 0; i < allnodes.length; i++) {
                         mxCell a = allnodes[i];
                         graph.removeCells(new Object[] {a});
@@ -4869,12 +4439,10 @@ public class JtreeToGraph {
 
         String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-        TreePath treePathForVariable =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
         // calling function for deleting the node
-        PESEditor.treePanel
-                .removeCurrentNodeWithGraphDelete(treePathForVariable);
+        PESEditor.treePanel.removeCurrentNodeWithGraphDelete(treePathForVariable);
 
         pathToRoot.clear();
 
@@ -4892,8 +4460,7 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 mxCell targetCell2 = (mxCell) targetCell;
                 deletableChildNodes.add(targetCell2);
                 deleteAllChildNode(targetCell2);
@@ -4915,15 +4482,13 @@ public class JtreeToGraph {
 
             graph.getModel().beginUpdate();
             try {
-                if ("rootnode"
-                        .equals(cellForAddingVariable.getId().toString())) {
+                if ("rootnode".equals(cellForAddingVariable.getId())) {
                     toolkit.beep();
 
                 } else {
                     deletableChildNodes.add(cellForAddingVariable);
                     deleteAllChildNode(cellForAddingVariable);
-                    mxCell[] allnodes =
-                            deletableChildNodes.toArray(new mxCell[0]);
+                    mxCell[] allnodes = deletableChildNodes.toArray(new mxCell[0]);
                     for (int i = 0; i < allnodes.length; i++) {
                         mxCell a = allnodes[i];
                         graph.removeCells(new Object[] {a});
@@ -4953,14 +4518,13 @@ public class JtreeToGraph {
 
             graph.getModel().beginUpdate();
             try {
-                if ("rootnode".equals(lastNodeInPath.getId().toString())) {
+                if ("rootnode".equals(lastNodeInPath.getId())) {
                     toolkit.beep();
 
                 } else {
                     deletableChildNodes.add(lastNodeInPath);
                     deleteAllChildNode(lastNodeInPath);
-                    mxCell[] allnodes =
-                            deletableChildNodes.toArray(new mxCell[0]);
+                    mxCell[] allnodes = deletableChildNodes.toArray(new mxCell[0]);
                     for (int i = 0; i < allnodes.length; i++) {
                         mxCell a = allnodes[i];
                         System.err.println(a.getValue());
@@ -4999,10 +4563,8 @@ public class JtreeToGraph {
 
             if (outgoing.length == 0) {
 
-                String newName = JOptionPane
-                        .showInputDialog(PESEditor.framew, "New Name",
-                                "Rename Node",
-                                JOptionPane.PLAIN_MESSAGE);
+                String newName = JOptionPane.showInputDialog(PESEditor.framew, "New Name", "Rename Node",
+                        JOptionPane.PLAIN_MESSAGE);
                 newName = newName.replaceAll("\\s+", "");
 
                 if ((newName != null) && (!newName.trim().isEmpty())) {
@@ -5010,8 +4572,7 @@ public class JtreeToGraph {
                     // jtree
                     if (cell.getId().equals("rootnode")) {
                         // assigning new projectname and root to tree
-                        DefaultMutableTreeNode rootNode2 =
-                                new DefaultMutableTreeNode(newName);
+                        DefaultMutableTreeNode rootNode2 = new DefaultMutableTreeNode(newName);
                         PESEditor.treePanel.treeModel.setRoot(rootNode2);
                         PESEditor.treePanel.treeModel.reload();
                     }
@@ -5036,9 +4597,7 @@ public class JtreeToGraph {
         } else {
 
             String newName = JOptionPane
-                    .showInputDialog(PESEditor.framew, "New Name",
-                            "Rename Node",
-                            JOptionPane.PLAIN_MESSAGE);
+                    .showInputDialog(PESEditor.framew, "New Name", "Rename Node", JOptionPane.PLAIN_MESSAGE);
 
             if (newName != null) {
                 newName = newName.replaceAll("\\s+", "");
@@ -5081,14 +4640,11 @@ public class JtreeToGraph {
                         pathToRootRev.add(stringArray[i]);
                     }
 
-                    String[] stringArrayRev =
-                            pathToRootRev.toArray(new String[0]);
+                    String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-                    TreePath treePathForRename =
-                            PESEditor.getTreeNodePath(stringArrayRev);
+                    TreePath treePathForRename = PESEditor.getTreeNodePath(stringArrayRev);
 
-                    PESEditor.treePanel.treeModel
-                            .valueForPathChanged(treePathForRename, newName);
+                    PESEditor.treePanel.treeModel.valueForPathChanged(treePathForRename, newName);
 
                     pathToRoot.clear();
                 }
@@ -5118,8 +4674,7 @@ public class JtreeToGraph {
      */
     public void renameRootNode(String newRootName) {
 
-        Object[] cells = graph.getChildVertices(
-                graph.getDefaultParent()); // getSelectionCells();
+        Object[] cells = graph.getChildVertices(graph.getDefaultParent()); // getSelectionCells();
 
         mxCell rootcell = null;
 
@@ -5180,15 +4735,11 @@ public class JtreeToGraph {
 
         graph.getModel().beginUpdate();
         try {
-            Object hideV =
-                    graph.insertVertex(parent, "hideV", "End of Canvas", 0,
-                            50000, 80, 30, "Entity");
+            Object hideV = graph.insertVertex(parent, "hideV", "End of Canvas", 0, 50000, 80, 30, "Entity");
             mxCell hidenodeV = (mxCell) hideV;
             // hidenode.setVisible(false);
 
-            Object hideH =
-                    graph.insertVertex(parent, "hideH", "End of Canvas", 50000,
-                            0, 80, 30, "Entity");
+            Object hideH = graph.insertVertex(parent, "hideH", "End of Canvas", 50000, 0, 80, 30, "Entity");
             mxCell hidenodeH = (mxCell) hideH;
             // hidenode.setVisible(false);
 
@@ -5205,23 +4756,19 @@ public class JtreeToGraph {
      * @param filename
      * @param oldProjectTreeProjectName
      */
-    public void openExistingProject(String filename,
-                                    String oldProjectTreeProjectName) {
+    public void openExistingProject(String filename, String oldProjectTreeProjectName) {
 
         parent = graph.getDefaultParent();
 
-        ssdFileGraph = new File(
-                PESEditor.fileLocation + "/" + PESEditor.projName + "/" +
-                        filename + "Graph.xml");
+        ssdFileGraph =
+                new File(PESEditor.fileLocation + "/" + PESEditor.projName + "/" + filename + "Graph.xml");
 
         if (ssdFileGraph.exists()) {
             graph.getModel().beginUpdate();
             try {
 
-                Document xml = mxXmlUtils.parseXml(mxUtils
-                        .readFile(PESEditor.fileLocation + "/" +
-                                PESEditor.projName + "/" + filename +
-                                "Graph.xml"));
+                Document xml = mxXmlUtils.parseXml(mxUtils.readFile(
+                        PESEditor.fileLocation + "/" + PESEditor.projName + "/" + filename + "Graph.xml"));
                 mxCodec codec = new mxCodec(xml);
                 codec.decode(xml.getDocumentElement(), graph.getModel());
                 parent = graph.getDefaultParent();
@@ -5232,8 +4779,7 @@ public class JtreeToGraph {
                 graph.getModel().endUpdate();
             }
 
-            PESEditor.treePanel
-                    .openExistingProject(filename, oldProjectTreeProjectName);
+            PESEditor.treePanel.openExistingProject(filename, oldProjectTreeProjectName);
 
         }
 
@@ -5253,11 +4799,10 @@ public class JtreeToGraph {
 
         if (keyPath != null) {
 
-            DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (keyPath.getLastPathComponent());
+            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (keyPath.getLastPathComponent());
             TreeNode[] nodes = currentNode.getPath();
             int len = nodes.length;
-            String sesNodesInPath[] = new String[len];
+            String[] sesNodesInPath = new String[len];
 
             String[] nodesToSelectedNode = new String[100];
 
@@ -5269,16 +4814,14 @@ public class JtreeToGraph {
                 for (String value : DynamicTree.constraintsList.get(key)) {
 
                     DefaultMutableTreeNode currentNode2 =
-                            (DefaultMutableTreeNode) (key
-                                    .getLastPathComponent());
+                            (DefaultMutableTreeNode) (key.getLastPathComponent());
 
                     TreeNode[] nodes2 = currentNode2.getPath();
 
                     if (nodes.length == nodes2.length) {
                         for (int i = 0; i < nodes.length; i++) {
 
-                            if (nodes[i].toString()
-                                    .equals(nodes2[i].toString())) {
+                            if (nodes[i].toString().equals(nodes2[i].toString())) {
                                 a = 1;
 
                             } else {
@@ -5296,9 +4839,9 @@ public class JtreeToGraph {
 
             }
 
-            nodesToSelectedNode = Arrays.stream(nodesToSelectedNode)
-                    .filter(s -> (s != null && s.length() > 0))
-                    .toArray(String[]::new);
+            nodesToSelectedNode =
+                    Arrays.stream(nodesToSelectedNode).filter(s -> (s != null && s.length() > 0))
+                            .toArray(String[]::new);
 
             for (String con : nodesToSelectedNode) {
                 if (constraint.equals("")) {
@@ -5321,8 +4864,7 @@ public class JtreeToGraph {
                 }
             }
             FileConvertion fileConvertion = new FileConvertion();
-            fileConvertion
-                    .addConstraintToSESStructure(sesNodesInPath, constraint);
+            fileConvertion.addConstraintToSESStructure(sesNodesInPath, constraint);
 
         }
     }
@@ -5338,8 +4880,7 @@ public class JtreeToGraph {
         Object[] outgoing = graph.getOutgoingEdges(selectedCell);
 
         Object[] incoming = graph.getIncomingEdges(selectedCell);
-        Object targetCellIncoming =
-                graph.getModel().getTerminal(incoming[0], true);
+        Object targetCellIncoming = graph.getModel().getTerminal(incoming[0], true);
         mxCell targetCellIncoming2 = (mxCell) targetCellIncoming;
         // System.out.println("targetCellIncoming2:
         // "+targetCellIncoming2.getValue().toString());
@@ -5351,8 +4892,7 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 mxCell targetCell2 = (mxCell) targetCell;
                 nodeList[a1] = targetCell2.getValue().toString();
                 a1++;
@@ -5361,17 +4901,14 @@ public class JtreeToGraph {
         }
 
         // java 8 way null removal
-        nodeList = Arrays.stream(nodeList)
-                .filter(s -> (s != null && s.length() > 0))
-                .toArray(String[]::new);
+        nodeList = Arrays.stream(nodeList).filter(s -> (s != null && s.length() > 0)).toArray(String[]::new);
 
         JComboBox nodeListCombo = new JComboBox(nodeList);
 
         nodeListCombo.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent event) {
                 if (event.getStateChange() == ItemEvent.SELECTED) {
-                    selectedNodeToPrune =
-                            nodeListCombo.getSelectedItem().toString();
+                    selectedNodeToPrune = nodeListCombo.getSelectedItem().toString();
                 }
             }
         });
@@ -5379,31 +4916,24 @@ public class JtreeToGraph {
         Object[] pruneOptions = {"Available Options:", nodeListCombo};
 
         int option = JOptionPane
-                .showConfirmDialog(PESEditor.framew, pruneOptions,
-                        "Please Choose from Options",
-                        JOptionPane.OK_CANCEL_OPTION,
-                        JOptionPane.PLAIN_MESSAGE);
+                .showConfirmDialog(PESEditor.framew, pruneOptions, "Please Choose from Options",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
             // System.out.println("Node Selected: " + selectedNodeToPrune);
 
             if (outgoing.length > 0) {
                 for (int j = 0; j < outgoing.length; j++) {
-                    Object targetCell =
-                            graph.getModel().getTerminal(outgoing[j], false);
+                    Object targetCell = graph.getModel().getTerminal(outgoing[j], false);
                     mxCell targetCell2 = (mxCell) targetCell;
                     if (targetCell2.getValue().equals(selectedNodeToPrune)) {
-                        Object[] outgoingSelected =
-                                graph.getOutgoingEdges(targetCell2);
+                        Object[] outgoingSelected = graph.getOutgoingEdges(targetCell2);
                         if (outgoingSelected.length > 0) {
                             saveModuleFromCurrentModel(targetCell2);
-                            PESEditor.jtreeTograph
-                                    .deleteNodeFromGraphPopup(pos);
-                            String newEntityName = selectedNodeToPrune + "_"
-                                    + targetCellIncoming2.getValue().toString();
-                            PESEditor.jtreeTograph
-                                    .renameCellPES(targetCellIncoming2,
-                                            newEntityName);
+                            PESEditor.jtreeTograph.deleteNodeFromGraphPopup(pos);
+                            String newEntityName =
+                                    selectedNodeToPrune + "_" + targetCellIncoming2.getValue().toString();
+                            PESEditor.jtreeTograph.renameCellPES(targetCellIncoming2, newEntityName);
 
                             // test of color change after pruning
                             // graph.setCellStyles(mxConstants.STYLE_STROKECOLOR,
@@ -5411,8 +4941,7 @@ public class JtreeToGraph {
                             // graphComponent.refresh();
                             // test of color change
 
-                            addModuleFromSubgraphUniformity(
-                                    targetCellIncoming2);
+                            addModuleFromSubgraphUniformity(targetCellIncoming2);
 
                             // may be: have to add variable here also; check before doing.
                             // -------------------------------
@@ -5424,34 +4953,21 @@ public class JtreeToGraph {
                              */
 
                             String[] nodesToSelectedNode = new String[100];
-                            nodesToSelectedNode =
-                                    returnAllVariablesFromPrunedNode(
-                                            targetCell2);
-                            nodesToSelectedNode =
-                                    Arrays.stream(nodesToSelectedNode)
-                                            .filter(s -> (s != null &&
-                                                    s.length() > 0))
-                                            .toArray(String[]::new);
+                            nodesToSelectedNode = returnAllVariablesFromPrunedNode(targetCell2);
+                            nodesToSelectedNode = Arrays.stream(nodesToSelectedNode)
+                                    .filter(s -> (s != null && s.length() > 0)).toArray(String[]::new);
 
                             String[] nodesToSelectedNodeHost = new String[100];
-                            nodesToSelectedNodeHost =
-                                    returnAllVariablesFromPrunedNode(
-                                            targetCellIncoming2);
-                            nodesToSelectedNodeHost =
-                                    Arrays.stream(nodesToSelectedNodeHost)
-                                            .filter(s -> (s != null &&
-                                                    s.length() > 0))
-                                            .toArray(String[]::new);
+                            nodesToSelectedNodeHost = returnAllVariablesFromPrunedNode(targetCellIncoming2);
+                            nodesToSelectedNodeHost = Arrays.stream(nodesToSelectedNodeHost)
+                                    .filter(s -> (s != null && s.length() > 0)).toArray(String[]::new);
 
                             // end of variable collection-------------------
 
-                            PESEditor.jtreeTograph
-                                    .deleteNodeFromGraphPopup(pos);
-                            String newEntityName = selectedNodeToPrune + "_"
-                                    + targetCellIncoming2.getValue().toString();
-                            PESEditor.jtreeTograph
-                                    .renameCellPES(targetCellIncoming2,
-                                            newEntityName);
+                            PESEditor.jtreeTograph.deleteNodeFromGraphPopup(pos);
+                            String newEntityName =
+                                    selectedNodeToPrune + "_" + targetCellIncoming2.getValue().toString();
+                            PESEditor.jtreeTograph.renameCellPES(targetCellIncoming2, newEntityName);
 
                             // test of color change after pruning
                             // graph.setCellStyles(mxConstants.STYLE_STROKECOLOR,
@@ -5461,13 +4977,11 @@ public class JtreeToGraph {
                             // test of color change
 
                             for (String value : nodesToSelectedNodeHost) {
-                                addVariablesFromOneNodeToAnother(
-                                        targetCellIncoming2, value);
+                                addVariablesFromOneNodeToAnother(targetCellIncoming2, value);
                             }
 
                             for (String value : nodesToSelectedNode) {
-                                addVariablesFromOneNodeToAnother(
-                                        targetCellIncoming2, value);
+                                addVariablesFromOneNodeToAnother(targetCellIncoming2, value);
                             }
 
                         }
@@ -5496,13 +5010,11 @@ public class JtreeToGraph {
 
         String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-        TreePath treePathForVariable =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
         if (!(treePathForVariable == null)) {
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (treePathForVariable
-                            .getLastPathComponent());
+                    (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
 
             TreeNode[] nodes = currentNode.getPath();
 
@@ -5514,16 +5026,14 @@ public class JtreeToGraph {
                 for (String value : DynamicTree.varMap.get(key)) {
 
                     DefaultMutableTreeNode currentNode2 =
-                            (DefaultMutableTreeNode) (key
-                                    .getLastPathComponent());
+                            (DefaultMutableTreeNode) (key.getLastPathComponent());
 
                     TreeNode[] nodes2 = currentNode2.getPath();
 
                     if (nodes.length == nodes2.length) {
                         for (int i = 0; i < nodes.length; i++) {
 
-                            if (nodes[i].toString()
-                                    .equals(nodes2[i].toString())) {
+                            if (nodes[i].toString().equals(nodes2[i].toString())) {
                                 a = 1;
 
                             } else {
@@ -5546,8 +5056,7 @@ public class JtreeToGraph {
         return nodesToSelectedNode;
     }
 
-    public void addVariablesFromOneNodeToAnother(mxCell cellForAddingVariable,
-                                                 String variableName) {
+    public void addVariablesFromOneNodeToAnother(mxCell cellForAddingVariable, String variableName) {
 
         pathToRoot.add((String) cellForAddingVariable.getValue());
         nodeToRootPathVar(cellForAddingVariable);
@@ -5561,8 +5070,7 @@ public class JtreeToGraph {
 
         String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-        TreePath treePathForVariable =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForVariable = PESEditor.getTreeNodePath(stringArrayRev);
 
         DynamicTree.varMap.put(treePathForVariable, variableName);
 
@@ -5590,8 +5098,7 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 mxCell targetCell2 = (mxCell) targetCell;
                 nodeList[a] = targetCell2.getValue().toString();
                 a++;
@@ -5600,17 +5107,14 @@ public class JtreeToGraph {
         }
 
         // java 8 way null removal
-        nodeList = Arrays.stream(nodeList)
-                .filter(s -> (s != null && s.length() > 0))
-                .toArray(String[]::new);
+        nodeList = Arrays.stream(nodeList).filter(s -> (s != null && s.length() > 0)).toArray(String[]::new);
 
         JComboBox nodeListCombo = new JComboBox(nodeList);
 
         nodeListCombo.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent event) {
                 if (event.getStateChange() == ItemEvent.SELECTED) {
-                    selectedNodeToPrune =
-                            nodeListCombo.getSelectedItem().toString();
+                    selectedNodeToPrune = nodeListCombo.getSelectedItem().toString();
                 }
             }
         });
@@ -5618,10 +5122,8 @@ public class JtreeToGraph {
         Object[] pruneOptions = {"Available Options:", nodeListCombo};
 
         int option = JOptionPane
-                .showConfirmDialog(PESEditor.framew, pruneOptions,
-                        "Please Choose from Options",
-                        JOptionPane.OK_CANCEL_OPTION,
-                        JOptionPane.PLAIN_MESSAGE);
+                .showConfirmDialog(PESEditor.framew, pruneOptions, "Please Choose from Options",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
             System.out.println("Node Selected: " + selectedNodeToPrune);
@@ -5634,20 +5136,17 @@ public class JtreeToGraph {
 
             if (outgoing.length > 0) {
                 for (int i = 0; i < outgoing.length; i++) {
-                    Object targetCell =
-                            graph.getModel().getTerminal(outgoing[i], false);
+                    Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                     mxCell targetCell2 = (mxCell) targetCell;
                     if (!targetCell2.getValue().equals(selectedNodeToPrune)) {
-                        PESEditor.jtreeTograph
-                                .deleteNodeFromGraphPopup(targetCell2);
+                        PESEditor.jtreeTograph.deleteNodeFromGraphPopup(targetCell2);
                     }
 
                 }
             }
 
             // color change after pruning to show it already pruned
-            graph.setCellStyles(mxConstants.STYLE_STROKECOLOR,
-                    mxUtils.getHexColorString(Color.BLACK),
+            graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, mxUtils.getHexColorString(Color.BLACK),
                     new Object[] {selectedCell});
             graphComponent.refresh();
 
@@ -5663,8 +5162,7 @@ public class JtreeToGraph {
 
     public void pruneMAspNodeFromGraphPopup(Object pos) {
         mxCell maspcell = (mxCell) pos;
-        String maspcellName =
-                maspcell.getValue().toString().replaceAll("MAsp", "");
+        String maspcellName = maspcell.getValue().toString().replaceAll("MAsp", "");
 
         Object[] outgoing = graph.getOutgoingEdges(maspcell);
         Object targetCell = graph.getModel().getTerminal(outgoing[0], false);
@@ -5679,8 +5177,7 @@ public class JtreeToGraph {
         nodeListCombo.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent event) {
                 if (event.getStateChange() == ItemEvent.SELECTED) {
-                    selectedNodeToPrune =
-                            nodeListCombo.getSelectedItem().toString();
+                    selectedNodeToPrune = nodeListCombo.getSelectedItem().toString();
                 }
             }
         });
@@ -5688,10 +5185,8 @@ public class JtreeToGraph {
         Object[] pruneOptions = {"Number of Entities:", nodeListCombo};
 
         int option = JOptionPane
-                .showConfirmDialog(PESEditor.framew, pruneOptions,
-                        "Please Choose from Options",
-                        JOptionPane.OK_CANCEL_OPTION,
-                        JOptionPane.PLAIN_MESSAGE);
+                .showConfirmDialog(PESEditor.framew, pruneOptions, "Please Choose from Options",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
             int number;
@@ -5715,8 +5210,7 @@ public class JtreeToGraph {
             // addModuleFromSubgraphUniformityPES(lastAddedCell);
 
             Object[] incoming = graph.getIncomingEdges(maspcell);
-            Object aspectParent =
-                    graph.getModel().getTerminal(incoming[0], true);
+            Object aspectParent = graph.getModel().getTerminal(incoming[0], true);
             mxCell aspectParentNode = (mxCell) aspectParent;
             currentSelectedCell = aspectParentNode;
 
@@ -5739,13 +5233,12 @@ public class JtreeToGraph {
 
             String[] stringArrayRev = pathRev.toArray(new String[0]);
 
-            PESEditor.addNodeWIthGraphAddition(maspcellName + "Dec",
-                    stringArrayRev);
+            PESEditor.addNodeWIthGraphAddition(maspcellName + "Dec", stringArrayRev);
             path.clear();
 
-            nodeNamesForGraphSync = Arrays.stream(nodeNamesForGraphSync)
-                    .filter(s -> (s != null && s.length() > 0))
-                    .toArray(String[]::new);
+            nodeNamesForGraphSync =
+                    Arrays.stream(nodeNamesForGraphSync).filter(s -> (s != null && s.length() > 0))
+                            .toArray(String[]::new);
 
             int nodenum = 1;
             for (int i = 0; i < number; i++) {
@@ -5753,24 +5246,19 @@ public class JtreeToGraph {
                 addModuleFromSubgraphUniformityPES(currentSelectedCell);
 
                 // for numbering multiple aspect node sequentially after pruning
-                Object[] outgoingasp =
-                        graph.getOutgoingEdges(currentSelectedCell);
-                Object targetCellasp =
-                        graph.getModel().getTerminal(outgoingasp[i], false);
+                Object[] outgoingasp = graph.getOutgoingEdges(currentSelectedCell);
+                Object targetCellasp = graph.getModel().getTerminal(outgoingasp[i], false);
                 mxCell targetCellasp2 = (mxCell) targetCellasp;
-                renameCellPES(targetCellasp2,
-                        targetCellasp2.getValue().toString() + "_" + nodenum);
+                renameCellPES(targetCellasp2, targetCellasp2.getValue().toString() + "_" + nodenum);
 
                 // if a entity node has aspect node and that entity node is multiaspect node of
                 // another then during pruning have to change the aspect node name otherwise in
                 // same level there will be two node with same name. solution below.
                 Object[] outgoingasp2 = graph.getOutgoingEdges(targetCellasp2);
                 if (outgoingasp2.length > 0) {
-                    targetCellasp = graph.getModel()
-                            .getTerminal(outgoingasp2[0], false);
+                    targetCellasp = graph.getModel().getTerminal(outgoingasp2[0], false);
                     mxCell targetCellasp3 = (mxCell) targetCellasp;
-                    renameCellPES(targetCellasp3,
-                            targetCellasp2.getValue().toString() + "Dec");
+                    renameCellPES(targetCellasp3, targetCellasp2.getValue().toString() + "Dec");
                 }
 
                 nodenum++;
@@ -5784,15 +5272,13 @@ public class JtreeToGraph {
 
                 for (String value : DynamicTree.varMap.get(key)) {
                     String lastNodeName = key.getLastPathComponent().toString();
-                    variableTransferAfterMultiAspectPruning(lastNodeName,
-                            value);
+                    variableTransferAfterMultiAspectPruning(lastNodeName, value);
 
                 }
             }
 
             // have to make used array null and count 0 here
-            nodeNamesForGraphSync =
-                    new String[100];// or have to delete the added nodes in other way
+            nodeNamesForGraphSync = new String[100]; // or have to delete the added nodes in other way
             treeSyncNodeCount = 0;
             currentSelectedCell = null;
 
@@ -5809,8 +5295,7 @@ public class JtreeToGraph {
      * @param lastNodeName
      * @param value
      */
-    public void variableTransferAfterMultiAspectPruning(String lastNodeName,
-                                                        String value) {
+    public void variableTransferAfterMultiAspectPruning(String lastNodeName, String value) {
 
         Object[] cells = graph.getChildVertices(graph.getDefaultParent());
 
@@ -5819,8 +5304,7 @@ public class JtreeToGraph {
             if (cell2.isVertex()) {
                 String val = (String) cell2.getValue();
                 System.out.println("------------" + val);
-                if (val.equals(lastNodeName) ||
-                        val.startsWith(lastNodeName + "_")) {
+                if (val.equals(lastNodeName) || val.startsWith(lastNodeName + "_")) {
 
                     pathToRoot.add(val);
                     nodeToRootPathVar(cell2);
@@ -5832,14 +5316,11 @@ public class JtreeToGraph {
                     }
 
                     String[] stringArrayRev = pathRev.toArray(new String[0]);
-                    TreePath treePathForVariableTransfer =
-                            PESEditor.getTreeNodePath(stringArrayRev);
+                    TreePath treePathForVariableTransfer = PESEditor.getTreeNodePath(stringArrayRev);
 
-                    System.out.println(
-                            treePathForVariableTransfer + ",,," + value);
+                    System.out.println(treePathForVariableTransfer + ",,," + value);
 
-                    DynamicTree.varMapTransfer
-                            .put(treePathForVariableTransfer, value);
+                    DynamicTree.varMapTransfer.put(treePathForVariableTransfer, value);
 
                     pathToRoot.clear();
 
@@ -5870,8 +5351,7 @@ public class JtreeToGraph {
                     // jtree
                     if (cell.getId().equals("rootnode")) {
                         // assigning new projectname and root to tree
-                        DefaultMutableTreeNode rootNode2 =
-                                new DefaultMutableTreeNode(newName);
+                        DefaultMutableTreeNode rootNode2 = new DefaultMutableTreeNode(newName);
                         PESEditor.treePanel.treeModel.setRoot(rootNode2);
                         PESEditor.treePanel.treeModel.reload();
                     }
@@ -5930,14 +5410,11 @@ public class JtreeToGraph {
                         pathToRootRev.add(stringArray[i]);
                     }
 
-                    String[] stringArrayRev =
-                            pathToRootRev.toArray(new String[0]);
+                    String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
 
-                    TreePath treePathForRename =
-                            PESEditor.getTreeNodePath(stringArrayRev);
+                    TreePath treePathForRename = PESEditor.getTreeNodePath(stringArrayRev);
 
-                    PESEditor.treePanel.treeModel
-                            .valueForPathChanged(treePathForRename, newName);
+                    PESEditor.treePanel.treeModel.valueForPathChanged(treePathForRename, newName);
 
                     pathToRoot.clear();
                 }
@@ -5973,9 +5450,8 @@ public class JtreeToGraph {
         nodeNames = nodeNamesForGraphSync;
 
         // deleting null nodes;
-        nodeNames = Arrays.stream(nodeNames)
-                .filter(s -> (s != null && s.length() > 0))
-                .toArray(String[]::new);
+        nodeNames =
+                Arrays.stream(nodeNames).filter(s -> (s != null && s.length() > 0)).toArray(String[]::new);
 
         // adding uniformity node to the array
         addedNodes[addedNodeCount] = obj;
@@ -6011,8 +5487,7 @@ public class JtreeToGraph {
 
             if (len > 0) {
 
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[len - 1], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
                 selectedCellNew = (mxCell) targetCell;
 
                 x = selectedCellNew.getGeometry().getX();
@@ -6037,20 +5512,17 @@ public class JtreeToGraph {
             graph.getModel().beginUpdate();
             try {
                 if (nodeName.endsWith("Dec")) {
-                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25,
-                            y, 30, 30, "Aspect");
+                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25, y, 30, 30, "Aspect");
 
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    lastAddedCell =
-                            null; // so that it will not cause duplicate addition in tree
+                    lastAddedCell = null; // so that it will not cause duplicate addition in tree
 
                     uniformityNodeNumber++;
 
                     addNodeIntoJtreeForSubTree(selectedCell);
 
                 } else if (nodeName.endsWith("MAsp")) {
-                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25,
-                            y, 30, 30, "Multiaspect");
+                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25, y, 30, 30, "Multiaspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
                     lastAddedCell = null;
 
@@ -6059,8 +5531,7 @@ public class JtreeToGraph {
                     addNodeIntoJtreeForSubTree(selectedCell);
 
                 } else if (nodeName.endsWith("Spec")) {
-                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25,
-                            y, 30, 30, "Specialization");
+                    obj = graph.insertVertex(parent, nodeId, nodeName, x + 25, y, 30, 30, "Specialization");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
                     lastAddedCell = null;
 
@@ -6069,8 +5540,7 @@ public class JtreeToGraph {
                     addNodeIntoJtreeForSubTree(selectedCell);
 
                 } else {
-                    obj = graph.insertVertex(parent, nodeId, nodeName, x, y, 80,
-                            30, "Entity");
+                    obj = graph.insertVertex(parent, nodeId, nodeName, x, y, 80, 30, "Entity");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
 
                     lastAddedCell = null;
@@ -6109,8 +5579,7 @@ public class JtreeToGraph {
 
             if (len > 0) {
 
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[len - 1], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[len - 1], false);
                 selectedCellNew = (mxCell) targetCell;
                 x = selectedCellNew.getGeometry().getX();
                 y = selectedCellNew.getGeometry().getY();
@@ -6132,39 +5601,32 @@ public class JtreeToGraph {
             graph.getModel().beginUpdate();
             try {
                 if (nodeName.endsWith("Dec")) {
-                    Object obj =
-                            graph.insertVertex(parent, null, nodeName, x + 25,
-                                    y, 30, 30, "Aspect");
+                    Object obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Aspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    // lastAddedCell = null;// so that it will not cause duplicate addition in tree
+                    // lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
                     currentSelectedCell = (mxCell) obj;
 
                 } else if (nodeName.endsWith("MAsp")) {
-                    Object obj =
-                            graph.insertVertex(parent, null, nodeName, x + 25,
-                                    y, 30, 30, "Multiaspect");
+                    Object obj = graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Multiaspect");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    // lastAddedCell = null;// so that it will not cause duplicate addition in tree
+                    // lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
                     currentSelectedCell = (mxCell) obj;
 
                 } else if (nodeName.endsWith("Spec")) {
                     Object obj =
-                            graph.insertVertex(parent, null, nodeName, x + 25,
-                                    y, 30, 30, "Specialization");
+                            graph.insertVertex(parent, null, nodeName, x + 25, y, 30, 30, "Specialization");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    // lastAddedCell = null;// so that it will not cause duplicate addition in tree
+                    // lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
                     currentSelectedCell = (mxCell) obj;
 
                 } else /* if (DynamicTreeDemo.nodeAddDetector.equals("entity")) */ {
-                    Object obj =
-                            graph.insertVertex(parent, null, nodeName, x, y, 80,
-                                    30,
-                                    "Entity");// "Aspect;fillColor=#0759cf;strokeColor=white;");
+                    Object obj = graph.insertVertex(parent, null, nodeName, x, y, 80, 30,
+                            "Entity"); // "Aspect;fillColor=#0759cf;strokeColor=white;");
                     graph.insertEdge(parent, null, "", selectedCell, obj);
-                    // lastAddedCell = null;// so that it will not cause duplicate addition in tree
+                    // lastAddedCell = null; // so that it will not cause duplicate addition in tree
                     nodeNumber++;
                     currentSelectedCell = (mxCell) obj;
 
@@ -6189,8 +5651,7 @@ public class JtreeToGraph {
 
         if (outgoing.length > 0) {
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 mxCell targetCell2 = (mxCell) targetCell;
 
                 // System.out.println(targetCell2.getValue());
@@ -6218,28 +5679,25 @@ public class JtreeToGraph {
         Object[] outgoing = graph.getOutgoingEdges(nextnode);
 
         if (outgoing.length == 1) {
-            Object targetCell =
-                    graph.getModel().getTerminal(outgoing[0], false);
+            Object targetCell = graph.getModel().getTerminal(outgoing[0], false);
             mxCell targetCell2 = (mxCell) targetCell;
             nextChildNode(targetCell2);
 
         } else if (outgoing.length > 1) {
             int decnum = 0;
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 mxCell targetCell2 = (mxCell) targetCell;
 
-                if (targetCell2.getValue().toString().endsWith("Dec") ||
-                        targetCell2.getValue().toString().endsWith("MAsp")) {
+                if (targetCell2.getValue().toString().endsWith("Dec") || targetCell2.getValue().toString()
+                        .endsWith("MAsp")) {
                     decnum++;
                 }
 
                 if (decnum >= 2) {
                     // System.out.println("have to color it");
                     graph.setCellStyles(mxConstants.STYLE_STROKECOLOR,
-                            mxUtils.getHexColorString(
-                                    Color.getHSBColor(1.41f, .96f, 0.50f)),
+                            mxUtils.getHexColorString(Color.getHSBColor(1.41f, .96f, 0.50f)),
                             new Object[] {nextnode});
                     graphComponent.refresh();
 
@@ -6255,10 +5713,8 @@ public class JtreeToGraph {
                         pathToRootRev.add(stringArray[j]);
                     }
 
-                    String[] stringArrayRev =
-                            pathToRootRev.toArray(new String[0]);
-                    TreePath treePathForIconChange =
-                            PESEditor.getTreeNodePath(stringArrayRev);
+                    String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
+                    TreePath treePathForIconChange = PESEditor.getTreeNodePath(stringArrayRev);
 
                     cellListForIconChange[cellCount] = treePathForIconChange;
                     cellCount++;
@@ -6272,8 +5728,7 @@ public class JtreeToGraph {
             }
 
             for (int i = 0; i < outgoing.length; i++) {
-                Object targetCell =
-                        graph.getModel().getTerminal(outgoing[i], false);
+                Object targetCell = graph.getModel().getTerminal(outgoing[i], false);
                 mxCell targetCell2 = (mxCell) targetCell;
                 nextChildNode(targetCell2);
 
@@ -6286,32 +5741,26 @@ public class JtreeToGraph {
 
         PESEditor.treePanel.tree.setCellRenderer(new DefaultTreeCellRenderer() {
 
-            Icon pruned = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/en.png"));
-            Icon havetoprune = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/enPrune.png"));
-            Icon entityIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/en.png"));
-            Icon specIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/sp.png"));
-            Icon maspIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/ma.png"));
-            Icon aspIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/as16.png"));// as
+            final Icon pruned = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+            final Icon havetoprune =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/enPrune.png"));
+            final Icon entityIcon =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+            final Icon specIcon =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/sp.png"));
+            final Icon maspIcon =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/ma.png"));
+            final Icon aspIcon =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/as16.png")); // as
 
             @Override
-            public Component getTreeCellRendererComponent(JTree tree,
-                                                          Object value,
-                                                          boolean selected,
-                                                          boolean expanded,
-                                                          boolean isLeaf,
-                                                          int row,
+            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
+                                                          boolean expanded, boolean isLeaf, int row,
                                                           boolean focused) {
-                Component c = super.getTreeCellRendererComponent(tree, value,
-                        selected, expanded, isLeaf, row, focused);
+                Component c = super.getTreeCellRendererComponent(tree, value, selected, expanded, isLeaf, row,
+                        focused);
 
-                Object nodeObj =
-                        ((DefaultMutableTreeNode) value).getUserObject();
+                Object nodeObj = ((DefaultMutableTreeNode) value).getUserObject();
                 String nodeName = nodeObj.toString();
                 // System.out.println("s: " + s);
 
@@ -6332,13 +5781,11 @@ public class JtreeToGraph {
                     } else {
                         int change = 0;
                         for (int i = 0; i < cellCount; i++) {
-                            if (pathForIconChange
-                                    .equals(cellListForIconChange[i])) {
+                            if (pathForIconChange.equals(cellListForIconChange[i])) {
                                 change = 1;
                                 System.out.println("nodeName: " + nodeName);
                             } else {
-                                System.out.println(
-                                        "------------------------------");
+                                System.out.println("------------------------------");
                             }
                         }
                         if (change == 1) {
@@ -6385,8 +5832,7 @@ public class JtreeToGraph {
         }
 
         String[] stringArrayRev = pathToRootRev.toArray(new String[0]);
-        TreePath treePathForIconChange =
-                PESEditor.getTreeNodePath(stringArrayRev);
+        TreePath treePathForIconChange = PESEditor.getTreeNodePath(stringArrayRev);
 
         // PESEditor.treePanel.treeModel.valueForPathChanged(treePathForRename,
         // newName);
@@ -6395,32 +5841,26 @@ public class JtreeToGraph {
 
         PESEditor.treePanel.tree.setCellRenderer(new DefaultTreeCellRenderer() {
 
-            Icon pruned = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/en.png"));
-            Icon havetoprune = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/enPrune.png"));
-            Icon entityIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/en.png"));
-            Icon specIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/sp.png"));
-            Icon maspIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/ma.png"));
-            Icon aspIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                    .getResource("images/as16.png"));// as
+            final Icon pruned = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+            final Icon havetoprune =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/enPrune.png"));
+            final Icon entityIcon =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+            final Icon specIcon =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/sp.png"));
+            final Icon maspIcon =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/ma.png"));
+            final Icon aspIcon =
+                    new ImageIcon(PESEditor.class.getClassLoader().getResource("images/as16.png")); // as
 
             @Override
-            public Component getTreeCellRendererComponent(JTree tree,
-                                                          Object value,
-                                                          boolean selected,
-                                                          boolean expanded,
-                                                          boolean isLeaf,
-                                                          int row,
+            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
+                                                          boolean expanded, boolean isLeaf, int row,
                                                           boolean focused) {
-                Component c = super.getTreeCellRendererComponent(tree, value,
-                        selected, expanded, isLeaf, row, focused);
+                Component c = super.getTreeCellRendererComponent(tree, value, selected, expanded, isLeaf, row,
+                        focused);
 
-                Object nodeObj =
-                        ((DefaultMutableTreeNode) value).getUserObject();
+                Object nodeObj = ((DefaultMutableTreeNode) value).getUserObject();
                 String nodeName = nodeObj.toString();
                 // System.out.println("s: " + s);
 

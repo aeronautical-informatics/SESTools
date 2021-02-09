@@ -62,23 +62,20 @@ public class ImportProject extends JPanel {
 
         JTextField newRootNameField = new JTextField();
         newRootNameField.setBounds(150, 70, 300, 30);
-        newRootNameField
-                .setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        newRootNameField.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         newRootNameField.setText("");
         // newRootNameField.setEnabled(false);
 
         JButton selectImportProjectLocation = new JButton("Browse...");
         selectImportProjectLocation.setBounds(460, 70, 100, 30);
 
-        JCheckBox defaultProjectLocationChecker =
-                new JCheckBox("Use Default Location:");
+        JCheckBox defaultProjectLocationChecker = new JCheckBox("Use Default Location:");
         defaultProjectLocationChecker.setBounds(20, 110, 140, 30);
         defaultProjectLocationChecker.setSelected(true);
 
         JLabel projectLocationLabel = new JLabel("Location:");
         projectLocationLabel.setBounds(20, 250, 120, 30);
-        projectLocationLabel
-                .setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        projectLocationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         projectLocationLabel.setEnabled(false);
         JTextField projectLocationField = new JTextField();
         projectLocationField.setBounds(20, 150, 430, 30);
@@ -111,8 +108,7 @@ public class ImportProject extends JPanel {
                 File fileName = new File(name);
                 if (fileName.exists() && fileName.isDirectory()) {
                     errorLabelField.setVisible(true);
-                    errorLabelField.setText(
-                            "There is a file with the same name. It will be overwritten.");
+                    errorLabelField.setText("There is a file with the same name. It will be overwritten.");
                     // System.out.println("Yes");
                 } else {
                     errorLabelField.setVisible(false);
@@ -141,7 +137,6 @@ public class ImportProject extends JPanel {
                     selectProjectLocation.setEnabled(true);
                     projectLocationField.setText("");
                 }
-                ;
 
             }
         });
@@ -151,8 +146,7 @@ public class ImportProject extends JPanel {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter xmlfilter =
-                        new FileNameExtensionFilter("xml files (*.xml)", "xml");
+                FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
                 fileChooser.setFileFilter(xmlfilter);
                 fileChooser.setCurrentDirectory(new File(SESEditor.repFslas));
                 int result = fileChooser.showOpenDialog(SESEditor.framew);
@@ -161,8 +155,7 @@ public class ImportProject extends JPanel {
                     File selectedFile = fileChooser.getSelectedFile();
                     SESEditor.importFileName = selectedFile.getName();
 
-                    SESEditor.importFileLocation =
-                            selectedFile.getParentFile().getAbsolutePath();
+                    SESEditor.importFileLocation = selectedFile.getParentFile().getAbsolutePath();
 
                     newRootNameField.setText(SESEditor.importFileLocation);
                 }
@@ -226,17 +219,14 @@ public class ImportProject extends JPanel {
                 JtreeToGraph.projectFileNameGraph = newProjectName;
 
                 SESEditor.jtreeTograph.ssdFileGraph = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + "Graph.xml");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName
+                        + "Graph.xml");
                 SESEditor.treePanel.ssdFile = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + ".xml");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".xml");
                 SESEditor.treePanel.ssdFileVar = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + ".ssdvar");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".ssdvar");
                 SESEditor.treePanel.ssdFileCon = new File(
-                        SESEditor.fileLocation + "/" + SESEditor.projName +
-                                "/" + newProjectName + ".ssdcon");
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".ssdcon");
 
                 ProjectTree.projectName = newProjectName;
 
@@ -248,8 +238,7 @@ public class ImportProject extends JPanel {
                 // DynamicTreeDemo.treePanel.tree.setModel(DynamicTreeDemo.treePanel.treeModel);
 
                 SESEditor.projectPanel
-                        .changeCurrentProjectFileName(newProjectName,
-                                oldProjectTreeProjectName);
+                        .changeCurrentProjectFileName(newProjectName, oldProjectTreeProjectName);
 
                 Variable.setNullToAllRows();
                 Constraint.setNullToAllRows();

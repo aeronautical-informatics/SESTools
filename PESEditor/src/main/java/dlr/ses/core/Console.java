@@ -45,19 +45,19 @@ public class Console extends JInternalFrame {
         consoleText.addKeyListener(new KeyListener() {
 
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(final KeyEvent e) {
                 // TODO Auto-generated method stub
 
             }
 
             @Override
-            public void keyReleased(KeyEvent e) {
+            public void keyReleased(final KeyEvent e) {
                 // TODO Auto-generated method stub
 
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyPressed(final KeyEvent e) {
                 Robot robot = null;
                 try {
                     robot = new Robot();

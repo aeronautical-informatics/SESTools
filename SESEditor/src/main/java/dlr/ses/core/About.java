@@ -22,10 +22,10 @@ import java.awt.Toolkit;
 public class About extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    public String editorName;
-    JFrame frame = new JFrame();
+    private final String editorName;
+    private JFrame frame = new JFrame();
 
-    public About(String name) {
+    public About(final String name) {
         super(new BorderLayout());
         this.editorName = name;
         aboutGUI();
@@ -33,7 +33,7 @@ public class About extends JPanel {
     }
 
     /**
-     * Shows the information about the editor and the developer and his supervisor
+     * Shows the information about the editor and the developer and his supervisor.
      */
     public void aboutGUI() {
 

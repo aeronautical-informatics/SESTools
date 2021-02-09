@@ -50,29 +50,22 @@ import java.util.Collection;
  */
 public class DynamicTree extends JPanel implements MouseListener {
 
-    public static Multimap<TreePath, String> varMap =
-            ArrayListMultimap.create();
-    public static Multimap<TreePath, String> constraintsList =
-            ArrayListMultimap.create();
-    public static
-    Variable scenarioVariable = new Variable();
-    public static String projectFileName;// ="outputgraphxml";
+    public static Multimap<TreePath, String> varMap = ArrayListMultimap.create();
+    public static Multimap<TreePath, String> constraintsList = ArrayListMultimap.create();
+    public static Variable scenarioVariable = new Variable();
+    public static String projectFileName; // ="outputgraphxml";
     public DefaultMutableTreeNode rootNode;
     public UndoableTreeModel treeModel; // public DefaultTreeModel treeModel;
     public JTree tree;
     public Toolkit toolkit = Toolkit.getDefaultToolkit();
-    public File ssdFile = new File(
-            SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                    projectFileName + ".xml");
-    public File ssdFileVar = new File(
-            SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                    projectFileName + ".ssdvar");
-    public File ssdFileCon = new File(
-            SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                    projectFileName + ".ssdcon");
-    public File ssdFileFlag = new File(
-            SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                    projectFileName + ".ssdflag");
+    public File ssdFile =
+            new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + projectFileName + ".xml");
+    public File ssdFileVar =
+            new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + projectFileName + ".ssdvar");
+    public File ssdFileCon =
+            new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + projectFileName + ".ssdcon");
+    public File ssdFileFlag =
+            new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + projectFileName + ".ssdflag");
     int clickControl = 0;
     // ssdFileGraph -check this in jtreetograph
 
@@ -92,47 +85,38 @@ public class DynamicTree extends JPanel implements MouseListener {
             try {
                 if (SESEditor.openClicked == 1) {
                     File ssdFile = new File(SESEditor.openFileName + ".ssd");
-                    ObjectInputStream ois =
-                            new ObjectInputStream(new FileInputStream(ssdFile));
+                    ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ssdFile));
                     ois.close();
 
                 } else {
                     // for variable
-                    if (ssdFileVar.exists() && ssdFileCon.exists() &&
-                            ssdFileFlag.exists()) {
-                        ObjectInputStream oisvar = new ObjectInputStream(
-                                new FileInputStream(ssdFileVar));
-                        varMap = (Multimap<TreePath, String>) oisvar
-                                .readObject();
+                    if (ssdFileVar.exists() && ssdFileCon.exists() && ssdFileFlag.exists()) {
+                        ObjectInputStream oisvar = new ObjectInputStream(new FileInputStream(ssdFileVar));
+                        varMap = (Multimap<TreePath, String>) oisvar.readObject();
                         oisvar.close();
 
-                        ObjectInputStream oiscon = new ObjectInputStream(
-                                new FileInputStream(ssdFileCon));
-                        constraintsList = (Multimap<TreePath, String>) oiscon
-                                .readObject();
+                        ObjectInputStream oiscon = new ObjectInputStream(new FileInputStream(ssdFileCon));
+                        constraintsList = (Multimap<TreePath, String>) oiscon.readObject();
                         oiscon.close();
 
                     }
 
                     if (ssdFileFlag.exists()) {
 
-                        ObjectInputStream oisflag = new ObjectInputStream(
-                                new FileInputStream(ssdFileFlag));
+                        ObjectInputStream oisflag = new ObjectInputStream(new FileInputStream(ssdFileFlag));
                         FlagVariables flags;
                         flags = (FlagVariables) oisflag.readObject();
                         JtreeToGraph.nodeNumber = flags.nodeNumber;
-                        System.out.println(
-                                "flags.nodeNumber:" + flags.nodeNumber);
-                        JtreeToGraph.uniformityNodeNumber =
-                                flags.uniformityNodeNumber;
+                        System.out.println("flags.nodeNumber:" + flags.nodeNumber);
+                        JtreeToGraph.uniformityNodeNumber = flags.uniformityNodeNumber;
                         oisflag.close();
 
                     }
 
                     // restoring jtree from xml
                     XmlJTree myTree = new XmlJTree(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/" + projectFileName + ".xml");
+                            SESEditor.fileLocation + "/" + SESEditor.projName + "/" + projectFileName
+                            + ".xml");
                     treeModel = myTree.dtModel;
                     treeModel.addTreeModelListener(new MyTreeModelListener());
                 }
@@ -144,8 +128,7 @@ public class DynamicTree extends JPanel implements MouseListener {
             }
         } else {
             rootNode = new DefaultMutableTreeNode("Thing");
-            treeModel = new UndoableTreeModel(
-                    rootNode); // treeModel = new DefaultTreeModel(rootNode);
+            treeModel = new UndoableTreeModel(rootNode); // treeModel = new DefaultTreeModel(rootNode);
             treeModel.addTreeModelListener(new MyTreeModelListener());
 
         }
@@ -153,8 +136,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 
         tree = new JTree(treeModel);
         tree.setEditable(true);
-        tree.getSelectionModel()
-                .setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setShowsRootHandles(true);
         tree.addMouseListener(this);
 
@@ -167,8 +149,7 @@ public class DynamicTree extends JPanel implements MouseListener {
         Path path = Paths.get("").toAbsolutePath();
         String repFslas = path.toString().replace("\\", "/");
 
-        Icon entityIcon =
-                new ImageIcon(repFslas + "/dlr/resources/images/en.png");
+        Icon entityIcon = new ImageIcon(repFslas + "/dlr/resources/images/en.png");
 
         CustomIconRenderer customIconRenderer = new CustomIconRenderer();
         tree.setCellRenderer(customIconRenderer);
@@ -187,8 +168,7 @@ public class DynamicTree extends JPanel implements MouseListener {
                     tree.setCursor(Cursor.getDefaultCursor());
                     clickControl = 0;
                 } else {
-                    tree.setCursor(
-                            Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    tree.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                     clickControl = 1;
 
                 }
@@ -200,13 +180,11 @@ public class DynamicTree extends JPanel implements MouseListener {
 
     }
 
-    public void importExistingProject(String filename,
-                                      String path) {// not using have to delete
+    public void importExistingProject(String filename, String path) {// not using have to delete
         // restoring jtree from xml
         XmlJTree myTree = new XmlJTree(path + "/" + "TestMain.xml");
         treeModel = myTree.dtModel;
-        DefaultMutableTreeNode root =
-                (DefaultMutableTreeNode) treeModel.getRoot();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel.getRoot();
         treeModel.addTreeModelListener(new MyTreeModelListener());
         treeModel.reload(root);
 
@@ -220,15 +198,12 @@ public class DynamicTree extends JPanel implements MouseListener {
         System.out.println(treeModel.getRoot());
     }
 
-    public void openExistingProject(String filename,
-                                    String oldProjectTreeProjectName) {
+    public void openExistingProject(String filename, String oldProjectTreeProjectName) {
         // restoring jtree from xml
-        XmlJTree myTree = new XmlJTree(
-                SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                        filename + ".xml");
+        XmlJTree myTree =
+                new XmlJTree(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + filename + ".xml");
         treeModel = myTree.dtModel;
-        DefaultMutableTreeNode root =
-                (DefaultMutableTreeNode) treeModel.getRoot();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel.getRoot();
         treeModel.addTreeModelListener(new MyTreeModelListener());
         treeModel.reload(root);
 
@@ -247,34 +222,27 @@ public class DynamicTree extends JPanel implements MouseListener {
         JtreeToGraph.projectFileNameGraph = newProjectName;
 
         SESEditor.jtreeTograph.ssdFileGraph = new File(
-                SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                        newProjectName + "Graph.xml");
-        SESEditor.treePanel.ssdFile = new File(
-                SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                        newProjectName + ".xml");
+                SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + "Graph.xml");
+        SESEditor.treePanel.ssdFile =
+                new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".xml");
         try {
 
             ObjectInputStream oisvar;
 
             oisvar = new ObjectInputStream(new FileInputStream(
-                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                            newProjectName + ".ssdvar"));
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".ssdvar"));
             varMap = (Multimap<TreePath, String>) oisvar.readObject();
             oisvar.close();
 
-            ObjectInputStream oiscon =
-                    new ObjectInputStream(new FileInputStream(
-                            SESEditor.fileLocation + "/" + SESEditor.projName +
-                                    "/" + newProjectName + ".ssdcon"));
+            ObjectInputStream oiscon = new ObjectInputStream(new FileInputStream(
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName + ".ssdcon"));
             constraintsList = (Multimap<TreePath, String>) oiscon.readObject();
             oiscon.close();
 
             if (ssdFileFlag.exists()) {
-                ObjectInputStream oisflag =
-                        new ObjectInputStream(new FileInputStream(
-                                SESEditor.fileLocation + "/" +
-                                        SESEditor.projName + "/" +
-                                        newProjectName + ".ssdflag"));
+                ObjectInputStream oisflag = new ObjectInputStream(new FileInputStream(
+                        SESEditor.fileLocation + "/" + SESEditor.projName + "/" + newProjectName
+                        + ".ssdflag"));
                 FlagVariables flags = new FlagVariables();
                 flags = (FlagVariables) oisflag.readObject();
                 System.out.println("flags.nodeNumber:" + flags.nodeNumber);
@@ -292,10 +260,8 @@ public class DynamicTree extends JPanel implements MouseListener {
 
         ProjectTree.projectName = newProjectName;
 
-        SESEditor.projectPanel.changeCurrentProjectFileName(newProjectName,
-                oldProjectTreeProjectName);
-        SESEditor.treePanel
-                .addUndoableEditListener(new EditorUndoableEditListener());
+        SESEditor.projectPanel.changeCurrentProjectFileName(newProjectName, oldProjectTreeProjectName);
+        SESEditor.treePanel.addUndoableEditListener(new EditorUndoableEditListener());
 
         // this is similar to new end------------------------------------------------
 
@@ -332,10 +298,8 @@ public class DynamicTree extends JPanel implements MouseListener {
         TreePath currentSelection = tree.getSelectionPath();
         if (currentSelection != null) {
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (currentSelection
-                            .getLastPathComponent());
-            MutableTreeNode parent =
-                    (MutableTreeNode) (currentNode.getParent());
+                    (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
+            MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
             if (parent != null) {
 
                 // ---------------------------------------------------------------------
@@ -350,7 +314,7 @@ public class DynamicTree extends JPanel implements MouseListener {
                 }
 
                 treeModel.removeNodeFromParent(
-                        currentNode);// if this line is above the currentNode.getPath() then it
+                        currentNode); // if this line is above the currentNode.getPath() then it
                 // will not work because before cullect path nodes the
                 // variable is deleted then
 
@@ -376,10 +340,8 @@ public class DynamicTree extends JPanel implements MouseListener {
     public void removeCurrentNodeWithGraphDelete(TreePath currentSelection) {
         if (currentSelection != null) {
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (currentSelection
-                            .getLastPathComponent());
-            MutableTreeNode parent =
-                    (MutableTreeNode) (currentNode.getParent());
+                    (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
+            MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
             if (parent != null) {
                 treeModel.removeNodeFromParent(currentNode);
                 return;
@@ -390,8 +352,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 
     }
 
-    public DefaultMutableTreeNode addObjectWIthGraphAddition(Object child,
-                                                             String[] nodePath) {
+    public DefaultMutableTreeNode addObjectWIthGraphAddition(Object child, String[] nodePath) {
 
         DefaultMutableTreeNode parentNode = null;
         TreePath parentPath;
@@ -403,8 +364,7 @@ public class DynamicTree extends JPanel implements MouseListener {
         if (parentPath == null) {
             parentNode = rootNode;
         } else {
-            parentNode = (DefaultMutableTreeNode) (parentPath
-                    .getLastPathComponent());
+            parentNode = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
             // System.out.println(parentNode.toString());
         }
 
@@ -425,21 +385,18 @@ public class DynamicTree extends JPanel implements MouseListener {
         if (parentPath == null) {
             parentNode = rootNode;
         } else {
-            parentNode = (DefaultMutableTreeNode) (parentPath
-                    .getLastPathComponent());
+            parentNode = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
             // System.out.println(parentNode.toString());
         }
 
         return addObject(parentNode, child, true);
     }
 
-    public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent,
-                                            Object child) {
+    public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent, Object child) {
         return addObject(parent, child, false);
     }
 
-    public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent,
-                                            Object child,
+    public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent, Object child,
                                             boolean shouldBeVisible) {
         DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
 
@@ -473,25 +430,21 @@ public class DynamicTree extends JPanel implements MouseListener {
             // oos.close();
 
             // for variable
-            ObjectOutputStream oosvar =
-                    new ObjectOutputStream(new FileOutputStream(ssdFileVar));
+            ObjectOutputStream oosvar = new ObjectOutputStream(new FileOutputStream(ssdFileVar));
             oosvar.writeObject(varMap);
             oosvar.close();
 
             // for constraint
-            ObjectOutputStream ooscons =
-                    new ObjectOutputStream(new FileOutputStream(ssdFileCon));
+            ObjectOutputStream ooscons = new ObjectOutputStream(new FileOutputStream(ssdFileCon));
             ooscons.writeObject(constraintsList);
             ooscons.close();
 
             // for constraint
-            ObjectOutputStream oosflag =
-                    new ObjectOutputStream(new FileOutputStream(ssdFileFlag));
+            ObjectOutputStream oosflag = new ObjectOutputStream(new FileOutputStream(ssdFileFlag));
             FlagVariables flags = new FlagVariables();
-            flags.nodeNumber = SESEditor.jtreeTograph.nodeNumber;
+            flags.nodeNumber = JtreeToGraph.nodeNumber;
             System.out.println("flags.nodeNumber:save:" + flags.nodeNumber);
-            flags.uniformityNodeNumber =
-                    SESEditor.jtreeTograph.uniformityNodeNumber;
+            flags.uniformityNodeNumber = JtreeToGraph.uniformityNodeNumber;
             oosflag.writeObject(flags);
             oosflag.close();
 
@@ -519,8 +472,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 
             // for variable
             fileName = fileName + "var";
-            ObjectOutputStream oosvar =
-                    new ObjectOutputStream(new FileOutputStream(fileName));
+            ObjectOutputStream oosvar = new ObjectOutputStream(new FileOutputStream(fileName));
             oosvar.writeObject(varMap);
             oosvar.close();
 
@@ -540,8 +492,7 @@ public class DynamicTree extends JPanel implements MouseListener {
     public void openTreeModel(File fileName) {
         if (fileName.exists()) {
             try {
-                ObjectInputStream ois =
-                        new ObjectInputStream(new FileInputStream(fileName));
+                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
                 // treeModel = (DefaultTreeModel) ois.readObject();
                 treeModel.reload();
                 ois.close();
@@ -576,8 +527,7 @@ public class DynamicTree extends JPanel implements MouseListener {
             TreePath currentSelection = tree.getSelectionPath();
             if (currentSelection != null) {
                 DefaultMutableTreeNode currentNode =
-                        (DefaultMutableTreeNode) (currentSelection
-                                .getLastPathComponent());
+                        (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
                 // System.out.println("mouseReleased(MouseEvent e):" + currentSelection);
                 // scenarioVariable.name.setText(currentNode.toString());
                 // scenarioVariable.setEntityVariables(currentNode.toString());
@@ -588,8 +538,7 @@ public class DynamicTree extends JPanel implements MouseListener {
                 TreeNode[] nodes = currentNode.getPath();
                 // int len1 = nodes.length;
 
-                Collection<String> nodeVariables =
-                        DynamicTree.varMap.get(currentSelection);
+                Collection<String> nodeVariables = DynamicTree.varMap.get(currentSelection);
                 // int len2 = nodeVariables.size();
 
                 // int size = len1 + len2;
@@ -605,16 +554,14 @@ public class DynamicTree extends JPanel implements MouseListener {
                     for (String value : varMap.get(key)) {
                         // System.out.printf("%s %s\n", key, value);
                         DefaultMutableTreeNode currentNode2 =
-                                (DefaultMutableTreeNode) (key
-                                        .getLastPathComponent());
+                                (DefaultMutableTreeNode) (key.getLastPathComponent());
                         // System.out.println(currentNode2.toString());
                         TreeNode[] nodes2 = currentNode2.getPath();
 
                         if (nodes.length == nodes2.length) {
                             for (int i = 0; i < nodes.length; i++) {
 
-                                if (nodes[i].toString()
-                                        .equals(nodes2[i].toString())) {
+                                if (nodes[i].toString().equals(nodes2[i].toString())) {
                                     a = 1;
 
                                 } else {
@@ -638,8 +585,7 @@ public class DynamicTree extends JPanel implements MouseListener {
                 // }
 
                 SESEditor.jtreeTograph.scenarioVariable
-                        .showNodeValuesInTable(currentNode.toString(),
-                                nodesToSelectedNode);
+                        .showNodeValuesInTable(currentNode.toString(), nodesToSelectedNode);
                 // -------------------------------------------------------
 
             }
@@ -658,8 +604,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 
     public void refreshVariableTable(TreePath treePathForVariable) {
         DefaultMutableTreeNode currentNode =
-                (DefaultMutableTreeNode) (treePathForVariable
-                        .getLastPathComponent());
+                (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
         // TreeNode[] nodes2 = currentNode.getPath();
 
         // Collection<String> nodeVariables =
@@ -675,8 +620,7 @@ public class DynamicTree extends JPanel implements MouseListener {
         TreeNode[] nodes = currentNode.getPath();
         // int len1 = nodes.length;
 
-        Collection<String> nodeVariables =
-                DynamicTree.varMap.get(treePathForVariable);
+        Collection<String> nodeVariables = DynamicTree.varMap.get(treePathForVariable);
         // int len2 = nodeVariables.size();
 
         // int size = len1 + len2;
@@ -690,8 +634,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 
             for (String value : DynamicTree.varMap.get(key)) {
                 // System.out.printf("%s %s\n", key, value);
-                DefaultMutableTreeNode currentNode2 =
-                        (DefaultMutableTreeNode) (key.getLastPathComponent());
+                DefaultMutableTreeNode currentNode2 = (DefaultMutableTreeNode) (key.getLastPathComponent());
                 // System.out.println(currentNode2.toString());
                 TreeNode[] nodes2 = currentNode2.getPath();
 
@@ -722,15 +665,13 @@ public class DynamicTree extends JPanel implements MouseListener {
         // }
 
         SESEditor.jtreeTograph.scenarioVariable
-                .showNodeValuesInTable(currentNode.toString(),
-                        nodesToSelectedNode);
+                .showNodeValuesInTable(currentNode.toString(), nodesToSelectedNode);
     }
 
     public void showConstraintsInTable(TreePath treePathForVariable) {
 
         DefaultMutableTreeNode currentNode =
-                (DefaultMutableTreeNode) (treePathForVariable
-                        .getLastPathComponent());
+                (DefaultMutableTreeNode) (treePathForVariable.getLastPathComponent());
 
         // -------------------------------------------------------
         TreeNode[] nodes = currentNode.getPath();
@@ -745,8 +686,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 
             for (String value : DynamicTree.constraintsList.get(key)) {
                 // System.out.printf("%s %s\n", key, value);
-                DefaultMutableTreeNode currentNode2 =
-                        (DefaultMutableTreeNode) (key.getLastPathComponent());
+                DefaultMutableTreeNode currentNode2 = (DefaultMutableTreeNode) (key.getLastPathComponent());
                 // System.out.println(currentNode2.toString());
                 TreeNode[] nodes2 = currentNode2.getPath();
 
@@ -776,8 +716,7 @@ public class DynamicTree extends JPanel implements MouseListener {
         // b++;
         // }
 
-        SESEditor.scenarioConstraint
-                .showConstraintsInTable(nodesToSelectedNode);
+        SESEditor.scenarioConstraint.showConstraintsInTable(nodesToSelectedNode);
     }
 
     public void mouseEntered(MouseEvent e) {
@@ -794,8 +733,7 @@ public class DynamicTree extends JPanel implements MouseListener {
 
         public void treeNodesChanged(TreeModelEvent e) {
             DefaultMutableTreeNode node;
-            node = (DefaultMutableTreeNode) (e.getTreePath()
-                    .getLastPathComponent());
+            node = (DefaultMutableTreeNode) (e.getTreePath().getLastPathComponent());
 
             /*
              * If the event lists children, then the changed node is the child of the node

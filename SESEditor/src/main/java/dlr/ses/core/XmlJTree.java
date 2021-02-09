@@ -37,7 +37,7 @@ public class XmlJTree extends JTree {
         try {
             builder = factory.newDocumentBuilder();
             doc = builder.parse(filePath);
-            root = (Node) doc.getDocumentElement();
+            root = doc.getDocumentElement();
 
         } catch (ParserConfigurationException e) {
             // TODO Auto-generated catch block

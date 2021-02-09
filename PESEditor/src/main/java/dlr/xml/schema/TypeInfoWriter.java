@@ -95,20 +95,17 @@ public class TypeInfoWriter extends DefaultHandler {
     /**
      * Default schema language (http://www.w3.org/2001/XMLSchema).
      */
-    protected static final String DEFAULT_SCHEMA_LANGUAGE =
-            XMLConstants.W3C_XML_SCHEMA_NS_URI;
+    protected static final String DEFAULT_SCHEMA_LANGUAGE = XMLConstants.W3C_XML_SCHEMA_NS_URI;
 
     /**
      * XSD 1.1 schema language (http://www.w3.org/XML/XMLSchema/v1.1).
      */
-    protected static final String XSD11_SCHEMA_LANGUAGE =
-            "http://www.w3.org/XML/XMLSchema/v1.1";
+    protected static final String XSD11_SCHEMA_LANGUAGE = "http://www.w3.org/XML/XMLSchema/v1.1";
 
     /**
      * Default parser name (org.apache.xerces.parsers.SAXParser).
      */
-    protected static final String DEFAULT_PARSER_NAME =
-            "org.apache.xerces.parsers.SAXParser";
+    protected static final String DEFAULT_PARSER_NAME = "org.apache.xerces.parsers.SAXParser";
 
     /**
      * Default schema full checking support (false).
@@ -128,8 +125,7 @@ public class TypeInfoWriter extends DefaultHandler {
     /**
      * Default generate synthetic schema annotations (false).
      */
-    protected static final boolean DEFAULT_GENERATE_SYNTHETIC_ANNOTATIONS =
-            false;
+    protected static final boolean DEFAULT_GENERATE_SYNTHETIC_ANNOTATIONS = false;
 
     //
     // Data
@@ -185,8 +181,7 @@ public class TypeInfoWriter extends DefaultHandler {
         boolean schemaFullChecking = DEFAULT_SCHEMA_FULL_CHECKING;
         boolean honourAllSchemaLocations = DEFAULT_HONOUR_ALL_SCHEMA_LOCATIONS;
         boolean validateAnnotations = DEFAULT_VALIDATE_ANNOTATIONS;
-        boolean generateSyntheticAnnotations =
-                DEFAULT_GENERATE_SYNTHETIC_ANNOTATIONS;
+        boolean generateSyntheticAnnotations = DEFAULT_GENERATE_SYNTHETIC_ANNOTATIONS;
 
         schemaLanguage = XSD11_SCHEMA_LANGUAGE;
 
@@ -197,13 +192,11 @@ public class TypeInfoWriter extends DefaultHandler {
         }
 
         if (PESEditor.sesValidationControl == 1) {
-            instances.add(PESEditor.fileLocation + "/" + PESEditor.projName +
-                    "/xmlforxsd.xml");
+            instances.add(PESEditor.fileLocation + "/" + PESEditor.projName + "/xmlforxsd.xml");
             PESEditor.sesValidationControl = 0;
         } else {
             String rootNodeName = PESEditor.jtreeTograph.rootNodeName();
-            instances.add(PESEditor.fileLocation + "/" + PESEditor.projName +
-                    "/" + rootNodeName + ".xml");
+            instances.add(PESEditor.fileLocation + "/" + PESEditor.projName + "/" + rootNodeName + ".xml");
         }
 			
 		
@@ -311,9 +304,7 @@ public class TypeInfoWriter extends DefaultHandler {
             try {
                 parser = XMLReaderFactory.createXMLReader(DEFAULT_PARSER_NAME);
             } catch (Exception e) {
-                Console.addConsoleOutput(
-                        "error: Unable to instantiate parser (" +
-                                DEFAULT_PARSER_NAME + ")");
+                Console.addConsoleOutput("error: Unable to instantiate parser (" + DEFAULT_PARSER_NAME + ")");
                 e.printStackTrace(System.err);
                 System.exit(1);
             }
@@ -329,53 +320,44 @@ public class TypeInfoWriter extends DefaultHandler {
             factory.setErrorHandler(writer);
 
             try {
-                factory.setFeature(SCHEMA_FULL_CHECKING_FEATURE_ID,
-                        schemaFullChecking);
+                factory.setFeature(SCHEMA_FULL_CHECKING_FEATURE_ID, schemaFullChecking);
             } catch (SAXNotRecognizedException e) {
-                Console.addConsoleOutput(
-                        "warning: SchemaFactory does not recognize feature (" +
-                                SCHEMA_FULL_CHECKING_FEATURE_ID + ")");
+                Console.addConsoleOutput("warning: SchemaFactory does not recognize feature ("
+                                         + SCHEMA_FULL_CHECKING_FEATURE_ID + ")");
             } catch (SAXNotSupportedException e) {
                 Console.addConsoleOutput(
-                        "warning: SchemaFactory does not support feature (" +
-                                SCHEMA_FULL_CHECKING_FEATURE_ID + ")");
+                        "warning: SchemaFactory does not support feature (" + SCHEMA_FULL_CHECKING_FEATURE_ID
+                        + ")");
             }
             try {
-                factory.setFeature(HONOUR_ALL_SCHEMA_LOCATIONS_ID,
-                        honourAllSchemaLocations);
+                factory.setFeature(HONOUR_ALL_SCHEMA_LOCATIONS_ID, honourAllSchemaLocations);
             } catch (SAXNotRecognizedException e) {
                 Console.addConsoleOutput(
-                        "warning: SchemaFactory does not recognize feature (" +
-                                HONOUR_ALL_SCHEMA_LOCATIONS_ID + ")");
+                        "warning: SchemaFactory does not recognize feature (" + HONOUR_ALL_SCHEMA_LOCATIONS_ID
+                        + ")");
             } catch (SAXNotSupportedException e) {
                 Console.addConsoleOutput(
-                        "warning: SchemaFactory does not support feature (" +
-                                HONOUR_ALL_SCHEMA_LOCATIONS_ID + ")");
+                        "warning: SchemaFactory does not support feature (" + HONOUR_ALL_SCHEMA_LOCATIONS_ID
+                        + ")");
             }
             try {
-                factory.setFeature(VALIDATE_ANNOTATIONS_ID,
-                        validateAnnotations);
+                factory.setFeature(VALIDATE_ANNOTATIONS_ID, validateAnnotations);
             } catch (SAXNotRecognizedException e) {
-                System.err
-                        .println(
-                                "warning: SchemaFactory does not recognize feature (" +
-                                        VALIDATE_ANNOTATIONS_ID + ")");
+                System.err.println(
+                        "warning: SchemaFactory does not recognize feature (" + VALIDATE_ANNOTATIONS_ID
+                        + ")");
             } catch (SAXNotSupportedException e) {
                 Console.addConsoleOutput(
-                        "warning: SchemaFactory does not support feature (" +
-                                VALIDATE_ANNOTATIONS_ID + ")");
+                        "warning: SchemaFactory does not support feature (" + VALIDATE_ANNOTATIONS_ID + ")");
             }
             try {
-                factory.setFeature(GENERATE_SYNTHETIC_ANNOTATIONS_ID,
-                        generateSyntheticAnnotations);
+                factory.setFeature(GENERATE_SYNTHETIC_ANNOTATIONS_ID, generateSyntheticAnnotations);
             } catch (SAXNotRecognizedException e) {
-                Console.addConsoleOutput(
-                        "warning: SchemaFactory does not recognize feature ("
-                                + GENERATE_SYNTHETIC_ANNOTATIONS_ID + ")");
+                Console.addConsoleOutput("warning: SchemaFactory does not recognize feature ("
+                                         + GENERATE_SYNTHETIC_ANNOTATIONS_ID + ")");
             } catch (SAXNotSupportedException e) {
-                Console.addConsoleOutput(
-                        "warning: SchemaFactory does not support feature (" +
-                                GENERATE_SYNTHETIC_ANNOTATIONS_ID + ")");
+                Console.addConsoleOutput("warning: SchemaFactory does not support feature ("
+                                         + GENERATE_SYNTHETIC_ANNOTATIONS_ID + ")");
             }
 
             // Build Schema from sources
@@ -384,8 +366,7 @@ public class TypeInfoWriter extends DefaultHandler {
                 final int length = schemas.size();
                 StreamSource[] sources = new StreamSource[length];
                 for (int j = 0; j < length; ++j) {
-                    sources[j] =
-                            new StreamSource((String) schemas.elementAt(j));
+                    sources[j] = new StreamSource((String) schemas.elementAt(j));
                 }
                 schema = factory.newSchema(sources);
             } else {
@@ -404,52 +385,46 @@ public class TypeInfoWriter extends DefaultHandler {
             writer.setTypeInfoProvider(validator.getTypeInfoProvider());
 
             try {
-                validator.setFeature(SCHEMA_FULL_CHECKING_FEATURE_ID,
-                        schemaFullChecking);
+                validator.setFeature(SCHEMA_FULL_CHECKING_FEATURE_ID, schemaFullChecking);
             } catch (SAXNotRecognizedException e) {
                 Console.addConsoleOutput(
-                        "warning: Validator does not recognize feature (" +
-                                SCHEMA_FULL_CHECKING_FEATURE_ID + ")");
+                        "warning: Validator does not recognize feature (" + SCHEMA_FULL_CHECKING_FEATURE_ID
+                        + ")");
             } catch (SAXNotSupportedException e) {
                 Console.addConsoleOutput(
-                        "warning: Validator does not support feature (" +
-                                SCHEMA_FULL_CHECKING_FEATURE_ID + ")");
+                        "warning: Validator does not support feature (" + SCHEMA_FULL_CHECKING_FEATURE_ID
+                        + ")");
             }
             try {
-                validator.setFeature(HONOUR_ALL_SCHEMA_LOCATIONS_ID,
-                        honourAllSchemaLocations);
+                validator.setFeature(HONOUR_ALL_SCHEMA_LOCATIONS_ID, honourAllSchemaLocations);
             } catch (SAXNotRecognizedException e) {
                 Console.addConsoleOutput(
-                        "warning: Validator does not recognize feature (" +
-                                HONOUR_ALL_SCHEMA_LOCATIONS_ID + ")");
+                        "warning: Validator does not recognize feature (" + HONOUR_ALL_SCHEMA_LOCATIONS_ID
+                        + ")");
             } catch (SAXNotSupportedException e) {
                 Console.addConsoleOutput(
-                        "warning: Validator does not support feature (" +
-                                HONOUR_ALL_SCHEMA_LOCATIONS_ID + ")");
+                        "warning: Validator does not support feature (" + HONOUR_ALL_SCHEMA_LOCATIONS_ID
+                        + ")");
             }
             try {
-                validator.setFeature(VALIDATE_ANNOTATIONS_ID,
-                        validateAnnotations);
+                validator.setFeature(VALIDATE_ANNOTATIONS_ID, validateAnnotations);
             } catch (SAXNotRecognizedException e) {
                 Console.addConsoleOutput(
-                        "warning: Validator does not recognize feature (" +
-                                VALIDATE_ANNOTATIONS_ID + ")");
+                        "warning: Validator does not recognize feature (" + VALIDATE_ANNOTATIONS_ID + ")");
             } catch (SAXNotSupportedException e) {
                 Console.addConsoleOutput(
-                        "warning: Validator does not support feature (" +
-                                VALIDATE_ANNOTATIONS_ID + ")");
+                        "warning: Validator does not support feature (" + VALIDATE_ANNOTATIONS_ID + ")");
             }
             try {
-                validator.setFeature(GENERATE_SYNTHETIC_ANNOTATIONS_ID,
-                        generateSyntheticAnnotations);
+                validator.setFeature(GENERATE_SYNTHETIC_ANNOTATIONS_ID, generateSyntheticAnnotations);
             } catch (SAXNotRecognizedException e) {
                 Console.addConsoleOutput(
-                        "warning: Validator does not recognize feature (" +
-                                GENERATE_SYNTHETIC_ANNOTATIONS_ID + ")");
+                        "warning: Validator does not recognize feature (" + GENERATE_SYNTHETIC_ANNOTATIONS_ID
+                        + ")");
             } catch (SAXNotSupportedException e) {
                 Console.addConsoleOutput(
-                        "warning: Validator does not support feature (" +
-                                GENERATE_SYNTHETIC_ANNOTATIONS_ID + ")");
+                        "warning: Validator does not support feature (" + GENERATE_SYNTHETIC_ANNOTATIONS_ID
+                        + ")");
             }
 
             // Validate instance documents and print type information
@@ -462,15 +437,14 @@ public class TypeInfoWriter extends DefaultHandler {
         } catch (SAXParseException e) {
             // ignore
         } catch (Exception e) {
-            Console.addConsoleOutput(
-                    "error: Parse error occurred - " + e.getMessage());
+            Console.addConsoleOutput("error: Parse error occurred - " + e.getMessage());
             if (e instanceof SAXException) {
                 Exception nested = ((SAXException) e).getException();
                 if (nested != null) {
                     e = nested;
                 }
             }
-            //e.printStackTrace(System.err);//mark
+            //e.printStackTrace(System.err); //mark
 
 
             //these 3 lines are alternative of the above one line marked //mark
@@ -485,53 +459,37 @@ public class TypeInfoWriter extends DefaultHandler {
      */
     private static void printUsage() {
 
-        Console.addConsoleOutput(
-                "usage: java jaxp.TypeInfoWriter (options) ...");
+        Console.addConsoleOutput("usage: java jaxp.TypeInfoWriter (options) ...");
         Console.addConsoleOutput("");
 
         Console.addConsoleOutput("options:");
-        Console.addConsoleOutput(
-                "  -l name     Select schema language by name.");
+        Console.addConsoleOutput("  -l name     Select schema language by name.");
         Console.addConsoleOutput("  -p name     Select parser by name.");
-        Console.addConsoleOutput(
-                "  -a uri ...  Provide a list of schema documents");
-        Console.addConsoleOutput(
-                "  -i uri ...  Provide a list of instance documents to validate");
-        Console.addConsoleOutput(
-                "  -f  | -F    Turn on/off Schema full checking.");
-        Console.addConsoleOutput(
-                "              NOTE: Not supported by all schema factories and validators.");
-        Console.addConsoleOutput(
-                "  -hs | -HS   Turn on/off honouring of all schema locations.");
-        Console.addConsoleOutput(
-                "              NOTE: Not supported by all schema factories and validators.");
-        Console.addConsoleOutput(
-                "  -va | -VA   Turn on/off validation of schema annotations.");
-        Console.addConsoleOutput(
-                "              NOTE: Not supported by all schema factories and validators.");
-        Console.addConsoleOutput(
-                "  -ga | -GA   Turn on/off generation of synthetic schema annotations.");
-        Console.addConsoleOutput(
-                "              NOTE: Not supported by all schema factories and validators.");
+        Console.addConsoleOutput("  -a uri ...  Provide a list of schema documents");
+        Console.addConsoleOutput("  -i uri ...  Provide a list of instance documents to validate");
+        Console.addConsoleOutput("  -f  | -F    Turn on/off Schema full checking.");
+        Console.addConsoleOutput("              NOTE: Not supported by all schema factories and validators.");
+        Console.addConsoleOutput("  -hs | -HS   Turn on/off honouring of all schema locations.");
+        Console.addConsoleOutput("              NOTE: Not supported by all schema factories and validators.");
+        Console.addConsoleOutput("  -va | -VA   Turn on/off validation of schema annotations.");
+        Console.addConsoleOutput("              NOTE: Not supported by all schema factories and validators.");
+        Console.addConsoleOutput("  -ga | -GA   Turn on/off generation of synthetic schema annotations.");
+        Console.addConsoleOutput("              NOTE: Not supported by all schema factories and validators.");
         Console.addConsoleOutput("  -xsd11      Turn on XSD 1.1 support.");
         Console.addConsoleOutput("  -h          This help screen.");
 
         Console.addConsoleOutput("");
         Console.addConsoleOutput("defaults:");
-        Console.addConsoleOutput("  Schema language:                 " +
-                DEFAULT_SCHEMA_LANGUAGE);
-        Console.addConsoleOutput(
-                "  Parser:                          " + DEFAULT_PARSER_NAME);
+        Console.addConsoleOutput("  Schema language:                 " + DEFAULT_SCHEMA_LANGUAGE);
+        Console.addConsoleOutput("  Parser:                          " + DEFAULT_PARSER_NAME);
         Console.addConsoleOutput("  Schema full checking:            ");
         Console.addConsoleOutput(DEFAULT_SCHEMA_FULL_CHECKING ? "on" : "off");
         Console.addConsoleOutput("  Honour all schema locations:     ");
-        Console.addConsoleOutput(
-                DEFAULT_HONOUR_ALL_SCHEMA_LOCATIONS ? "on" : "off");
+        Console.addConsoleOutput(DEFAULT_HONOUR_ALL_SCHEMA_LOCATIONS ? "on" : "off");
         Console.addConsoleOutput("  Validate annotations:            ");
         Console.addConsoleOutput(DEFAULT_VALIDATE_ANNOTATIONS ? "on" : "off");
         Console.addConsoleOutput("  Generate synthetic annotations:  ");
-        Console.addConsoleOutput(
-                DEFAULT_GENERATE_SYNTHETIC_ANNOTATIONS ? "on" : "off");
+        Console.addConsoleOutput(DEFAULT_GENERATE_SYNTHETIC_ANNOTATIONS ? "on" : "off");
 
     } // printUsage()
 
@@ -568,8 +526,8 @@ public class TypeInfoWriter extends DefaultHandler {
     /**
      * Start element.
      */
-    public void startElement(String uri, String localName, String qname,
-                             Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qname, Attributes attributes)
+            throws SAXException {
 
         TypeInfo type;
         printIndent();
@@ -578,8 +536,7 @@ public class TypeInfoWriter extends DefaultHandler {
         printQName(uri, localName);
         Console.addConsoleOutput(",");
         Console.addConsoleOutput("type=");
-        if (fTypeInfoProvider != null &&
-                (type = fTypeInfoProvider.getElementTypeInfo()) != null) {
+        if (fTypeInfoProvider != null && (type = fTypeInfoProvider.getElementTypeInfo()) != null) {
             printQName(type.getTypeNamespace(), type.getTypeName());
         } else {
             Console.addConsoleOutput("null");
@@ -602,23 +559,21 @@ public class TypeInfoWriter extends DefaultHandler {
                 printQName(attrURI, attrLocalName);
                 Console.addConsoleOutput(",");
                 Console.addConsoleOutput("type=");
-                if (fTypeInfoProvider != null &&
-                        (type = fTypeInfoProvider.getAttributeTypeInfo(i)) !=
-                                null) {
+                if (fTypeInfoProvider != null && (type = fTypeInfoProvider.getAttributeTypeInfo(i)) != null) {
                     printQName(type.getTypeNamespace(), type.getTypeName());
                 } else {
                     Console.addConsoleOutput("null");
                 }
                 Console.addConsoleOutput(",");
                 Console.addConsoleOutput("id=");
-                Console.addConsoleOutput(fTypeInfoProvider != null &&
-                        fTypeInfoProvider.isIdAttribute(i) ? "\"true\"" :
-                        "\"false\"");
+                Console.addConsoleOutput(
+                        fTypeInfoProvider != null && fTypeInfoProvider.isIdAttribute(i) ? "\"true\"" :
+                                "\"false\"");
                 Console.addConsoleOutput(",");
                 Console.addConsoleOutput("specified=");
-                Console.addConsoleOutput(fTypeInfoProvider == null ||
-                        fTypeInfoProvider.isSpecified(i) ? "\"true\"" :
-                        "\"false\"");
+                Console.addConsoleOutput(
+                        fTypeInfoProvider == null || fTypeInfoProvider.isSpecified(i) ? "\"true\"" :
+                                "\"false\"");
                 Console.addConsoleOutput("}");
             }
             Console.addConsoleOutput("}");
@@ -636,8 +591,7 @@ public class TypeInfoWriter extends DefaultHandler {
     /**
      * End element.
      */
-    public void endElement(String uri, String localName, String qname)
-            throws SAXException {
+    public void endElement(String uri, String localName, String qname) throws SAXException {
 
         fIndent--;
         printIndent();
@@ -692,8 +646,7 @@ public class TypeInfoWriter extends DefaultHandler {
     /**
      * Sets the output stream for printing.
      */
-    public void setOutput(OutputStream stream, String encoding)
-            throws UnsupportedEncodingException {
+    public void setOutput(OutputStream stream, String encoding) throws UnsupportedEncodingException {
 
         if (encoding == null) {
             encoding = "UTF8";

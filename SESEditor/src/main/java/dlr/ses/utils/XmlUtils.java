@@ -19,8 +19,7 @@ public class XmlUtils {
         XmlUtils.xmlview = new XMLViewer();
         XmlUtils.xmlview.setPreferredSize(new Dimension(200, 200));
         // this is for removing the top-left icon of the internal frame
-        BasicInternalFrameUI uixml =
-                (BasicInternalFrameUI) XmlUtils.xmlview.getUI();
+        BasicInternalFrameUI uixml = (BasicInternalFrameUI) XmlUtils.xmlview.getUI();
         Container northxml = uixml.getNorthPane();
         northxml.remove(0);
         northxml.validate();
@@ -28,7 +27,7 @@ public class XmlUtils {
         // end of removing top left icon
         XmlUtils.xmlview.pack();
         XmlUtils.xmlview.setVisible(true);
-        XmlUtils.xmlview.setTitle("XML");// SES Ontology / Schema Viewer
+        XmlUtils.xmlview.setTitle("XML"); // SES Ontology / Schema Viewer
         XmlUtils.xmlview.textArea.setEditable(true);
     }
 
@@ -36,8 +35,7 @@ public class XmlUtils {
         XmlUtils.ontologyview = new XMLViewer();
         XmlUtils.ontologyview.setPreferredSize(new Dimension(200, 200));
         // this is for removing the top-left icon of the internal frame
-        BasicInternalFrameUI uiontology =
-                (BasicInternalFrameUI) XmlUtils.ontologyview.getUI();
+        BasicInternalFrameUI uiontology = (BasicInternalFrameUI) XmlUtils.ontologyview.getUI();
         Container northontology = uiontology.getNorthPane();
         northontology.remove(0);
         northontology.validate();
@@ -45,8 +43,7 @@ public class XmlUtils {
         // end of removing top left icon
         XmlUtils.ontologyview.pack();
         XmlUtils.ontologyview.setVisible(true);
-        XmlUtils.ontologyview
-                .setTitle("SES Ontology");// SES Ontology / Schema Viewer
+        XmlUtils.ontologyview.setTitle("SES Ontology"); // SES Ontology / Schema Viewer
         XmlUtils.ontologyview.textArea.setEditable(false);
     }
 
@@ -54,17 +51,15 @@ public class XmlUtils {
         XmlUtils.schemaview = new XMLViewer();
         XmlUtils.schemaview.setPreferredSize(new Dimension(200, 200));
         // this is for removing the top-left icon of the internal frame
-        BasicInternalFrameUI uischama =
-                (BasicInternalFrameUI) XmlUtils.schemaview.getUI();
-        Container northschama = (Container) uischama.getNorthPane();
+        BasicInternalFrameUI uischama = (BasicInternalFrameUI) XmlUtils.schemaview.getUI();
+        Container northschama = uischama.getNorthPane();
         northschama.remove(0);
         northschama.validate();
         northschama.repaint();
         // end of removing top left icon
         XmlUtils.schemaview.pack();
         XmlUtils.schemaview.setVisible(true);
-        XmlUtils.schemaview
-                .setTitle("SES Schema");// SES Ontology / Schema Viewer
+        XmlUtils.schemaview.setTitle("SES Schema"); // SES Ontology / Schema Viewer
         XmlUtils.schemaview.textArea.setEditable(false);
     }
 
@@ -73,23 +68,21 @@ public class XmlUtils {
         sesview.setPreferredSize(new Dimension(200, 200));
         // this is for removing the top-left icon of the internal frame
         BasicInternalFrameUI uises = (BasicInternalFrameUI) sesview.getUI();
-        Container northses = (Container) uises.getNorthPane();
+        Container northses = uises.getNorthPane();
         northses.remove(0);
         northses.validate();
         northses.repaint();
         // end of removing top left icon
         sesview.pack();
         sesview.setVisible(true);
-        sesview.setTitle("SES XML");// SES Ontology / Schema Viewer
+        sesview.setTitle("SES XML"); // SES Ontology / Schema Viewer
         sesview.textArea.setEditable(false);
     }
 
-    public static void showSESOntologytoOntologViewer(String fileLocation,
-                                                      String projName) {
+    public static void showSESOntologytoOntologViewer(String fileLocation, String projName) {
         Scanner in = null;
         try {
-            in = new Scanner(
-                    new File(fileLocation + "/" + projName + "/ses.xsd"));
+            in = new Scanner(new File(fileLocation + "/" + projName + "/ses.xsd"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -104,12 +97,10 @@ public class XmlUtils {
     }
 
     // showing xml to viewer
-    public static void showXSDtoXMLViewer(String fileLocation,
-                                          String projName) {
+    public static void showXSDtoXMLViewer(String fileLocation, String projName) {
         Scanner in = null;
         try {
-            in = new Scanner(new File(
-                    fileLocation + "/" + projName + "/xsdfromxml.xsd"));
+            in = new Scanner(new File(fileLocation + "/" + projName + "/xsdfromxml.xsd"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -124,12 +115,10 @@ public class XmlUtils {
     }
 
     // showing xml to viewer
-    public static void showXMLtoXMLViewer(String fileLocation,
-                                          String projName) {
+    public static void showXMLtoXMLViewer(String fileLocation, String projName) {
         Scanner in = null;
         try {
-            in = new Scanner(
-                    new File(fileLocation + "/" + projName + "/xmlforxsd.xml"));
+            in = new Scanner(new File(fileLocation + "/" + projName + "/xmlforxsd.xml"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -143,12 +132,10 @@ public class XmlUtils {
         in.close();
     }
 
-    public static void showGeneratedFile(String file, String fileLocation,
-                                         String projName) {
+    public static void showGeneratedFile(String file, String fileLocation, String projName) {
         Scanner in = null;
         try {
-            in = new Scanner(new File(
-                    fileLocation + "/" + projName + "/" + file + ".xml"));
+            in = new Scanner(new File(fileLocation + "/" + projName + "/" + file + ".xml"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

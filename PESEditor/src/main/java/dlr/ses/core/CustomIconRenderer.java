@@ -31,27 +31,20 @@ class CustomIconRenderer extends DefaultTreeCellRenderer {
     Path path = Paths.get("").toAbsolutePath();
     String repFslas = path.toString().replace("\\", "/");
 
-    public CustomIconRenderer() {// throws MalformedURLException
-        System.err.println(
-                PESEditor.class.getClassLoader().getResource("images/en.png"));
-        entityIcon = new ImageIcon(
-                PESEditor.class.getClassLoader().getResource("images/en.png"));
-        specIcon = new ImageIcon(
-                PESEditor.class.getClassLoader().getResource("images/sp.png"));
-        maspIcon = new ImageIcon(
-                PESEditor.class.getClassLoader().getResource("images/ma.png"));
-        aspIcon = new ImageIcon(PESEditor.class.getClassLoader()
-                .getResource("images/as16.png"));// as
+    public CustomIconRenderer() { // throws MalformedURLException
+        System.err.println(PESEditor.class.getClassLoader().getResource("images/en.png"));
+        entityIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/en.png"));
+        specIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/sp.png"));
+        maspIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/ma.png"));
+        aspIcon = new ImageIcon(PESEditor.class.getClassLoader().getResource("images/as16.png")); // as
     }
 
     @Override
-    public Component getTreeCellRendererComponent(JTree tree, Object value,
-                                                  boolean sel, boolean expanded,
-                                                  boolean leaf,
-                                                  int row, boolean hasFocus) {
+    public Component getTreeCellRendererComponent(final JTree tree, final Object value, final boolean sel,
+                                                  final boolean expanded, final boolean leaf, final int row,
+                                                  final boolean hasFocus) {
 
-        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf,
-                row, hasFocus);
+        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
         Object nodeObj = ((DefaultMutableTreeNode) value).getUserObject();
         String nodeName = nodeObj.toString();

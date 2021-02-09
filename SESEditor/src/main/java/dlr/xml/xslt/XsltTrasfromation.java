@@ -1,5 +1,6 @@
 package dlr.xml.xslt;
 
+import dlr.ses.core.DynamicTree;
 import dlr.ses.seseditor.SESEditor;
 import org.w3c.dom.Document;
 
@@ -36,23 +37,20 @@ public class XsltTrasfromation {
         //File xml = new File("src/xslt/Scenario.xml");
         File xsl = new File("src/dlr/xml/xslt/Scenario.xsl");
 
-        File xml = new File(SESEditor.fileLocation + "/" + SESEditor.projName +
-                "/xmlforxsd.xml");
+        File xml = new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsd.xml");
 
         DocumentBuilder builder = factory.newDocumentBuilder();
         document = builder.parse(xml);
 
         // Use a Transformer for output
-        TransformerFactory transformerFactory =
-                TransformerFactory.newInstance();
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
         StreamSource style = new StreamSource(xsl);
         Transformer transformer = transformerFactory.newTransformer(style);
 
         DOMSource source = new DOMSource(document);
         //StreamResult result = new StreamResult(new File("src/xslt/Scenario.html"));
-        StreamResult result = new StreamResult(new File(
-                SESEditor.fileLocation + "/" + SESEditor.projName +
-                        "/xmlforxsdXSTL.html"));
+        StreamResult result = new StreamResult(
+                new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsdXSTL.html"));
         transformer.transform(source, result);
         XsltTrasfromation.convertXMLtoXHTML();
     }
@@ -63,8 +61,8 @@ public class XsltTrasfromation {
         PrintWriter f0 = null;
         try {
             f0 = new PrintWriter(new FileWriter(
-                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" +
-                            SESEditor.treePanel.projectFileName + ".obj"));
+                    SESEditor.fileLocation + "/" + SESEditor.projName + "/" + DynamicTree.projectFileName
+                    + ".obj"));
             // System.out.println("output file generated");
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -73,9 +71,8 @@ public class XsltTrasfromation {
 
         Scanner in = null;
         try {
-            in = new Scanner(new File(
-                    SESEditor.fileLocation + "/" + SESEditor.projName +
-                            "/xmlforxsdXSTL.html"));
+            in = new Scanner(
+                    new File(SESEditor.fileLocation + "/" + SESEditor.projName + "/xmlforxsdXSTL.html"));
             //in = new Scanner(new File("src/xslt/xmlforxsdXSTL.html"));
             // System.out.println("my read complete");
         } catch (FileNotFoundException e) {
@@ -86,17 +83,13 @@ public class XsltTrasfromation {
         while (in.hasNext()) { // Iterates each line in the file
 
             String line = in.nextLine();
-            String result1 = line.trim();// line.replaceAll("\\s+", "");
+            String result1 = line.trim(); // line.replaceAll("\\s+", "");
             line = result1;
 
-            if (line.startsWith("<html>") || line.startsWith("<body>") ||
-                    line.startsWith("<table")
-                    || line.startsWith("<tr>") || line.startsWith("<td>") ||
-                    line.startsWith("<h2>")
-                    || line.startsWith("</html>") ||
-                    line.startsWith("</body>") || line.startsWith("</table>")
-                    || line.startsWith("</tr>") || line.startsWith("</td>") ||
-                    line.startsWith("</h2>")) {
+            if (line.startsWith("<html>") || line.startsWith("<body>") || line.startsWith("<table") || line
+                    .startsWith("<tr>") || line.startsWith("<td>") || line.startsWith("<h2>") || line
+                        .startsWith("</html>") || line.startsWith("</body>") || line.startsWith("</table>")
+                || line.startsWith("</tr>") || line.startsWith("</td>") || line.startsWith("</h2>")) {
 
                 continue;
             } else {

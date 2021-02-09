@@ -5,6 +5,7 @@
  */
 package dlr.ses.core;
 
+import dlr.ses.seseditor.JtreeToGraph;
 import dlr.ses.seseditor.SESEditor;
 
 import javax.swing.JComboBox;
@@ -26,7 +27,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * <h1>Variable</h1>
@@ -54,11 +54,10 @@ public class Variable extends JPanel {
 
     public Variable() {
         // super(new BorderLayout());
-        setLayout(new GridLayout(1, 0));// rows,cols
+        setLayout(new GridLayout(1, 0)); // rows,cols
 
         String[] columnNames =
-                {"Node Name", "Variables", "Type", "Default Value",
-                        "Lower Bound", "Upper Bound"};
+                {"Node Name", "Variables", "Type", "Default Value", "Lower Bound", "Upper Bound"};
         model = new DefaultTableModel(columnNames, 0);
         table = new JTable();
         table.setModel(model);
@@ -70,7 +69,7 @@ public class Variable extends JPanel {
         // row listener
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        table.addMouseListener((MouseListener) new MouseAdapter() {
+        table.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     JTable target = (JTable) e.getSource();
@@ -78,27 +77,20 @@ public class Variable extends JPanel {
                     Point point = e.getPoint();
                     int row = table.rowAtPoint(point);
 
-                    String nodeName =
-                            (String) target.getModel().getValueAt(0, 0);
-                    String variableName =
-                            (String) target.getModel().getValueAt(row, 1);
-                    String variableType =
-                            (String) target.getModel().getValueAt(row, 2);
-                    String variableValue =
-                            (String) target.getModel().getValueAt(row, 3);
-                    String lowerBound =
-                            (String) target.getModel().getValueAt(row, 4);
-                    String uperBound =
-                            (String) target.getModel().getValueAt(row, 5);
+                    String nodeName = (String) target.getModel().getValueAt(0, 0);
+                    String variableName = (String) target.getModel().getValueAt(row, 1);
+                    String variableType = (String) target.getModel().getValueAt(row, 2);
+                    String variableValue = (String) target.getModel().getValueAt(row, 3);
+                    String lowerBound = (String) target.getModel().getValueAt(row, 4);
+                    String uperBound = (String) target.getModel().getValueAt(row, 5);
 
                     String rowValues =
-                            nodeName + " " + variableName + " " + variableType +
-                                    " " + variableValue + " "
-                                    + lowerBound + " " + uperBound + " ";
+                            nodeName + " " + variableName + " " + variableType + " " + variableValue + " "
+                            + lowerBound + " " + uperBound + " ";
                     // Console.addConsoleOutput(rowValues);
 
-                    updateTableData(nodeName, variableName, variableType,
-                            variableValue, lowerBound, uperBound);
+                    updateTableData(nodeName, variableName, variableType, variableValue, lowerBound,
+                            uperBound);
 
                 }
             }
@@ -123,7 +115,7 @@ public class Variable extends JPanel {
 
     public static void setNullToAllRows() {
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        dtm.setRowCount(0);// for deleting previous table content
+        dtm.setRowCount(0); // for deleting previous table content
 
         for (int i = 0; i < 100; i++) {
             model.addRow(new Object[] {""});
@@ -133,12 +125,11 @@ public class Variable extends JPanel {
 
     // public void showNodeValuesInTable(String selectedNode, Collection<String>
     // nodeVariables) {
-    public void showNodeValuesInTable(String selectedNode,
-                                      String[] nodeVariables) {
+    public void showNodeValuesInTable(String selectedNode, String[] nodeVariables) {
         // try {
 
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        dtm.setRowCount(0);// for deleting previous table content
+        dtm.setRowCount(0); // for deleting previous table content
         String[] properties = null;
         int a = 0;
         String valueFirst = "";
@@ -147,18 +138,15 @@ public class Variable extends JPanel {
             if (a == 0) {
 
                 if (value == null) {
-                    model.addRow(
-                            new Object[] {selectedNode, "", "", "", "", ""});
+                    model.addRow(new Object[] {selectedNode, "", "", "", "", ""});
                 } else {
                     properties = value.split(",");
 
-                    if (properties[1].toString().equals("string") ||
-                            properties[1].toString().equals("boolean")) {
-                        model.addRow(new Object[] {selectedNode, properties[0],
-                                properties[1], properties[2]});
+                    if (properties[1].equals("string") || properties[1].equals("boolean")) {
+                        model.addRow(
+                                new Object[] {selectedNode, properties[0], properties[1], properties[2]});
                     } else {
-                        model.addRow(new Object[] {selectedNode, properties[0],
-                                properties[1], properties[2],
+                        model.addRow(new Object[] {selectedNode, properties[0], properties[1], properties[2],
                                 properties[3], properties[4]});
                     }
                 }
@@ -186,13 +174,10 @@ public class Variable extends JPanel {
             } else {
                 properties = value.split(",");
 
-                if (properties[1].toString().equals("string") ||
-                        properties[1].toString().equals("boolean")) {
-                    model.addRow(new Object[] {selectedNode, properties[0],
-                            properties[1], properties[2]});
+                if (properties[1].equals("string") || properties[1].equals("boolean")) {
+                    model.addRow(new Object[] {selectedNode, properties[0], properties[1], properties[2]});
                 } else {
-                    model.addRow(new Object[] {selectedNode, properties[0],
-                            properties[1], properties[2],
+                    model.addRow(new Object[] {selectedNode, properties[0], properties[1], properties[2],
                             properties[3], properties[4]});
                 }
             }
@@ -203,10 +188,8 @@ public class Variable extends JPanel {
 
     }
 
-    public void updateTableData(String nodeName, String variableName,
-                                String variableType, String variableValue,
-                                String variableLowerBound,
-                                String variableUpperBound) {
+    public void updateTableData(String nodeName, String variableName, String variableType,
+                                String variableValue, String variableLowerBound, String variableUpperBound) {
 
         // multiple input for variable---------------------------------
         JTextField nodeNameleField = new JTextField();
@@ -231,11 +214,9 @@ public class Variable extends JPanel {
         variableTypeField.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent event) {
                 if (event.getStateChange() == ItemEvent.SELECTED) {
-                    selectedType =
-                            variableTypeField.getSelectedItem().toString();
+                    selectedType = variableTypeField.getSelectedItem().toString();
 
-                    if (selectedType.equals("string") ||
-                            selectedType.equals("boolean")) {
+                    if (selectedType.equals("string") || selectedType.equals("boolean")) {
                         lowerBoundField.setText(null);
                         upperBoundField.setText(null);
                         lowerBoundField.setEnabled(false);
@@ -249,57 +230,30 @@ public class Variable extends JPanel {
 
                     // --------------
                     if (selectedType.equals("boolean")) {
-                        if (variableField.getText().trim()
-                                .matches(variableFieldRegEx)
-                                && (valueField.getText().trim().equals("true")
-                                || variableField.getText().trim()
-                                .equals("false"))) {
-                            errorLabelField.setVisible(false);
-                        } else {
-                            errorLabelField.setVisible(true);
-                            // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                        }
+                        // errorLabelField.setText("Invalid Input. Check All Values.");
+                        errorLabelField.setVisible(
+                                !variableField.getText().trim().matches(variableFieldRegEx) || (
+                                        !valueField.getText().trim().equals("true") && !variableField
+                                                .getText().trim().equals("false")));
                     } else if (selectedType.equals("string")) {
-                        if (variableField.getText().trim()
-                                .matches(variableFieldRegEx)
-                                && valueField.getText().trim()
-                                .matches(variableFieldRegEx)) {
-                            errorLabelField.setVisible(false);
-                        } else {
-                            errorLabelField.setVisible(true);
-                            // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                        }
+                        // errorLabelField.setText("Invalid Input. Check All Values.");
+                        errorLabelField.setVisible(
+                                !variableField.getText().trim().matches(variableFieldRegEx) || !valueField
+                                        .getText().trim().matches(variableFieldRegEx));
                     } else if (selectedType.equals("double")) {
-                        if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                                && variableField.getText().trim()
-                                .matches(variableFieldRegEx)
-                                && lowerBoundField.getText().trim()
-                                .matches("^\\d*\\.\\d+")
-                                && upperBoundField.getText().trim()
-                                .matches("^\\d*\\.\\d+")) {
-                            errorLabelField.setVisible(false);
-                        } else {
-                            errorLabelField.setVisible(true);
-                            // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                        }
+                        // errorLabelField.setText("Invalid Input. Check All Values.");
+                        errorLabelField.setVisible(
+                                !valueField.getText().trim().matches("^\\d*\\.\\d+") || !variableField
+                                        .getText().trim().matches(variableFieldRegEx) || !lowerBoundField
+                                        .getText().trim().matches("^\\d*\\.\\d+") || !upperBoundField
+                                        .getText().trim().matches("^\\d*\\.\\d+"));
                     } else {
-                        if (variableField.getText().trim()
-                                .matches(variableFieldRegEx)
-                                &&
-                                valueField.getText().trim().matches("^[0-9]+")
-                                && lowerBoundField.getText().trim()
-                                .matches("^[0-9]+")
-                                && upperBoundField.getText().trim()
-                                .matches("^[0-9]+")) {
-                            errorLabelField.setVisible(false);
-                        } else {
-                            errorLabelField.setVisible(true);
-                            // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                        }
+                        // errorLabelField.setText("Invalid Input. Check All Values.");
+                        errorLabelField.setVisible(
+                                !variableField.getText().trim().matches(variableFieldRegEx) || !valueField
+                                        .getText().trim().matches("^[0-9]+") || !lowerBoundField.getText()
+                                        .trim().matches("^[0-9]+") || !upperBoundField.getText().trim()
+                                        .matches("^[0-9]+"));
                     }
                     // ---
 
@@ -333,13 +287,11 @@ public class Variable extends JPanel {
         }
 
         if (selectedType.equals("string") || selectedType.equals("boolean")) {
-            variableNameOld =
-                    variableName + "," + variableType + "," + variableValue;
+            variableNameOld = variableName + "," + variableType + "," + variableValue;
         } else {
             variableNameOld =
-                    variableName + "," + variableType + "," + variableValue +
-                            "," + variableLowerBound + ","
-                            + variableUpperBound;
+                    variableName + "," + variableType + "," + variableValue + "," + variableLowerBound + ","
+                    + variableUpperBound;
         }
 
         variableField.addKeyListener(new KeyListener() {
@@ -354,57 +306,32 @@ public class Variable extends JPanel {
             public void keyReleased(KeyEvent e) {
 
                 if (selectedType.equals("string")) {
-                    if (variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && valueField.getText().trim()
-                            .matches(variableFieldRegEx)) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !variableField.getText().trim().matches(variableFieldRegEx) || !valueField
+                                    .getText().trim().matches(variableFieldRegEx));
                 } else if (selectedType.equals("boolean")) {
 
-                    if ((valueField.getText().trim().equals("false") ||
-                            valueField.getText().trim().equals("true"))
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            (!valueField.getText().trim().equals("false") && !valueField.getText().trim()
+                                    .equals("true")) || !variableField.getText().trim()
+                                    .matches(variableFieldRegEx));
 
                 } else if (selectedType.equals("double")) {
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^\\d*\\.\\d+") || !variableField.getText()
+                                    .trim().matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+") || !upperBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+"));
                 } else {
-                    if (variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && valueField.getText().trim().matches("^[0-9]+")
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !variableField.getText().trim().matches(variableFieldRegEx) || !valueField
+                                    .getText().trim().matches("^[0-9]+") || !lowerBoundField.getText().trim()
+                                    .matches("^[0-9]+") || !upperBoundField.getText().trim()
+                                    .matches("^[0-9]+"));
                 }
             }
 
@@ -428,76 +355,45 @@ public class Variable extends JPanel {
 
                 if (selectedType.equals("boolean")) {
 
-                    if ((valueField.getText().trim().equals("false") ||
-                            valueField.getText().trim().equals("true"))
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            (!valueField.getText().trim().equals("false") && !valueField.getText().trim()
+                                    .equals("true")) || !variableField.getText().trim()
+                                    .matches(variableFieldRegEx));
 
                 } else if (selectedType.equals("int")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^[0-9]+") || !variableField.getText().trim()
+                                    .matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^[0-9]+") || !upperBoundField.getText().trim()
+                                    .matches("^[0-9]+"));
 
                 } else if (selectedType.equals("float")) {
 
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^\\d*\\.\\d+") || !variableField.getText()
+                                    .trim().matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+") || !upperBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+"));
 
                 } else if (selectedType.equals("double")) {
 
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^\\d*\\.\\d+") || !variableField.getText()
+                                    .trim().matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+") || !upperBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+"));
 
                 } else if (selectedType.equals("string")) {
 
-                    if (valueField.getText().trim().matches(variableFieldRegEx)
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches(variableFieldRegEx) || !variableField
+                                    .getText().trim().matches(variableFieldRegEx));
                 }
 
             }
@@ -522,51 +418,30 @@ public class Variable extends JPanel {
 
                 if (selectedType.equals("float")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^[0-9]+") || !variableField.getText().trim()
+                                    .matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^[0-9]+") || !upperBoundField.getText().trim()
+                                    .matches("^[0-9]+"));
 
                 } else if (selectedType.equals("int")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^[0-9]+") || !variableField.getText().trim()
+                                    .matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^[0-9]+") || !upperBoundField.getText().trim()
+                                    .matches("^[0-9]+"));
 
                 } else if (selectedType.equals("double")) {
 
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^\\d*\\.\\d+") || !variableField.getText()
+                                    .trim().matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+") || !upperBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+"));
 
                 }
                 // else if (selectedType.equals("string")) {
@@ -602,51 +477,30 @@ public class Variable extends JPanel {
 
                 if (selectedType.equals("float")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^[0-9]+") || !variableField.getText().trim()
+                                    .matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^[0-9]+") || !upperBoundField.getText().trim()
+                                    .matches("^[0-9]+"));
 
                 } else if (selectedType.equals("int")) {
 
-                    if (valueField.getText().trim().matches("^[0-9]+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            &&
-                            lowerBoundField.getText().trim().matches("^[0-9]+")
-                            && upperBoundField.getText().trim()
-                            .matches("^[0-9]+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^[0-9]+") || !variableField.getText().trim()
+                                    .matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^[0-9]+") || !upperBoundField.getText().trim()
+                                    .matches("^[0-9]+"));
 
                 } else if (selectedType.equals("double")) {
 
-                    if (valueField.getText().trim().matches("^\\d*\\.\\d+")
-                            && variableField.getText().trim()
-                            .matches(variableFieldRegEx)
-                            && lowerBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")
-                            && upperBoundField.getText().trim()
-                            .matches("^\\d*\\.\\d+")) {
-                        errorLabelField.setVisible(false);
-                    } else {
-                        errorLabelField.setVisible(true);
-                        // errorLabelField.setText("Invalid Input. Check All Values.");
-
-                    }
+                    // errorLabelField.setText("Invalid Input. Check All Values.");
+                    errorLabelField.setVisible(
+                            !valueField.getText().trim().matches("^\\d*\\.\\d+") || !variableField.getText()
+                                    .trim().matches(variableFieldRegEx) || !lowerBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+") || !upperBoundField.getText().trim()
+                                    .matches("^\\d*\\.\\d+"));
 
                 }
                 // else if (selectedType.equals("string")) {
@@ -669,16 +523,12 @@ public class Variable extends JPanel {
             }
         });
 
-        Object[] message =
-                {"Node Name:", nodeNameleField, "Variable Name:", variableField,
-                        "Variable Type:",
-                        variableTypeField, "Value:", valueField, "Lower Bound:",
-                        lowerBoundField, "Upper Bound:",
-                        upperBoundField, " ", errorLabelField};
+        Object[] message = {"Node Name:", nodeNameleField, "Variable Name:", variableField, "Variable Type:",
+                variableTypeField, "Value:", valueField, "Lower Bound:", lowerBoundField, "Upper Bound:",
+                upperBoundField, " ", errorLabelField};
 
         int option = JOptionPane
-                .showConfirmDialog(SESEditor.framew, message, "Please Update",
-                        JOptionPane.OK_CANCEL_OPTION,
+                .showConfirmDialog(SESEditor.framew, message, "Please Update", JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.PLAIN_MESSAGE);
 
         if (option == JOptionPane.OK_OPTION) {
@@ -705,11 +555,10 @@ public class Variable extends JPanel {
             }
 
 
-            boolean validInput = (variableField.getText() != null) &&
-                    (!variableField.getText().trim().isEmpty())
-                    && (variableTypeField.getSelectedItem() != null)
-                    && (!variableTypeField.getSelectedItem().toString().trim()
-                    .isEmpty());
+            boolean validInput =
+                    (variableField.getText() != null) && (!variableField.getText().trim().isEmpty()) && (
+                            variableTypeField.getSelectedItem() != null) && (!variableTypeField
+                            .getSelectedItem().toString().trim().isEmpty());
             //&& (valueField.getText() != null) && (!valueField.getText().trim().isEmpty());
             // && (lowerBoundField.getText() != null) &&
             // (!lowerBoundField.getText().trim().isEmpty())
@@ -718,15 +567,12 @@ public class Variable extends JPanel {
 
             if (validInput) {
 
-                if (variableTypeField.getSelectedItem().toString().trim()
-                        .equals("string")
-                        || variableTypeField.getSelectedItem().toString().trim()
-                        .equals("boolean")) {
-                    variableName = variableName + "," + variableType + "," +
-                            variableValue;
+                if (variableTypeField.getSelectedItem().toString().trim().equals("string")
+                    || variableTypeField.getSelectedItem().toString().trim().equals("boolean")) {
+                    variableName = variableName + "," + variableType + "," + variableValue;
                 } else {
-                    variableName = variableName + "," + variableType + "," +
-                            variableValue + "," + variableLowerBound
+                    variableName =
+                            variableName + "," + variableType + "," + variableValue + "," + variableLowerBound
                             + "," + variableUpperBound;
                 }
 
@@ -739,8 +585,7 @@ public class Variable extends JPanel {
                 // DynamicTreeDemo.jtreeTograph.selectedNodeCellForVariableUpdate.getValue().toString());
 
                 SESEditor.jtreeTograph.deleteVariableFromScenarioTableForUpdate(
-                        SESEditor.jtreeTograph.selectedNodeCellForVariableUpdate,
-                        variableNameOld, variableName);
+                        JtreeToGraph.selectedNodeCellForVariableUpdate, variableNameOld, variableName);
             }
 
         }

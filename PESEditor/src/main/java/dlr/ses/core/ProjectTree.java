@@ -27,7 +27,7 @@ import java.util.Scanner;
 
 public class ProjectTree extends JPanel implements MouseListener {
 
-    public static String projectName;// = "Project"; //ProjectTree.projectName
+    public static String projectName; // = "Project"; //ProjectTree.projectName
 
     public DefaultMutableTreeNode projectRoot, mainModule, addedModule;
     public DefaultMutableTreeNode projectXmlFile;
@@ -35,31 +35,25 @@ public class ProjectTree extends JPanel implements MouseListener {
     public JTree projectTree;
     public Toolkit toolkit = Toolkit.getDefaultToolkit();
     int clickControl = 0;
-    File ssdFileProject = new File(
-            PESEditor.projName + "/" + JtreeToGraph.newFileName +
-                    "Project.xml");
+    File ssdFileProject = new File(PESEditor.projName + "/" + JtreeToGraph.newFileName + "Project.xml");
 
     public ProjectTree() {
         super(new GridLayout(1, 0));
 
         if (ssdFileProject.exists()) {
             // restoring jtree from xml
-            XmlJTree myTree = new XmlJTree(
-                    PESEditor.projName + "/" + JtreeToGraph.newFileName +
-                            "Project.xml");
+            XmlJTree myTree =
+                    new XmlJTree(PESEditor.projName + "/" + JtreeToGraph.newFileName + "Project.xml");
             projectTreeModel = myTree.dtModel;
-            projectTreeModel
-                    .addTreeModelListener(new ProjectTreeModelListener());
+            projectTreeModel.addTreeModelListener(new ProjectTreeModelListener());
             projectTree = new JTree(projectTreeModel);
 
             // have to initialize addedModule here. //BUG fixed :)
-            projectRoot =
-                    (DefaultMutableTreeNode) projectTree.getModel().getRoot();
+            projectRoot = (DefaultMutableTreeNode) projectTree.getModel().getRoot();
             Enumeration enumeration = projectRoot.breadthFirstEnumeration();
             while (enumeration.hasMoreElements()) {
 
-                DefaultMutableTreeNode node =
-                        (DefaultMutableTreeNode) enumeration.nextElement();
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();
                 if ("AddedModule".equals(node.getUserObject().toString())) {
 
                     addedModule = node;
@@ -73,21 +67,16 @@ public class ProjectTree extends JPanel implements MouseListener {
             addedModule = new DefaultMutableTreeNode("AddedModule");
             projectXmlFile = new DefaultMutableTreeNode(projectName);
             projectTreeModel = new DefaultTreeModel(projectRoot);
-            projectTreeModel
-                    .addTreeModelListener(new ProjectTreeModelListener());
+            projectTreeModel.addTreeModelListener(new ProjectTreeModelListener());
             projectTree = new JTree(projectTreeModel);
-            projectTreeModel.insertNodeInto(mainModule, projectRoot,
-                    projectRoot.getChildCount());
-            projectTreeModel.insertNodeInto(addedModule, projectRoot,
-                    projectRoot.getChildCount());
-            projectTreeModel.insertNodeInto(projectXmlFile, mainModule,
-                    mainModule.getChildCount());
+            projectTreeModel.insertNodeInto(mainModule, projectRoot, projectRoot.getChildCount());
+            projectTreeModel.insertNodeInto(addedModule, projectRoot, projectRoot.getChildCount());
+            projectTreeModel.insertNodeInto(projectXmlFile, mainModule, mainModule.getChildCount());
 
         }
 
         projectTree.setEditable(true);
-        projectTree.getSelectionModel()
-                .setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        projectTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         projectTree.setShowsRootHandles(true);
         projectTree.addMouseListener(this);
 
@@ -102,8 +91,7 @@ public class ProjectTree extends JPanel implements MouseListener {
                     projectTree.setCursor(Cursor.getDefaultCursor());
                     clickControl = 0;
                 } else {
-                    projectTree.setCursor(
-                            Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    projectTree.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                     clickControl = 1;
 
                 }
@@ -132,8 +120,7 @@ public class ProjectTree extends JPanel implements MouseListener {
 
         // Icon xmlIcon = new ImageIcon("images/projtreeleaf.png");
 
-        CustomIconRendererProject customIconRenderer =
-                new CustomIconRendererProject();
+        CustomIconRendererProject customIconRenderer = new CustomIconRendererProject();
         // projectTree.setCellRenderer(customIconRenderer);
         // customIconRenderer.setLeafIcon(xmlIcon);
         projectTree.setCellRenderer(new CustomIconRendererProject());
@@ -181,11 +168,9 @@ public class ProjectTree extends JPanel implements MouseListener {
 
     public void addModueFile(String fileName) {
         // fileName = fileName.replaceFirst("[.][^.]+$", ""); //regular expression
-        fileName = Files.getNameWithoutExtension(
-                fileName);// using google guava deleting file extension
+        fileName = Files.getNameWithoutExtension(fileName); // using google guava deleting file extension
         projectXmlFile = new DefaultMutableTreeNode(fileName + ".xml");
-        projectTreeModel.insertNodeInto(projectXmlFile, addedModule,
-                addedModule.getChildCount());
+        projectTreeModel.insertNodeInto(projectXmlFile, addedModule, addedModule.getChildCount());
 
         // no need to delete and again add .xml. its just for learning purpose i added
         // this. have to remove later.
@@ -202,16 +187,13 @@ public class ProjectTree extends JPanel implements MouseListener {
         TreePath currentSelection = projectTree.getSelectionPath();
         if (currentSelection != null) {
             DefaultMutableTreeNode currentNode =
-                    (DefaultMutableTreeNode) (currentSelection
-                            .getLastPathComponent());
-            MutableTreeNode parent =
-                    (MutableTreeNode) (currentNode.getParent());
+                    (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
+            MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
             if (parent != null) {
 
-                if (currentNode.toString().equals("MainModule") ||
-                        currentNode.toString().equals("AddedModule")
-                        || currentNode.toString()
-                        .equals(PESEditor.projName + ".xml")) {
+                if (currentNode.toString().equals("MainModule") || currentNode.toString()
+                        .equals("AddedModule") || currentNode.toString()
+                            .equals(PESEditor.projName + ".xml")) {
                     toolkit.beep();
                 } else {
                     projectTreeModel.removeNodeFromParent(currentNode);
@@ -223,8 +205,7 @@ public class ProjectTree extends JPanel implements MouseListener {
 
     }
 
-    public void changeCurrentProjectFileName(String fileName,
-                                             String oldProjectTreeProjectName) {
+    public void changeCurrentProjectFileName(String fileName, String oldProjectTreeProjectName) {
 
         // have to initialize addedModule here. //BUG fixed :)
         projectRoot = (DefaultMutableTreeNode) projectTree.getModel().getRoot();
@@ -232,10 +213,8 @@ public class ProjectTree extends JPanel implements MouseListener {
 
         while (enumeration.hasMoreElements()) {
 
-            DefaultMutableTreeNode node =
-                    (DefaultMutableTreeNode) enumeration.nextElement();
-            if ((oldProjectTreeProjectName + ".xml")
-                    .equals(node.getUserObject().toString())) {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();
+            if ((oldProjectTreeProjectName + ".xml").equals(node.getUserObject().toString())) {
                 projectTreeModel.removeNodeFromParent(node);
             }
         }
@@ -246,16 +225,14 @@ public class ProjectTree extends JPanel implements MouseListener {
 
         while (enumeration.hasMoreElements()) {
 
-            DefaultMutableTreeNode node =
-                    (DefaultMutableTreeNode) enumeration.nextElement();
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();
             if ("MainModule".equals(node.getUserObject().toString())) {
                 mainModule = node;
             }
         }
 
         projectXmlFile = new DefaultMutableTreeNode(fileName + ".xml");
-        projectTreeModel.insertNodeInto(projectXmlFile, mainModule,
-                mainModule.getChildCount());
+        projectTreeModel.insertNodeInto(projectXmlFile, mainModule, mainModule.getChildCount());
         expandTree();
 
     }
@@ -265,8 +242,7 @@ public class ProjectTree extends JPanel implements MouseListener {
 
         if (arg0.getClickCount() == 2) // double click
         {
-            String name = projectTree.getSelectionPath().getLastPathComponent()
-                    .toString();
+            String name = projectTree.getSelectionPath().getLastPathComponent().toString();
             // System.out.println(name);
             showXSDtoXMLViewer(name);
             PESEditor.xmlview.setTitle(name);
@@ -314,8 +290,7 @@ public class ProjectTree extends JPanel implements MouseListener {
 
         public void treeNodesChanged(TreeModelEvent e) {
             DefaultMutableTreeNode node;
-            node = (DefaultMutableTreeNode) (e.getTreePath()
-                    .getLastPathComponent());
+            node = (DefaultMutableTreeNode) (e.getTreePath().getLastPathComponent());
 
             int index = e.getChildIndices()[0];
             node = (DefaultMutableTreeNode) (node.getChildAt(index));
