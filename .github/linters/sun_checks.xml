@@ -91,13 +91,11 @@
     <!-- Checks for Javadoc comments.                     -->
     <!-- See https://checkstyle.org/config_javadoc.html -->
     <module name="InvalidJavadocPosition"/>
-    <!-- TODO remove me
     <module name="JavadocMethod"/>
     <module name="JavadocType"/>
     <module name="JavadocVariable"/>
     <module name="JavadocStyle"/>
     <module name="MissingJavadocMethod"/>
-    -->
     <!-- Enables @SuppressWarnings Support                -->
     <module name="SuppressWarningsHolder"/>
 
