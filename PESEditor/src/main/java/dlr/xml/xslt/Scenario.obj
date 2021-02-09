@@ -1,0 +1,122 @@
+<objects name="" text="">
+
+<object class="2">
+<description text="">
+<properties>
+<property pid="1" type="1" size="1" unit="kg/m3">
+<value value="5.5"></value>
+</property>
+<property pid="2" type="1" size="1" unit="kg/m3">
+<value value="5"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="8"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="5"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="0"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="5"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="10"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="5"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="4"></value>
+</property>
+<property pid="1" type="1" size="1" unit="kg/m3">
+<value value="5.5"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="5"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="8"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="5"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="0"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="true"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1.1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1.1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="true"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="4.5"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="1"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="true"></value>
+</property>
+<property pid="3" type="1" size="1" unit="kg/m3">
+<value value="0"></value>
+</property>
+</properties>
+</description>
+
+</object>
+
+</objects>
