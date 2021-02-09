@@ -15,7 +15,7 @@ SESEditor for building System Entity Structures and PESEditor for interactive pr
 PES Editor has been developed as an interactive pruning tool. The user basically selects each and every decision point, such as a specialization node, and resolves the decision. It supports all the design patterns proposed in Deatcu et al. [5] for interactive pruning of SES. Its GUI looks very similar to the SES Editor. It also has variable table for displaying variables or editing values of variables. Constraint table and console window work exactly the same way. Here, the left side tree is also synchronized with the white drawing panel and nodes are movable. Unlike SES Editor, here we can not create new projects, but only open SES models created in SES Editor. New elements cannot be added or deleted; the existing SES cannot be edited. The main functionality of PES Editor is interactive pruning of an SES model.
 
 # SESTools Publications and Presentations
-1.Karmokar, B.C., Durak, U., Jafer, S., Chhaya, B.N. and Hartmann, S., 2019. Tools for Scenario Development Using System Entity Structures. In AIAA Scitech 2019 Forum (p. 1712).
+1. Karmokar, B.C., Durak, U., Jafer, S., Chhaya, B.N. and Hartmann, S., 2019. Tools for Scenario Development Using System Entity Structures. In AIAA Scitech 2019 Forum (p. 1712).
 
 2. Karmokar, B.C., Durak, U., Hartmann, S. and Ziegler, B.P., 2019, July. Towards a standard computational representation for system entity structures. In Proceedings of the 2019 Summer Simulation Conference (pp. 1-11). 
 
