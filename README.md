@@ -6,20 +6,10 @@ SESEditor for building System Entity Structures and PESEditor for interactive pr
 # Development
 Suggestion that changes are merged into a branch development and the master branch is for release code.
 
-# Configuration
-The files in the following list need to be added as dependencies in locations SESEditor/lib and PESEditor/lib.
+# Build
 
-* cupv10k-runtime.jar
-* guava-22.0.jar
-* icu4j.jar
-* jgraphx.jar
-* org.elcipse.wst.xml.xpath2.processor_1.1.0.jar
-* resolver.jar
-* rsyntaxtextarea-2.0.7.jar
-* serializer.jar
-* xercesImpl.jar
-* xercesSamples.jar
-* xml-apis.jar
+Both [PESEditor](PESEditor) as [SESEditor](SESEditor) are maven projects.
+Simply `cd` into the respective folder and run `mvn compile`.
 
 # TODO
 * Enhance the documentation
