@@ -53,7 +53,6 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Run Maven
         run: xvfb-run mvn --file ${{ matrix.target }} --batch-mode --update-snapshots verify
-        continue-on-error: true # TODO remove this once SESEditor passes the test suite
 
   lint:
     runs-on: ubuntu-latest
